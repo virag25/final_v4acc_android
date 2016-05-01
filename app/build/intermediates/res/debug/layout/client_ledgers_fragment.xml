@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context="amigoinn.example.v4sales.ClientLedgersFragment">
+    <RelativeLayout
+        android:id="@+id/rltvOrder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_color_500"
+        android:padding="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:background="@color/main_color_500"
+            android:text="Ledgers Details"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_below="@+id/rltvOrder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:weightSum="4">
+
+        <LinearLayout
+            android:id="@+id/rlOne"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:background="@drawable/shadow_list"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Opening Balance"
+                android:padding="5dp"
+                android:textSize="25dp"
+                android:textColor="#000000"
+                android:id="@+id/textView" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Start Opening Balance"
+                android:textSize="15dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:textColor="#585858" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="End Opening Balance"
+                android:textSize="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:textColor="#585858" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/Two"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:background="@drawable/shadow_list"
+            android:layout_marginTop="5dp"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Closing Balance"
+                android:padding="5dp"
+                android:textSize="25dp"
+                android:textColor="#000000" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Start Closing Balance"
+                android:textSize="15dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:textColor="#585858" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="End Closing Balance"
+                android:textSize="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:textColor="#585858" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/rlThree"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="5dp"
+            android:orientation="vertical"
+            android:background="@drawable/shadow_list"
+            android:layout_weight="1">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Debit Balance"
+                android:padding="5dp"
+                android:textSize="25dp"
+                android:textColor="#000000" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Start Debit Balance"
+                android:textSize="15dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:textColor="#585858" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="End Debit Balance"
+                android:textSize="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:textColor="#585858" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/rlFour"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="5dp"
+            android:orientation="vertical"
+            android:background="@drawable/shadow_list"
+            android:layout_weight="1">
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Credits Balance"
+                android:padding="5dp"
+                android:textSize="25dp"
+                android:textColor="#000000" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Start Credits Balance"
+                android:textSize="15dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:textColor="#585858" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="End Credits Balance"
+                android:textSize="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:textColor="#585858" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
+<!-- From: file:/E:/Maulik%20Nano%20Projects/SchoolParents/app/src/main/res/layout/client_ledgers_fragment.xml -->

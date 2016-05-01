@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\exploded-aar\se.emilsjolander\stickylistheaders\2.6.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="dd93a96342fce030e55cafc5917d768da0135164">
+        <dex dex="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\pre-dexed\debug\classes-c302f7f9dd1728db3fc2ad0de9b6225e3011af0d.jar" />
+    </item>
+    <item
+        jar="E:\Maulik Nano Projects\SchoolParents\app\libs\universal-image-loader-1.9.3.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a85588bec3e2c4584d593d3f15df1677321bca72">
+        <dex dex="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\pre-dexed\debug\universal-image-loader-1.9.3-b4ba1b10aa003e2e7309a230cb5e050536461234.jar" />
+    </item>
+    <item
+        jar="C:\Users\Virag kuvadia\.gradle\caches\modules-2\files-2.1\com.squareup.retrofit\retrofit\1.9.0\a681c044244d9fc375198588297a39ba78028423\retrofit-1.9.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a681c044244d9fc375198588297a39ba78028423">
+        <dex dex="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\pre-dexed\debug\retrofit-1.9.0-bde5ea8ec26fc0b2698988eff0647454ed0cf085.jar" />
+    </item>
+    <item
+        jar="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-panorama\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="d93480da1d303122ee67dc3bc23e6297bdef9951">
+        <dex dex="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\pre-dexed\debug\classes-9f809b070a6dfe4f56c02e99ed466b314962f767.jar" />
+    </item>
+    <item
+        jar="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appinvite\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="b92002cb2f0e11a226ac5bac6dff1dc2a9d0b774">
+        <dex dex="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\pre-dexed\debug\classes-7efa1204401e3d597c21379dabdb4867c6078c1c.jar" />
+    </item>
+    <item
+        jar="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\exploded-aar\com.github.ganfra\material-spinner\1.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a973f67796996adb991bd6e63a11b2b88a571219">
+        <dex dex="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\pre-dexed\debug\classes-b7ffcf70f6aaef66a53f65b80f12e4bb627587f5.jar" />
+    </item>
+    <item
+        jar="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-cast\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="3178362320bcf51228835b60ff978efadfd1f783">
+        <dex dex="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\pre-dexed\debug\classes-5f0a3cd72c48e0817c9f9e4a3aee1c71fee20f72.jar" />
+    </item>
+    <item
+        jar="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
+        <dex dex="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\pre-dexed\debug\classes-a7df631d03f0a0b5cf43db269ff2d5f861744f1c.jar" />
+    </item>
+    <item
+        jar="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-fitness\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="9cf8c0ef60847621c7ad00b4f78dbfc9daba4af2">
+        <dex dex="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\pre-dexed\debug\classes-511f754c3d77fd34574fe0ff012a4d68a4ee9ec9.jar" />
+    </item>
+    <item
+        jar="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appstate\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="82054090e487d78e163a988557db62d809fa9b95">
+        <dex dex="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\pre-dexed\debug\classes-ec257345a47bc5f4bd724ca0b5a553f69c4ecd99.jar" />
+    </item>
+    <item
+        jar="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="2a7e47da654546f9457deb6132364f1bf33a1857">
+        <dex dex="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\pre-dexed\debug\classes-b31b8b43dd459436e715fc3f4bf0c6c6f65b273b.jar" />
+    </item>
+    <item
+        jar="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="73753982da6bde518f3a4c6b372749981d14d1a0">
+        <dex dex="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\pre-dexed\debug\classes-118d7d190ab93319f0f1a1bc26e1c0b61fa76931.jar" />
+    </item>
+    <item
+        jar="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\exploded-aar\com.hudomju\swipe-to-dismiss-undo\1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="c934830482473cb298c02f9eb55da67548b9db40">
+        <dex dex="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\pre-dexed\debug\classes-6c0ff6fc22da5f3a7b22bf517365806f194fa95b.jar" />
+    </item>
+    <item
+        jar="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="95758a2905669affbffc5ddd262921d375674fad">
+        <dex dex="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\pre-dexed\debug\classes-1ddd9f2f2ad800091a2745b5ce7cbf43bc77a765.jar" />
+    </item>
+    <item
+        jar="E:\Maulik Nano Projects\SchoolParents\app\libs\listviewanimations_lib-core-slh_3.1.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a4fe703aabd23e8c287c90396514418119109dd1">
+        <dex dex="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\pre-dexed\debug\listviewanimations_lib-core-slh_3.1.0-fb1079f7df371d6067f60686e3f305184bbadb63.jar" />
+    </item>
+    <item
+        jar="E:\Maulik Nano Projects\SchoolParents\app\libs\apache-mime4j-0.6.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="945007627e8d12275d755081a9e609c018e1210d">
+        <dex dex="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\pre-dexed\debug\apache-mime4j-0.6-86ae135e6fab8e97304efe02e9b700383bd821b4.jar" />
+    </item>
+    <item
+        jar="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-location\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="3aed37c38c56679602255dd72ef356da5d327cda">
+        <dex dex="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\pre-dexed\debug\classes-b8070bd048c34bf5b87b6bf9e79ec2fd61f11413.jar" />
+    </item>
+    <item
+        jar="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\jars\libs\internal_impl-22.2.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
+        <dex dex="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\pre-dexed\debug\internal_impl-22.2.0-91c402f7b2492af915225e727bceee258a3284f1.jar" />
+    </item>
+    <item
+        jar="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="4477ea44f5ec5ad064022a22691732d7638ff197">
+        <dex dex="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\pre-dexed\debug\classes-8a91c20c14babf66fc515306525251a7949b54f2.jar" />
+    </item>
+    <item
+        jar="E:\StudioSetup\DAta\android-sdk\extras\android\m2repository\com\android\support\support-annotations\22.2.0\support-annotations-22.2.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
+        <dex dex="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\pre-dexed\debug\support-annotations-22.2.0-877cbd1799d8d619e5c6c36abeb5d173241a452b.jar" />
+    </item>
+    <item
+        jar="C:\Users\Virag kuvadia\.gradle\caches\modules-2\files-2.1\com.github.PhilJay\MPAndroidChart\v2.1.4\58ce41ef04e5b0821b9c3eb2387df515f10702d7\MPAndroidChart-v2.1.4.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="58ce41ef04e5b0821b9c3eb2387df515f10702d7">
+        <dex dex="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\pre-dexed\debug\MPAndroidChart-v2.1.4-4aad9b9ac05b258a83f07aa654c6491be63187ed.jar" />
+    </item>
+    <item
+        jar="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-identity\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="d294caf562c4c678b2ef351662a0ca6f1a4d06c0">
+        <dex dex="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\pre-dexed\debug\classes-90c49357f579c331b5d8790d39a1a67b1b0fab59.jar" />
+    </item>
+    <item
+        jar="C:\Users\Virag kuvadia\.gradle\caches\modules-2\files-2.1\com.nineoldandroids\library\2.4.0\e9b63380f3a242dbdbf103a2355ad7e43bad17cb\library-2.4.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\pre-dexed\debug\library-2.4.0-e045dc329eb4c3a5c2fbdbc45e0f8c791a3b8715.jar" />
+    </item>
+    <item
+        jar="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wallet\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="325788a04b436a0bccbc5b4c54cf0f12ebdcbd2d">
+        <dex dex="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\pre-dexed\debug\classes-cc364faab50b9fc24dcdcdb666aab18febf9006a.jar" />
+    </item>
+    <item
+        jar="C:\Users\Virag kuvadia\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.3.1\ecb6e1f8e4b0e84c4b886c2f14a1500caf309757\gson-2.3.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="ecb6e1f8e4b0e84c4b886c2f14a1500caf309757">
+        <dex dex="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\pre-dexed\debug\gson-2.3.1-10d152e4a2701ce1acad91e5cb58bf59e170ddf6.jar" />
+    </item>
+    <item
+        jar="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-plus\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="d61920aba361832a9545a43fa8c9453eb02f18f7">
+        <dex dex="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\pre-dexed\debug\classes-9feb7b3048c2f61de8180ee1a7d1d28aa1431376.jar" />
+    </item>
+    <item
+        jar="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="82825756edeeb3b56b15e73b2edd56e93da5a444">
+        <dex dex="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\pre-dexed\debug\classes-9d6eefce2e61820614e4977268f5c3de2e03b659.jar" />
+    </item>
+    <item
+        jar="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-vision\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="17449c47df35c754b257532052f1270c444f7993">
+        <dex dex="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\pre-dexed\debug\classes-a2b6e02d2227f6e5e896f7a53d21c0a5a7668b6c.jar" />
+    </item>
+    <item
+        jar="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-nearby\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="041d93cf0533591c29d1d7263b2fa114dbfb20bd">
+        <dex dex="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\pre-dexed\debug\classes-e8a910db0823b823f258ef8865222cc004ab92a0.jar" />
+    </item>
+    <item
+        jar="C:\Users\Virag kuvadia\.gradle\caches\modules-2\files-2.1\com.squareup.picasso\picasso\2.3.2\d6b7f0093cec6c9faf65dbfd6a6a345d0ed25e27\picasso-2.3.2.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="d6b7f0093cec6c9faf65dbfd6a6a345d0ed25e27">
+        <dex dex="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\pre-dexed\debug\picasso-2.3.2-f9dbf8f58e4e889317b4626f9f9e65e9ef0c39bc.jar" />
+    </item>
+    <item
+        jar="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="dcb5b75baf05d92e61d5706737200ee55949f97b">
+        <dex dex="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\pre-dexed\debug\classes-25ad198b11b646ab1ada64f87adade06105c9090.jar" />
+    </item>
+    <item
+        jar="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="d0dda274b703dd9c5bb056867649d22b4171ae7d">
+        <dex dex="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\pre-dexed\debug\classes-67b9c7dfa7ee38aff790f832cc80321f31a04f84.jar" />
+    </item>
+    <item
+        jar="E:\Maulik Nano Projects\SchoolParents\app\libs\listviewanimations_lib-manipulation_3.1.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="63737e512fcd9e0ebe9bcd0bb375c2dded74116f">
+        <dex dex="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\pre-dexed\debug\listviewanimations_lib-manipulation_3.1.0-cc9bfab05a679edc406fdfc1a0247adb386a9cb6.jar" />
+    </item>
+    <item
+        jar="E:\Maulik Nano Projects\SchoolParents\app\libs\httpmime-4.0.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="326bf4147f100e8a4fdd7f1867a87e969fb10812">
+        <dex dex="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\pre-dexed\debug\httpmime-4.0.1-c8ba56f46d50f8081233a6c8024e4731b2c8a9b6.jar" />
+    </item>
+    <item
+        jar="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\22.2.0\jars\libs\internal_impl-22.2.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="0632f06970823b7e3436f649bfa65b47035c91d0">
+        <dex dex="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\pre-dexed\debug\internal_impl-22.2.0-16fe7bcc74f6ce67f8adcf2edb5e2eaee7366afb.jar" />
+    </item>
+    <item
+        jar="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-drive\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="3c729e6d76a36c5dc27e6a4c4009296f49eaa88a">
+        <dex dex="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\pre-dexed\debug\classes-a168e31ae070ed01b1e6d00814bfe4af49c84103.jar" />
+    </item>
+    <item
+        jar="E:\Maulik Nano Projects\SchoolParents\app\libs\listviewanimations_lib-core_3.1.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="f3f9629b068554d8513a2aaf34418171bf430851">
+        <dex dex="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\pre-dexed\debug\listviewanimations_lib-core_3.1.0-9acf3757af6eabc1461a41d9cfe37ace4e464380.jar" />
+    </item>
+    <item
+        jar="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\exploded-aar\com.astuetz\pagerslidingtabstrip\1.0.1\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="7912610ed96381c25c36d986eba422731b9641b6">
+        <dex dex="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\pre-dexed\debug\classes-a95ae5bbf3c5fcc71fc8b40c79d48921ddbe4834.jar" />
+    </item>
+    <item
+        jar="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\exploded-aar\com.github.flavienlaurent.datetimepicker\library\0.0.2\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="2fc859b7abb78d29169f6a582b45cbe1f3f1a4cc">
+        <dex dex="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\pre-dexed\debug\classes-80b1ea6baa330f62a90e7cd5295eb6e124230e88.jar" />
+    </item>
+    <item
+        jar="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-games\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="993834cb17d07d51b92db89d2c330243592ebf77">
+        <dex dex="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\pre-dexed\debug\classes-ed629e75407806e8c6d80838d88898c8c8235716.jar" />
+    </item>
+    <item
+        jar="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\22.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="dcf8c83c3dead00a6c4fe313e95f7aaca20dc641">
+        <dex dex="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\pre-dexed\debug\classes-7cf3bb851b421c4c6a9ae3eca88eb157458bfb6a.jar" />
+    </item>
+    <item
+        jar="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-safetynet\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="3b05c18f60969ecc2ba49c0409c4b96be2d9cb0c">
+        <dex dex="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\pre-dexed\debug\classes-12fe4697de8a5b09ccf014578c440afa7e59b05c.jar" />
+    </item>
+    <item
+        jar="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="997773777cf3904c11d6764fe3b7668538220e49">
+        <dex dex="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\pre-dexed\debug\classes-1999a74c0f8861a14518c6b3e59680c634e797d5.jar" />
+    </item>
+    <item
+        jar="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-measurement\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="482de223655d06253cc6a4955d653f8994169500">
+        <dex dex="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\pre-dexed\debug\classes-0834058c8a0155754ea78ec29422154bdf7927ed.jar" />
+    </item>
+    <item
+        jar="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="97f3b099801a9ad9d70e835b9125273e986eb68d">
+        <dex dex="E:\Maulik Nano Projects\SchoolParents\app\build\intermediates\pre-dexed\debug\classes-f0424a3a848a1b9ee09d3f0300ae18afc85561af.jar" />
+    </item>
+
+</items>

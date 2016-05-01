@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="100">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:weightSum="100"
+    android:orientation="horizontal"
+    android:background="@color/white"
+    android:layout_weight="10">
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_weight="25"
+        android:layout_gravity="center|bottom"
+        >
+    <AutoCompleteTextView
+        android:id="@+id/edtcode"
+        android:layout_width="match_parent"
+        android:layout_weight="25"
+        android:hint="Code"
+
+
+        android:gravity="center|bottom"
+
+        android:layout_height="40dp" />
+
+        <ImageView
+            android:id="@+id/imgBrowse"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:padding="5dp"
+            android:visibility="gone"
+            android:src="@drawable/abc_ic_search_api_mtrl_alpha"
+            android:background="@color/main_color_500"
+            />
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/edtQty"
+        android:layout_width="0dp"
+        android:layout_weight="25"
+        android:hint="Quantity"
+        android:gravity="center"
+        android:layout_height="match_parent" />
+    <EditText
+        android:id="@+id/edtdate"
+        android:layout_width="0dp"
+        android:layout_weight="25"
+        android:hint="Date"
+        android:gravity="center"
+        android:layout_height="match_parent" />
+    <TextView
+        android:layout_width="0dp"
+        android:id="@+id/txtprice"
+        android:text="7000"
+
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:textSize="16dp"
+        android:layout_height="match_parent"
+        android:layout_weight="25"/>
+
+</LinearLayout>
+</LinearLayout>
