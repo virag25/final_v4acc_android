@@ -172,7 +172,8 @@ public class ServiceHelper {
 
     // private ServiceHelperDelegate m_delegate = null;
 
-    public void call(ServiceHelperDelegate delegate) {
+    public void call(ServiceHelperDelegate delegate)
+    {
         m_delegate = delegate;
         // if (NetworkConnectivity.isConnected()) {
         CallServiceAsync calling = new CallServiceAsync(true);
@@ -188,7 +189,9 @@ public class ServiceHelper {
             request = new HttpGet(getFinalUrl());
             request.setHeader("Accept", "*/*");
             request.setHeader("Content-Type", "text/plain; charset=utf-8");
-        } else {
+        }
+        else
+        {
             request = new HttpPost(getFinalUrl());
             // request.setHeader("Accept", "application/json");
             request.setHeader("Content-Type",

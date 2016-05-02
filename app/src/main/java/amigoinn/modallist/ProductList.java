@@ -6,6 +6,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import amigoinn.activerecordbase.Database;
 import amigoinn.common.CommonUtils;
 import amigoinn.common.NetworkConnectivity;
 import amigoinn.db_model.ProductInfo;
@@ -20,7 +21,8 @@ import amigoinn.servicehelper.ServiceResponse;
 /**
  * Created by Virag kuvadia on 24-04-2016.
  */
-public class ProductList implements ServiceHelper.ServiceHelperDelegate {
+public class ProductList implements ServiceHelper.ServiceHelperDelegate
+{
 
 
     protected ProductList() {
@@ -65,8 +67,10 @@ public class ProductList implements ServiceHelper.ServiceHelperDelegate {
 
     }
 
-    public void loadFromDB() {
-        try {
+    public void loadFromDB()
+    {
+        try
+        {
             List<ProductInfo> list = AccountApplication.Connection().findAll(
                     ProductInfo.class);
             if (list != null) {

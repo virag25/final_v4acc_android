@@ -2,9 +2,9 @@ package amigoinn.example.v4sales;
 
 import android.app.ActionBar;
 import android.app.Dialog;
-
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
@@ -23,9 +23,6 @@ import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-
-import amigoinn.adapters.Custom_Home_tasks;
-
 import com.example.v4sales.R;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.YAxis;
@@ -36,7 +33,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.hudomju.swipe.SwipeToDismissTouchListener;
 import com.hudomju.swipe.adapter.ListViewAdapter;
-import amigoinn.models.OverallPercentage;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -50,6 +46,14 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import amigoinn.adapters.Custom_Home_tasks;
+import amigoinn.models.MyPojotaskList;
+import amigoinn.models.OverallPercentage;
+import amigoinn.servicehelper.ApiHandler;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 /**
  * Created by Manthan on 28/09/2015.
@@ -79,30 +83,30 @@ public class FragmentCategoryItem extends Fragment
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_category_item, container, false);
         context=view.getContext();
-        names.add("Write blog post");
-        names.add("Schedul meeting with Ryan o.");
-        names.add("Make tutorial");
-        names.add("Write blog post");
-        names.add("Schedul meeting with Ryan o.");
-        names.add("Make tutorial");
+//        names.add("Write blog post");
+//        names.add("Schedul meeting with Ryan o.");
+//        names.add("Make tutorial");
+//        names.add("Write blog post");
+//        names.add("Schedul meeting with Ryan o.");
+//        names.add("Make tutorial");
+//
+//        namespending.add("Write blog post");
+//        namespending.add("Schedul meeting with Ryan o.");
+//        namespending.add("Make tutorial");
+//        namespending.add("Write blog post");
+//        namespending.add("Schedul meeting with Ryan o.");
+//        namespending.add("Make tutorial");
+//        extras.add("View");
+//        extras.add("View");
+//        extras.add("View");
+//        extras.add("View");
+//        extras.add("View");
+//        extras.add("View");
 
-        namespending.add("Write blog post");
-        namespending.add("Schedul meeting with Ryan o.");
-        namespending.add("Make tutorial");
-        namespending.add("Write blog post");
-        namespending.add("Schedul meeting with Ryan o.");
-        namespending.add("Make tutorial");
-        extras.add("View");
-        extras.add("View");
-        extras.add("View");
-        extras.add("View");
-        extras.add("View");
-        extras.add("View");
-
-        tasksList.add("Write blog post");
-        tasksList.add("Schedul meeting with Ryan o.");
-        tasksList.add("Make tutorial");
-        tasksList.add("Write blog post");
+//        tasksList.add("Write blog post");
+//        tasksList.add("Schedul meeting with Ryan o.");
+//        tasksList.add("Make tutorial");
+//        tasksList.add("Write blog post");
 //        namespending.add("Schedul meeting with Ryan o.");
 //        namespending.add("Make tutorial");
         listTasks=(ListView)view.findViewById(R.id.lvhomepagetasks);
@@ -115,19 +119,24 @@ public class FragmentCategoryItem extends Fragment
         listTasks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                QuestionDialog("1");
+           //     QuestionDialog("1");
+                Intent ina=new Intent(context,AndroidDatabaseManager.class);
+                startActivity(ina);
             }
         });
 
         listPending.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                QuestionDialog("1");
+//                QuestionDialog("1");
+                Intent ina=new Intent(context,AndroidDatabaseManager.class);
+                startActivity(ina);
             }
         });
         try
         {
-            createListview1();
+            //createListview1();
+            callAPI("1");
         }catch (Exception ex)
         {
 
@@ -194,7 +203,9 @@ public class FragmentCategoryItem extends Fragment
                         touchListener.undoPendingDismiss();
                     } else
                     {
-                        QuestionDialog(names.get(position));
+                        Intent ina=new Intent(context,AndroidDatabaseManager.class);
+                        startActivity(ina);
+//                        QuestionDialog(names.get(position));
                         // Toast.makeText(ListViewActivity.this, "Position " + position, LENGTH_SHORT).show();
                     }
                 }
@@ -250,6 +261,57 @@ public class FragmentCategoryItem extends Fragment
         {
 
         }
+    }
+
+    private void callAPI(String userid)
+    {
+//
+//        if (!Utils.checkNetwork(getApplicationContext()))
+//        {
+//            //  Utils.toast(context,"No Internet Connection Available!");
+//            Utils.showCustomDialog("Warning!", "No Internet Connection Available!",this);
+//            return;
+//        }
+
+        Utils.ShowCustomProgress(context);
+        ApiHandler.getApiService().getTasksList(userid, new Callback<MyPojotaskList[]>()
+        {
+            @Override
+            public void success(MyPojotaskList[] res, Response response)
+            {
+                Utils.dismissDialog();
+                names.clear();
+                tasksList.clear();
+
+                try
+                {
+                    for(int i=0;i<res.length;i++)
+                    {
+                        names.add(res[i].getVtaskname());
+                        tasksList.add(res[i].getVtaskdetail());
+
+                    }
+                    createListview1();
+//                    Utils.dismissDialog();
+//                    data.add(res);
+//                    imageLoader.displayImage(data.get(0).getLink() + data.get(0).getData().get(0).getImage(), imgView, getProductImageDisplayOption(getApplicationContext()));
+//                    rbtView.setText("Check In : " + data.get(0).getData().get(0).getIntime() + "\n" + "Check Out :  " + data.get(0).getData().get(0).getOuttime());
+                } catch (Exception ex) {
+
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error)
+            {
+                //Utils.dismissDialog();
+                Utils.dismissDialog();
+                error.printStackTrace();
+                //error.getMessage();
+                //Utils.toast(ActivityIndividualItem.this, "Something Went Wrong");
+            }
+        });
+
     }
 
     public int dpToPx(int dp)
@@ -709,7 +771,8 @@ public class FragmentCategoryItem extends Fragment
         lstSubtask.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (touchListener.existPendingDismisses()) {
+                if (touchListener.existPendingDismisses())
+                {
                     touchListener.undoPendingDismiss();
                 } else {
                   //  QuestionDialog(names.get(position));

@@ -2,11 +2,13 @@ package amigoinn.example.v4sales;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +26,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import amigoinn.activerecordbase.ActiveRecordException;
+import amigoinn.activerecordbase.Database;
 import amigoinn.adapters.NotifyingAsyncQueryHandler;
 import amigoinn.adapters.SectionedListActivityForFilters;
 import amigoinn.db_model.ProductInfo;
@@ -31,6 +35,7 @@ import amigoinn.db_model.ModelDelegates;
 import amigoinn.db_model.ProductInfo;
 import amigoinn.modallist.ClientList;
 import amigoinn.modallist.ProductList;
+import amigoinn.walkietalkie.DatabaseHandler1;
 import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
@@ -39,7 +44,8 @@ import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
  */
 
 
-public class ProductListSectionedActivity extends BaseFragment {
+public class ProductListSectionedActivity extends BaseFragment
+{
 
     //    private AudioFilesAdapter mAdapter;
     private NotifyingAsyncQueryHandler mQueryHandler;
@@ -114,12 +120,36 @@ public class ProductListSectionedActivity extends BaseFragment {
         return v;
     }
 
+//    public void getCategoris()
+//    {
+//        try
+//        {
+//            ArrayList<String> category=new ArrayList<>();
+//            Database m_database=Database.createInstance(v.getContext(),"vact.db",1);
+//            String querystring="SELECT distinct category FROM PRODUCT_INFO";
+//            Cursor cursor = m_database.rawQuery(querystring, null);
+//
+//            if (cursor.moveToFirst())
+//            {
+//                do
+//                {
+//                    category.add(cursor.getString(0));
+//                }
+//                while (cursor.moveToNext());
+//            }
+//
+//        } catch (Exception e) {
+//            Log.e("Error",e.toString());
+//        }
+//    }
 
-    public void loadClients() {
+    public void loadClients()
+    {
         showProgress();
         ProductList.Instance().DoProductCall(new ModelDelegates.ModelDelegate<ProductInfo>() {
             @Override
-            public void ModelLoaded(ArrayList<ProductInfo> list) {
+            public void ModelLoaded(ArrayList<ProductInfo> list)
+            {
                 hideProgress();
                 Collections.sort(list, new Comparator<ProductInfo>() {
                     @Override
@@ -130,10 +160,14 @@ public class ProductListSectionedActivity extends BaseFragment {
 //                Collections.sort(list, String.CASE_INSENSITIVE_ORDER);
                 clint_info = list;
                 setbaseadapter();
+                DatabaseHandler1 handler1=new DatabaseHandler1(v.getContext());
+                ArrayList<String> categories=handler1.getCategoris();
+                ArrayList<String> itemgroup=handler1.getItemgroup();
             }
 
             @Override
-            public void ModelLoadFailedWithError(String error) {
+            public void ModelLoadFailedWithError(String error)
+            {
                 hideProgress();
                 Toast.makeText(getActivity(), error, Toast.LENGTH_LONG).show();
             }

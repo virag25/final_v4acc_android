@@ -17,7 +17,8 @@ import com.example.v4sales.R;
 /**
  * Created by Manthan on 27/09/2015.
  */
-public class FragmentCategory extends Fragment {
+public class FragmentCategory extends Fragment
+{
 
 //    private String Titles[]= {"New", "Accepted","Completed","New", "Accepted","Completed"};
 //    private int Numboftabs = 6

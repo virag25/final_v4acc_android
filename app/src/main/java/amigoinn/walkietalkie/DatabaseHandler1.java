@@ -1,24 +1,29 @@
 package amigoinn.walkietalkie;
 
-import java.util.ArrayList;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.MatrixCursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-public class DatabaseHandler extends SQLiteOpenHelper {
-	 
+import java.util.ArrayList;
+
+import amigoinn.activerecordbase.Database;
+
+public class DatabaseHandler1 extends SQLiteOpenHelper
+{
+
     // All Static variables
     // Database Version
     private static final int DATABASE_VERSION = 1;
- 
+
     // Database Name
     private static final String DATABASE_NAME = "db";
 
-    private static final String DATABASE_v4_NAME = "vact";
+    private static final String DATABASE_v4_NAME = "vact.db";
     // Contacts table name
     private static final String TABLE_MESSAGE = "tblMessages";
    // private static final String TABLE_USERS = "tblUSERS";
@@ -28,34 +33,137 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_MESAGE = "message";
     private static final String KEY_MONTH = "month";
     //private static final String KEY_IP = "ipadddress";
- 
-    public DatabaseHandler(Context context)
+
+    public DatabaseHandler1(Context context)
     {
-        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        super(context, DATABASE_v4_NAME, null, DATABASE_VERSION);
     }
  
     // Creating Tables
     @Override
     public void onCreate(SQLiteDatabase db)
     {
-        String CREATE_MESSAGE_TABLE = "CREATE TABLE " + TABLE_MESSAGE + "("
-                + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + KEY_MESAGE + " TEXT,"
-                + KEY_DATE + " TEXT," + KEY_MONTH + " TEXT" + ")";
-
-
-        db.execSQL(CREATE_MESSAGE_TABLE);
+//        String CREATE_MESSAGE_TABLE = "CREATE TABLE " + TABLE_MESSAGE + "("
+//                + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + KEY_MESAGE + " TEXT,"
+//                + KEY_DATE + " TEXT," + KEY_MONTH + " TEXT" + ")";
+//
+//
+//        db.execSQL(CREATE_MESSAGE_TABLE);
     }
  
     // Upgrading database
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
+    {
         // Drop older table if existed
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_MESSAGE);
  
         // Create tables again
         onCreate(db);
     }
-    
+
+    public ArrayList<String> getCategoris()
+    {
+        ArrayList<String> category=new ArrayList<>();
+        try
+        {
+
+//            Database m_database=Database.createInstance(v.getContext(),"vact.db",1);
+            SQLiteDatabase db = this.getWritableDatabase();
+            String querystring="SELECT distinct category FROM PRODUCT_INFO order by category asc";
+            Cursor cursor = db.rawQuery(querystring, null);
+
+            if (cursor.moveToFirst())
+            {
+                do
+                {
+                    category.add(cursor.getString(0));
+                }
+                while (cursor.moveToNext());
+            }
+        return category;
+        } catch (Exception e) {
+            Log.e("Error",e.toString());
+        }
+        return category;
+    }
+
+    public ArrayList<String> getItemgroup()
+    {
+        ArrayList<String> category=new ArrayList<>();
+        try
+        {
+
+//            Database m_database=Database.createInstance(v.getContext(),"vact.db",1);
+            SQLiteDatabase db = this.getWritableDatabase();
+            String querystring="SELECT distinct itemgroup FROM PRODUCT_INFO order by itemgroup asc";
+            Cursor cursor = db.rawQuery(querystring, null);
+
+            if (cursor.moveToFirst())
+            {
+                do
+                {
+                    category.add(cursor.getString(0));
+                }
+                while (cursor.moveToNext());
+            }
+            return category;
+        } catch (Exception e) {
+            Log.e("Error",e.toString());
+        }
+        return category;
+    }
+
+    public ArrayList<String> getClienState()
+    {
+        ArrayList<String> category=new ArrayList<>();
+        try
+        {
+
+//            Database m_database=Database.createInstance(v.getContext(),"vact.db",1);
+            SQLiteDatabase db = this.getWritableDatabase();
+            String querystring="SELECT distinct CLIENTSTATE FROM CLIENT_INFO order by CLIENTSTATE asc";
+            Cursor cursor = db.rawQuery(querystring, null);
+
+            if (cursor.moveToFirst())
+            {
+                do
+                {
+                    category.add(cursor.getString(0));
+                }
+                while (cursor.moveToNext());
+            }
+            return category;
+        } catch (Exception e) {
+            Log.e("Error",e.toString());
+        }
+        return category;
+    }
+    public ArrayList<String> getITemGroups()
+    {
+        ArrayList<String> category=new ArrayList<>();
+        try
+        {
+
+//            Database m_database=Database.createInstance(v.getContext(),"vact.db",1);
+            SQLiteDatabase db = this.getWritableDatabase();
+            String querystring="SELECT distinct category FROM PRODUCT_INFO order by category asc";
+            Cursor cursor = db.rawQuery(querystring, null);
+
+            if (cursor.moveToFirst())
+            {
+                do
+                {
+                    category.add(cursor.getString(0));
+                }
+                while (cursor.moveToNext());
+            }
+            return category;
+        } catch (Exception e) {
+            Log.e("Error",e.toString());
+        }
+        return category;
+    }
     public void addMessage(String date,String message,String Month)
     {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -104,7 +212,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
      */
     // Getting All Contacts
 
-    public ArrayList<Contact> getAllMessages(String MonthName) {
+    public ArrayList<Contact> getAllMessages(String MonthName)
+    {
     	try{
     	ArrayList<Contact> contactList = new ArrayList<Contact>();
         // Select All Query
@@ -208,7 +317,56 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     	}
 		
     	}
+    public ArrayList<Cursor> getData(String Query)
+    {
+        //get writable database
+        SQLiteDatabase sqlDB = this.getWritableDatabase();
+        String[] columns = new String[] { "mesage" };
+        //an array list of cursor to save two cursors one has results from the query
+        //other cursor stores error message if any errors are triggered
+        ArrayList<Cursor> alc = new ArrayList<Cursor>(2);
+        MatrixCursor Cursor2= new MatrixCursor(columns);
+        alc.add(null);
+        alc.add(null);
 
+
+        try{
+            String maxQuery = Query ;
+            //execute the query results will be save in Cursor c
+            Cursor c = sqlDB.rawQuery(maxQuery, null);
+
+
+            //add value to cursor2
+            Cursor2.addRow(new Object[] { "Success" });
+
+            alc.set(1,Cursor2);
+            if (null != c && c.getCount() > 0) {
+
+
+                alc.set(0,c);
+                c.moveToFirst();
+
+                return alc ;
+            }
+            return alc;
+        } catch(SQLException sqlEx){
+            Log.d("printing exception", sqlEx.getMessage());
+            //if any exceptions are triggered save the error message to cursor an return the arraylist
+            Cursor2.addRow(new Object[] { ""+sqlEx.getMessage() });
+            alc.set(1,Cursor2);
+            return alc;
+        } catch(Exception ex){
+
+            Log.d("printing exception", ex.getMessage());
+
+            //if any exceptions are triggered save the error message to cursor an return the arraylist
+            Cursor2.addRow(new Object[] { ""+ex.getMessage() });
+            alc.set(1, Cursor2);
+            return alc;
+        }
+
+
+    }
  
 }
 

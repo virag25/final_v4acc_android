@@ -40,7 +40,8 @@ import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
  */
 
 
-public class ClientListSectionedActivity extends BaseFragment {
+public class ClientListSectionedActivity extends BaseFragment
+{
 
     //    private AudioFilesAdapter mAdapter;
     private NotifyingAsyncQueryHandler mQueryHandler;
@@ -84,7 +85,8 @@ public class ClientListSectionedActivity extends BaseFragment {
                 } else {
                     in = new Intent(getActivity(), amigoinn.example.v4sales.Filter.class);
                 }
-                try {
+                try
+                {
                     startActivity(in);
                 } catch (Exception ex) {
 
@@ -116,15 +118,20 @@ public class ClientListSectionedActivity extends BaseFragment {
     }
 
 
-    public void loadClients() {
+    public void loadClients()
+    {
         showProgress();
-        ClientList.Instance().DoClint(new ModelDelegates.ModelDelegate<ClientInfo>() {
+        ClientList.Instance().DoClint(new ModelDelegates.ModelDelegate<ClientInfo>()
+        {
             @Override
-            public void ModelLoaded(ArrayList<ClientInfo> list) {
+            public void ModelLoaded(ArrayList<ClientInfo> list)
+            {
                 hideProgress();
-                Collections.sort(list, new Comparator<ClientInfo>() {
+                Collections.sort(list, new Comparator<ClientInfo>()
+                {
                     @Override
-                    public int compare(ClientInfo s1, ClientInfo s2) {
+                    public int compare(ClientInfo s1, ClientInfo s2)
+                    {
                         return s1.name.compareToIgnoreCase(s2.name);
                     }
                 });
@@ -134,7 +141,8 @@ public class ClientListSectionedActivity extends BaseFragment {
             }
 
             @Override
-            public void ModelLoadFailedWithError(String error) {
+            public void ModelLoadFailedWithError(String error)
+            {
                 hideProgress();
                 Toast.makeText(getActivity(),error,Toast.LENGTH_LONG).show();
             }
@@ -342,7 +350,8 @@ public class ClientListSectionedActivity extends BaseFragment {
 
     }
 
-    public void setbaseadapter() {
+    public void setbaseadapter()
+    {
         final MyAdapter adapter = new MyAdapter(getActivity(), clint_info);
         stickyList.setAdapter(adapter);
         inputSearch.addTextChangedListener(new TextWatcher() {

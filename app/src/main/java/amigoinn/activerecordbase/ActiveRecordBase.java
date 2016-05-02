@@ -75,7 +75,8 @@ public class ActiveRecordBase {
 	 * 
 	 * @throws ActiveRecordException
 	 */
-	public void open() throws ActiveRecordException {
+	public void open() throws ActiveRecordException
+	{
 		m_Database.open();
 	}
 
@@ -657,7 +658,7 @@ public class ActiveRecordBase {
 	public <T extends ActiveRecordBase> int deleteByColumn(Class<T> type,
 			String column, String value) throws ActiveRecordException {
 		return delete(type, String.format("%s = ?", column),
-				new String[] { value });
+				new String[]{value});
 	}
 
 	/**
@@ -676,13 +677,42 @@ public class ActiveRecordBase {
 	 * @throws IllegalAccessException
 	 * @throws InstantiationException
 	 */
+	public ArrayList<String> distinctCategory()
+	{
+		ArrayList<String> categoryList=new ArrayList<>();
+
+//		try {//SQLiteQuery: SELECT * FROM PRODUCT_INFO
+
+//			while (c.moveToNext())
+//			{
+//				entity = s_EntitiesMap.get(type,
+//						c.getLong(c.getColumnIndex("_id")));
+//				if (entity == null) {
+//					entity = type.newInstance();
+//					entity.m_NeedsInsert = false;
+//					entity.inflate(c);
+//					entity.m_Database = m_Database;
+//
+//				}
+//				toRet.add(entity);
+//			}
+//		} catch (IllegalAccessException e) {
+//			throw new ActiveRecordException(e.getLocalizedMessage());
+//		} catch (InstantiationException e) {
+//			throw new ActiveRecordException(e.getLocalizedMessage());
+//		} finally {
+//			c.close();
+//		}
+		return categoryList;
+	}
 	public <T extends ActiveRecordBase> List<T> find(Class<T> type,
 			String whereClause, String[] whereArgs)
 			throws ActiveRecordException {
 		if (m_Database == null)
 			throw new ActiveRecordException("Set database first");
 		T entity = null;
-		try {
+		try
+		{
 			entity = type.newInstance();
 		} catch (IllegalAccessException e1) {
 			throw new ActiveRecordException(e1.getLocalizedMessage());
@@ -692,8 +722,52 @@ public class ActiveRecordBase {
 		List<T> toRet = new ArrayList<T>();
 		Cursor c = m_Database.query(entity.getTableName(), null, whereClause,
 				whereArgs);
+		try {//SQLiteQuery: SELECT * FROM PRODUCT_INFO
+			while (c.moveToNext())
+			{
+				entity = s_EntitiesMap.get(type,
+						c.getLong(c.getColumnIndex("_id")));
+				if (entity == null) {
+					entity = type.newInstance();
+					entity.m_NeedsInsert = false;
+					entity.inflate(c);
+					entity.m_Database = m_Database;
+
+				}
+				toRet.add(entity);
+			}
+		} catch (IllegalAccessException e) {
+			throw new ActiveRecordException(e.getLocalizedMessage());
+		} catch (InstantiationException e) {
+			throw new ActiveRecordException(e.getLocalizedMessage());
+		} finally {
+			c.close();
+		}
+		return toRet;
+	}
+
+
+	public <T extends ActiveRecordBase> List<T> findDistinct(Class<T> type,
+													 String whereClause, String[] whereArgs)
+			throws ActiveRecordException
+	{
+		if (m_Database == null)
+			throw new ActiveRecordException("Set database first");
+		T entity = null;
+		try
+		{
+			entity = type.newInstance();
+		} catch (IllegalAccessException e1) {
+			throw new ActiveRecordException(e1.getLocalizedMessage());
+		} catch (InstantiationException e1) {
+			throw new ActiveRecordException(e1.getLocalizedMessage());
+		}
+		List<T> toRet = new ArrayList<T>();
+		Cursor c = m_Database.distinctquery(entity.getTableName(), null, whereClause,
+				whereArgs);
 		try {
-			while (c.moveToNext()) {
+			while (c.moveToNext())
+			{
 				entity = s_EntitiesMap.get(type,
 						c.getLong(c.getColumnIndex("_id")));
 				if (entity == null) {
@@ -961,6 +1035,11 @@ public class ActiveRecordBase {
 	public <T extends ActiveRecordBase> List<T> findAll(Class<T> type)
 			throws ActiveRecordException {
 		return find(type, null, null);
+	}
+
+	public <T extends ActiveRecordBase> List<T> findDistinct(Class<T> type,String wherecondition)
+			throws ActiveRecordException {
+		return findDistinct(type, wherecondition, null);
 	}
 
 	public <T extends ActiveRecordBase> int getRecordCount(Class<T> type)

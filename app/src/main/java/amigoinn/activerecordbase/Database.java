@@ -22,7 +22,8 @@ import android.util.Log;
  *         written by JEREMYOT
  *         </p>
  */
-public class Database {
+public class Database
+{
 	static final String CNAME = Database.class.getSimpleName();
 
 	static Map<String, DatabaseBuilder> _builders = new HashMap<String, DatabaseBuilder>();
@@ -55,7 +56,7 @@ public class Database {
 		// .getPackageName())) : _context.getDir(
 		// _context.getPackageName(), 0).getAbsolutePath());
 		// new File(dbPath).mkdirs();
-		_path = dbName; // temporary workaround - DB is created only on device,
+		_path = dbName; // temporary workaround - //DB is created only on device,
 		// not SDcard
 		// _path = appendFilePath(dbPath, dbName);
 		_dbHelper = new DatabaseOpenHelper(context, _path, dbVersion, builder);
@@ -77,7 +78,8 @@ public class Database {
 	 * @throws ActiveRecordException
 	 */
 	public static Database createInstance(Context ctx, String dbName,
-			int dbVersion) throws ActiveRecordException {
+			int dbVersion) throws ActiveRecordException
+	{
 		DatabaseBuilder builder = getBuilder(dbName);
 		if (null == builder)
 			throw new ActiveRecordException(
@@ -134,8 +136,10 @@ public class Database {
 	 * Opens or creates the database file. Uses external storage if present,
 	 * otherwise uses local storage.
 	 */
-	public void open() {
-		if (_database != null && _database.isOpen()) {
+	public void open()
+	{
+		if (_database != null && _database.isOpen())
+		{
 			_database.close();
 			_database = null;
 		}
@@ -237,7 +241,7 @@ public class Database {
 	 */
 	public Cursor rawQuery(String sql, String[] params) {
 		Log.i("rawQuery", sql);
-		return _database.rawQuery(sql, params);
+		return _database.rawQuery(sql, null);
 	}
 
 	/**
@@ -256,8 +260,16 @@ public class Database {
 	 *             is database is null or closed
 	 */
 	public Cursor query(String table, String[] selectColumns, String where,
-			String[] whereArgs) throws ActiveRecordException {
+			String[] whereArgs) throws ActiveRecordException
+	{
 		return query(false, table, selectColumns, where, whereArgs, null, null,
+				null, null);
+	}
+
+	public Cursor distinctquery(String table, String[] selectColumns, String where,
+						String[] whereArgs) throws ActiveRecordException
+	{
+		return query(true, table, selectColumns, where, whereArgs, null, null,
 				null, null);
 	}
 
@@ -281,12 +293,19 @@ public class Database {
 	 * @throws ActiveRecordException
 	 *             is database is null or closed
 	 */
+	public ArrayList<String> getDistinctCategory()
+	{
+		ArrayList<String> categorylist=new ArrayList<>();
+
+		return  categorylist;
+	}
 	public Cursor query(boolean distinct, String table, String[] selectColumns,
 			String where, String[] whereArgs, String groupBy, String having,
-			String orderBy, String limit) throws ActiveRecordException {
-		if (null == _database || !_database.isOpen()) {
-			Logg.e(ARConst.TAG,
-					"(%t) %s.query(): ERROR - db object is null or closed",
+			String orderBy, String limit) throws ActiveRecordException
+	{
+		if (null == _database || !_database.isOpen())
+		{
+			Logg.e(ARConst.TAG,"(%t) %s.query(): ERROR - db object is null or closed",
 					CNAME);
 			throw new ActiveRecordException(ErrMsg.ERR_DB_IS_NOT_OPEN);
 		}

@@ -16,7 +16,8 @@ import amigoinn.db_model.UserInfo;
 /**
  * Created by Virag kuvadia on 24-04-2016.
  */
-public class AccountApplication extends Application {
+public class AccountApplication extends Application
+{
     private static AccountApplication _intance = null;
     private static ActiveRecordBase mDatabase;
 

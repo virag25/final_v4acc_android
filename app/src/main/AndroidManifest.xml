@@ -158,7 +158,8 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-
+        <activity android:name="amigoinn.example.v4sales.AndroidDatabaseManager"
+            android:theme="@style/Theme.AppCompat.Light"/>
         <activity android:name="amigoinn.example.v4sales.ClientsTabFragment" />
         <activity android:name="amigoinn.example.v4sales.ClientContactFragment" />
         <activity android:name="amigoinn.example.v4sales.ClientAnalyticsFragment" />

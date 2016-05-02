@@ -24,6 +24,7 @@ public class ProductFilter extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         try
         {
+            //99.1 67.7*8 .5mm
             setContentView(R.layout.activity_product_filter);
             txtAutobicycle=(TextView)findViewById(R.id.txtAutoBicycle);
             txtElectronics=(TextView)findViewById(R.id.txtState);

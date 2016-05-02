@@ -15,18 +15,25 @@
 package amigoinn.example.v4sales;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Point;
+import android.graphics.drawable.Drawable;
 import android.view.Display;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.example.v4sales.R;
+
 /**
  * A collection of utility methods, all static.
  */
-public class Utils {
+public class Utils
+{
 
+   public static ProgressDialog progressDialog;
+//    ProgressDialog progressDialog;
     /*
      * Making sure public utility methods remain static
      */
@@ -89,5 +96,27 @@ public class Utils {
             result += "0" + sec;
         }
         return result;
+    }
+
+    public static void dismissDialog()
+    {
+        if (progressDialog != null && progressDialog.isShowing())
+            progressDialog.dismiss();
+    }
+    public static void ShowCustomProgress(Context context)
+    {
+        progressDialog = new ProgressDialog(context);
+        progressDialog.setMessage("Please Wait for a moment");
+        progressDialog.setIndeterminate(true);
+        progressDialog.setCanceledOnTouchOutside(false);
+        //   dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        //dialog.setIndeterminateDrawable(getResources().getDrawable(R.anim.dialog));
+        Drawable customDrawable= context.getResources().getDrawable(R.drawable.custom_dialog);
+
+        // set the drawable as progress drawable
+
+        progressDialog.setIndeterminateDrawable(customDrawable);
+        progressDialog.show();
+
     }
 }
