@@ -120,7 +120,10 @@
             android:name="amigoinn.adapters.SectionedListActivity"
             android:label="Marks" />
         <activity
-            android:name="amigoinn.adapters.SectionedListBeforeFilter"
+            android:name="amigoinn.adapters.SectionedActivityForOrderFilter"
+            android:label="Marks" />
+        <activity
+            android:name="amigoinn.adapters.ProductSectionedActivityForOrderFilter"
             android:label="Marks" />
         <activity
             android:name="amigoinn.example.v4sales.ClientActivity"

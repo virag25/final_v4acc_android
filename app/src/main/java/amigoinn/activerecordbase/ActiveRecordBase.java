@@ -1033,7 +1033,8 @@ public class ActiveRecordBase {
 	 * @throws ActiveRecordException
 	 */
 	public <T extends ActiveRecordBase> List<T> findAll(Class<T> type)
-			throws ActiveRecordException {
+			throws ActiveRecordException
+	{
 		return find(type, null, null);
 	}
 

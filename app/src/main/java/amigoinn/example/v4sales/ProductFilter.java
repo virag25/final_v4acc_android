@@ -11,12 +11,14 @@ import com.example.v4sales.R;
 
 import amigoinn.adapters.SectionedListActivityForFilters;
 import amigoinn.walkietalkie.Constants;
+import amigoinn.walkietalkie.DatabaseHandler1;
 
 public class ProductFilter extends Activity implements View.OnClickListener {
 
     TextView txtItemGroup,txtRequesting,txtProduct,txtBrand;
     TextView txtAutobicycle,txtElectronics,txtFmcg,txtModel,txtSize,txtApply;
     boolean isAutoselected=false,isElectronicsSelected=false,isFmcgSelected=false;
+    DatabaseHandler1 handler1;
     String isvalue;
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -25,6 +27,7 @@ public class ProductFilter extends Activity implements View.OnClickListener {
         try
         {
             //99.1 67.7*8 .5mm
+
             setContentView(R.layout.activity_product_filter);
             txtAutobicycle=(TextView)findViewById(R.id.txtAutoBicycle);
             txtElectronics=(TextView)findViewById(R.id.txtState);
@@ -35,20 +38,21 @@ public class ProductFilter extends Activity implements View.OnClickListener {
             txtBrand=(TextView)findViewById(R.id.txtBrand);
             txtModel=(TextView)findViewById(R.id.txtModel);
             txtSize=(TextView)findViewById(R.id.txtSize);
-            txtProduct=(TextView)findViewById(R.id.txtBrand);
+            txtProduct=(TextView)findViewById(R.id.txtProduct);
+            handler1=new DatabaseHandler1(this);
             txtApply=(TextView)findViewById(R.id.txtfiltertitle);
             Constants.ItemgroupList.clear();
-            Constants.addItemGroups();
+//            Constants.addItemGroups();
             Constants.Reportinggroupcodelist.clear();
-            Constants.addReportingCode();
+//            Constants.addReportingCode();
             Constants.Productlist.clear();
-            Constants.addProducts();
+//            Constants.addProducts();
             Constants.BrandList.clear();
-            Constants.addBrands();
+//            Constants.addBrands();
             Constants.sizelist.clear();
-            Constants.addSizes();
+//            Constants.addSizes();
             Constants.modellist.clear();
-            Constants.addModels();
+//            Constants.addModels();
 //            ArrayAdapter<String> adapterZone=new ArrayAdapter<String>(ProductFilter.this,R.layout.sammplelistitem,R.id.tv,Constants.Zonelist.subList(0,5));
 //                    listData.setAdapter(adapterZone);
 //            ArrayAdapter<String> adapterState=new ArrayAdapter<String>(ProductFilter.this,R.layout.sammplelistitem,R.id.tv,Constants.Statelist.subList(0,5));
@@ -89,33 +93,33 @@ public class ProductFilter extends Activity implements View.OnClickListener {
         switch(v.getId())
         {
             case R.id.txtItemGroup:
-                Constants.countries=Constants.ItemgroupList;
+                Constants.countries=handler1.getItemgroups();
 
                 startActivity(in);
                 break;
             case R.id.txtModel:
-                Constants.countries=Constants.modellist;
+                Constants.countries=handler1.getModels();
 
                 startActivity(in);
                 break;
             case R.id.txtSize:
-                Constants.countries=Constants.sizelist;
+                Constants.countries=handler1.getPACKINGSIZE();
 
                 startActivity(in);
                 break;
 
             case R.id.txtReportingGroupCode:
-                Constants.countries=Constants.Reportinggroupcodelist;
-
+//                Constants.countries=Constants.Reportinggroupcodelist
+                Constants.countries=handler1.getReportingGroupcode();
                 startActivity(in);
                 break;
             case R.id.txtProduct:
-                Constants.countries=Constants.Productlist;
+                Constants.countries=handler1.getProduct();
 //                Intent in=new Intent(ProductFilter.this,SectionedListActivityForFilters.class);
                 startActivity(in);
                 break;
             case R.id.txtBrand:
-                Constants.countries=Constants.BrandList;
+                Constants.countries=handler1.getBrands();
 
                 startActivity(in);
                 break;

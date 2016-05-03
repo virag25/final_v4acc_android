@@ -25,17 +25,18 @@ import com.example.v4sales.R;
 import java.util.ArrayList;
 import java.util.Random;
 
+import amigoinn.db_model.RouteInfo;
 import amigoinn.example.v4sales.GoogleMapActivity;
 
 public class Custom_Route_Home extends BaseAdapter{
     ArrayList<Integer> lista;
     Random r;
     Context context;
-    ArrayList<String> routes;
+    ArrayList<RouteInfo> routes;
     private static LayoutInflater inflater=null;
 
 
-    public Custom_Route_Home(Context mainActivity,ArrayList<String> routelist)
+    public Custom_Route_Home(Context mainActivity,ArrayList<RouteInfo> routelist)
     {
         // TODO Auto-generated constructor stub
         context = mainActivity;
@@ -125,7 +126,7 @@ public class Custom_Route_Home extends BaseAdapter{
                 holder.txtroutelineright.setVisibility(View.VISIBLE);
                 holder.txtrouteshaperight.setVisibility(View.VISIBLE);
                 holder.imgrouterightdot.setVisibility(View.VISIBLE);
-                holder.txtrouteshaperight.setText(routes.get(position));
+                holder.txtrouteshaperight.setText(routes.get(position).VRootname);
         //        holder.txttl1right.setWidth(widthline);
 //                RelativeLayout.LayoutParams layout_description = new RelativeLayout.LayoutParams(widthline,
 //                        3);
@@ -142,7 +143,7 @@ public class Custom_Route_Home extends BaseAdapter{
                 holder.txtroutelineright.setVisibility(View.GONE);
                 holder.txtrouteshaperight.setVisibility(View.GONE);
                 holder.imgrouterightdot.setVisibility(View.GONE);
-                holder.txtrouteshapeleft.setText(routes.get(position));
+                holder.txtrouteshapeleft.setText(routes.get(position).VRootname);
          //       holder.txttl1left.setWidth(widthline);
 //                RelativeLayout.LayoutParams layout_description = new RelativeLayout.LayoutParams(widthline,
 //                        3);
@@ -183,7 +184,7 @@ public class Custom_Route_Home extends BaseAdapter{
     {
         final Dialog dialog = new Dialog(context);
         dialog.setContentView(R.layout.customdialog);
-        dialog.setTitle(routes.get(position));
+        dialog.setTitle(routes.get(position).VRootname);
         ListView listparties=(ListView)dialog.findViewById(R.id.listParties);
         Custom_Route route=new Custom_Route(context);
         listparties.setAdapter(route);

@@ -96,7 +96,194 @@ public class DatabaseHandler1 extends SQLiteOpenHelper
 
 //            Database m_database=Database.createInstance(v.getContext(),"vact.db",1);
             SQLiteDatabase db = this.getWritableDatabase();
-            String querystring="SELECT distinct itemgroup FROM PRODUCT_INFO order by itemgroup asc";
+            String querystring="SELECT distinct ITEMGROUP FROM PRODUCT_INFO order by category asc";
+            Cursor cursor = db.rawQuery(querystring, null);
+
+            if (cursor.moveToFirst())
+            {
+                do
+                {
+                    category.add(cursor.getString(0));
+                }
+                while (cursor.moveToNext());
+            }
+            return category;
+        } catch (Exception e) {
+            Log.e("Error",e.toString());
+        }
+        return category;
+    }
+
+    public ArrayList<String> getMastergroup()
+    {
+        ArrayList<String> category=new ArrayList<>();
+        try
+        {
+
+//            Database m_database=Database.createInstance(v.getContext(),"vact.db",1);
+            SQLiteDatabase db = this.getWritableDatabase();
+            String querystring="select distinct GEN_LOOK_INFO.DESCR from GEN_LOOK_INFO inner join ClASS_COMB_INFO on ClASS_COMB_INFO.MASTERGROUP = GEN_LOOK_INFO.CODE where GEN_LOOK_INFO.RECID='51'";
+            //String querystring="SELECT distinct itemgroup FROM PRODUCT_INFO order by itemgroup asc";
+            Cursor cursor = db.rawQuery(querystring, null);
+
+            if (cursor.moveToFirst())
+            {
+                do
+                {
+                    category.add(cursor.getString(0));
+                }
+                while (cursor.moveToNext());
+            }
+            return category;
+        } catch (Exception e) {
+            Log.e("Error",e.toString());
+        }
+        return category;
+    }
+
+    public ArrayList<String> getItemgroups()
+    {
+        ArrayList<String> category=new ArrayList<>();
+        try
+        {
+
+//            Database m_database=Database.createInstance(v.getContext(),"vact.db",1);
+            SQLiteDatabase db = this.getWritableDatabase();
+            String querystring="select distinct GEN_LOOK_INFO.DESCR from GEN_LOOK_INFO inner join ClASS_COMB_INFO on ClASS_COMB_INFO.MASTERGROUP = GEN_LOOK_INFO.CODE where GEN_LOOK_INFO.RECID='66'";
+            //String querystring="SELECT distinct itemgroup FROM PRODUCT_INFO order by itemgroup asc";
+            Cursor cursor = db.rawQuery(querystring, null);
+
+            if (cursor.moveToFirst())
+            {
+                do
+                {
+                    category.add(cursor.getString(0));
+                }
+                while (cursor.moveToNext());
+            }
+            return category;
+        } catch (Exception e) {
+            Log.e("Error",e.toString());
+        }
+        return category;
+    }
+
+    public ArrayList<String> getReportingGroupcode()
+    {
+        ArrayList<String> category=new ArrayList<>();
+        try
+        {
+
+//            Database m_database=Database.createInstance(v.getContext(),"vact.db",1);
+            SQLiteDatabase db = this.getWritableDatabase();
+            String querystring="select distinct GEN_LOOK_INFO.DESCR from GEN_LOOK_INFO inner join ClASS_COMB_INFO on ClASS_COMB_INFO.REPORTINGGROUP = GEN_LOOK_INFO.CODE where GEN_LOOK_INFO.RECID='52'";
+            //String querystring="SELECT distinct itemgroup FROM PRODUCT_INFO order by itemgroup asc";
+            Cursor cursor = db.rawQuery(querystring, null);
+
+            if (cursor.moveToFirst())
+            {
+                do
+                {
+                    category.add(cursor.getString(0));
+                }
+                while (cursor.moveToNext());
+            }
+            return category;
+        } catch (Exception e) {
+            Log.e("Error",e.toString());
+        }
+        return category;
+    }
+    public ArrayList<String> getProduct()
+    {
+        ArrayList<String> category=new ArrayList<>();
+        try
+        {
+
+//            Database m_database=Database.createInstance(v.getContext(),"vact.db",1);
+            SQLiteDatabase db = this.getWritableDatabase();
+//            String querystring="select distinct product from ";
+            String querystring="SELECT distinct PRODUCT FROM PRODUCT_INFO order by PRODUCT asc";
+            Cursor cursor = db.rawQuery(querystring, null);
+
+            if (cursor.moveToFirst())
+            {
+                do
+                {
+                    category.add(cursor.getString(0));
+                }
+                while (cursor.moveToNext());
+            }
+            return category;
+        } catch (Exception e) {
+            Log.e("Error",e.toString());
+        }
+        return category;
+    }
+
+    public ArrayList<String> getPACKINGSIZE()
+    {
+        ArrayList<String> category=new ArrayList<>();
+        try
+        {
+
+//            Database m_database=Database.createInstance(v.getContext(),"vact.db",1);
+            SQLiteDatabase db = this.getWritableDatabase();
+//            String querystring="select distinct product from ";
+            String querystring="SELECT distinct PACKINGSIZE FROM PRODUCT_INFO order by PACKINGSIZE asc";
+            Cursor cursor = db.rawQuery(querystring, null);
+
+            if (cursor.moveToFirst())
+            {
+                do
+                {
+                    category.add(cursor.getString(0));
+                }
+                while (cursor.moveToNext());
+            }
+            return category;
+        } catch (Exception e) {
+            Log.e("Error",e.toString());
+        }
+        return category;
+    }
+    public ArrayList<String> getModels()
+    {
+        ArrayList<String> category=new ArrayList<>();
+        try
+        {
+
+//            Database m_database=Database.createInstance(v.getContext(),"vact.db",1);
+            SQLiteDatabase db = this.getWritableDatabase();
+//            String querystring="select distinct product from ";
+            String querystring="SELECT distinct MODEL FROM PRODUCT_INFO order by MODEL asc";
+            Cursor cursor = db.rawQuery(querystring, null);
+
+            if (cursor.moveToFirst())
+            {
+                do
+                {
+                    category.add(cursor.getString(0));
+                }
+                while (cursor.moveToNext());
+            }
+            return category;
+        } catch (Exception e) {
+            Log.e("Error",e.toString());
+        }
+        return category;
+    }
+
+    public ArrayList<String> getBrands()
+    {
+        ArrayList<String> category=new ArrayList<>();
+        try
+        {
+
+//            Database m_database=Database.createInstance(v.getContext(),"vact.db",1);
+            SQLiteDatabase db = this.getWritableDatabase();
+//            String querystring="select distinct product from ";
+            String querystring="SELECT distinct BRAND FROM PRODUCT_INFO order by BRAND asc";
             Cursor cursor = db.rawQuery(querystring, null);
 
             if (cursor.moveToFirst())
@@ -139,6 +326,83 @@ public class DatabaseHandler1 extends SQLiteOpenHelper
         }
         return category;
     }
+
+    public ArrayList<String> getClienNames()
+    {
+        ArrayList<String> category=new ArrayList<>();
+        try
+        {
+
+//            Database m_database=Database.createInstance(v.getContext(),"vact.db",1);
+            SQLiteDatabase db = this.getWritableDatabase();
+            String querystring="SELECT distinct NAME FROM CLIENT_INFO order by NAME asc";
+            Cursor cursor = db.rawQuery(querystring, null);
+
+            if (cursor.moveToFirst())
+            {
+                do
+                {
+                    category.add(cursor.getString(0));
+                }
+                while (cursor.moveToNext());
+            }
+            return category;
+        } catch (Exception e) {
+            Log.e("Error",e.toString());
+        }
+        return category;
+    }
+    public ArrayList<String> getClienZone()
+    {
+        ArrayList<String> category=new ArrayList<>();
+        try
+        {
+
+//            Database m_database=Database.createInstance(v.getContext(),"vact.db",1);
+            SQLiteDatabase db = this.getWritableDatabase();
+            String querystring="SELECT distinct ZONE FROM CLIENT_INFO order by ZONE asc";
+            Cursor cursor = db.rawQuery(querystring, null);
+
+            if (cursor.moveToFirst())
+            {
+                do
+                {
+                    category.add(cursor.getString(0));
+                }
+                while (cursor.moveToNext());
+            }
+            return category;
+        } catch (Exception e) {
+            Log.e("Error",e.toString());
+        }
+        return category;
+    }
+
+    public ArrayList<String> getClienCity()
+    {
+        ArrayList<String> category=new ArrayList<>();
+        try
+        {
+
+//            Database m_database=Database.createInstance(v.getContext(),"vact.db",1);
+            SQLiteDatabase db = this.getWritableDatabase();
+            String querystring="SELECT distinct CITY FROM CLIENT_INFO order by CITY asc";
+            Cursor cursor = db.rawQuery(querystring, null);
+
+            if (cursor.moveToFirst())
+            {
+                do
+                {
+                    category.add(cursor.getString(0));
+                }
+                while (cursor.moveToNext());
+            }
+            return category;
+        } catch (Exception e) {
+            Log.e("Error",e.toString());
+        }
+        return category;
+    }
     public ArrayList<String> getITemGroups()
     {
         ArrayList<String> category=new ArrayList<>();
@@ -164,6 +428,7 @@ public class DatabaseHandler1 extends SQLiteOpenHelper
         }
         return category;
     }
+
     public void addMessage(String date,String message,String Month)
     {
         SQLiteDatabase db = this.getWritableDatabase();

@@ -25,14 +25,17 @@ import android.widget.TextView;
 
 import amigoinn.adapters.Custom_Home_Orders;
 
+
 import com.example.v4sales.R;
 import com.fourmob.datetimepicker.date.DatePickerDialog;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 
+import amigoinn.adapters.SectionedListActivityForFilters;
 import amigoinn.adapters.SectionedListBeforeFilter;
 import amigoinn.models.OverallPercentage;
 import amigoinn.walkietalkie.Constants;
+import amigoinn.walkietalkie.DatabaseHandler1;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -51,6 +54,7 @@ public class FragmentCategoryItemRank extends Fragment implements DatePickerDial
     String monthName;
     int totalsum;
     Context context;
+    DatabaseHandler1 handler1;
     ArrayList<BarEntry> entries = new ArrayList<>();
     int selectedPosition = 0;
     BarDataSet dataset;
@@ -109,6 +113,10 @@ public class FragmentCategoryItemRank extends Fragment implements DatePickerDial
             }
         });
 
+        imgSearch = (ImageView) view.findViewById(R.id.imgBrowse);
+        handler1 = new DatabaseHandler1(context);
+//        imgFilter=(ImageView)view.findViewById(R.id.imgBrowse1);
+//        imgFilter=(ImageView)view.findViewById(R.id.imgBrowse1);
         SimpleDateFormat month_date = new SimpleDateFormat("yyyy-MM-dd");
         monthName = month_date.format(calendar.getTime());
         names.add("13");
@@ -146,6 +154,10 @@ public class FragmentCategoryItemRank extends Fragment implements DatePickerDial
                 context.startActivity(in);
             }
         });
+
+        DatabaseHandler1 handler = new DatabaseHandler1(context);
+        ArrayList<String> mastergrouplist = handler.getMastergroup();
+        ArrayList<String> reportinggrouplist = handler.getReportingGroupcode();
         return view;
     }
 
@@ -193,64 +205,64 @@ public class FragmentCategoryItemRank extends Fragment implements DatePickerDial
     }
 
 
-        //////////////////////
+    //////////////////////
 
-        public class Custom_Home_Orders extends BaseAdapter {
-            public Activity context;
-            LayoutInflater inflater;
+    public class Custom_Home_Orders extends BaseAdapter {
+        public Activity context;
+        LayoutInflater inflater;
 
-            public Custom_Home_Orders(Activity context)
+        public Custom_Home_Orders(Activity context)
 
-            {
-                super();
-                this.context = context;
-                this.inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
-
-            }
-
-            @Override
-            public int getCount() {
-                // TODO Auto-generated method stub
-                return 25;
-            }
-
-            @Override
-            public Object getItem(int arg0) {
-                // TODO Auto-generated method stub
-                return null;
-            }
-
-            @Override
-            public long getItemId(int arg0) {
-                // TODO Auto-generated method stub
-                return 0;
-            }
-
-             class Holder {
-                TextView name;
-                TextView phone;
-            }
-
-            @Override
-            public View getView(int arg0, View arg1, ViewGroup arg2) {
-                // TODO Auto-generated method stub
-
-                Holder hv;
-
-                if (arg1 == null) {
-                    hv = new Holder();
-                    arg1 = inflater.inflate(R.layout.custom_order_home, null);
-                    arg1.setTag(hv);
-                } else {
-                    hv = (Holder) arg1.getTag();
-                }
-
-                return arg1;
-            }
+        {
+            super();
+            this.context = context;
+            this.inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
 
         }
 
+        @Override
+        public int getCount() {
+            // TODO Auto-generated method stub
+            return 25;
+        }
+
+        @Override
+        public Object getItem(int arg0) {
+            // TODO Auto-generated method stub
+            return null;
+        }
+
+        @Override
+        public long getItemId(int arg0) {
+            // TODO Auto-generated method stub
+            return 0;
+        }
+
+        class Holder {
+            TextView name;
+            TextView phone;
+        }
+
+        @Override
+        public View getView(int arg0, View arg1, ViewGroup arg2) {
+            // TODO Auto-generated method stub
+
+            Holder hv;
+
+            if (arg1 == null) {
+                hv = new Holder();
+                arg1 = inflater.inflate(R.layout.custom_order_home, null);
+                arg1.setTag(hv);
+            } else {
+                hv = (Holder) arg1.getTag();
+            }
+
+            return arg1;
+        }
+
     }
+
+}
 
 
 

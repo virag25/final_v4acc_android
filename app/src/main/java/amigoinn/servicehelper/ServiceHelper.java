@@ -57,6 +57,9 @@ public class ServiceHelper {
 
 
     public static final String Product_list = "productlist.php";
+    public static final String route_list = "productlist.php";
+    public static final String gen_list = "getgenlookup.php";
+    public static final String class12combo_list = "class12combo.php";
     public static final String UPDATE_PASSWORD = "updatepassword.php";
     public static final String INSERT_LOCATIONS = "insertlocation.php";
 
@@ -181,7 +184,8 @@ public class ServiceHelper {
 
     }
 
-    private String call() {
+    private String call()
+    {
         StringBuilder builder = new StringBuilder();
         HttpClient client = getNewHttpClient();
         HttpRequestBase request = null;
@@ -391,8 +395,10 @@ public class ServiceHelper {
 
         @Override
         protected void onPostExecute(ServiceResponse result) {
-            if (result != null) {
-                if (m_delegate != null) {
+            if (result != null)
+            {
+                if (m_delegate != null)
+                {
                     m_delegate.CallFinish(result);
                 }
             } else {

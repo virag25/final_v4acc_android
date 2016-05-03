@@ -78,6 +78,7 @@ public class ClientListSectionedActivity extends BaseFragment
             @Override
             public void onClick(View v) {
                 Intent in;
+                Config.filterfrom="party";
                 if (Config.filterfrom.equalsIgnoreCase("product")) {
                     in = new Intent(getActivity(), ProductFilter.class);
                 } else if (Config.filterfrom.equalsIgnoreCase("Mainmenu")) {

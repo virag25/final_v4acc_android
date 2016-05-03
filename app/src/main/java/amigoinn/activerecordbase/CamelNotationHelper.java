@@ -10,9 +10,11 @@ package amigoinn.activerecordbase;
  *         written by JEREMYOT
  *         </p>
  */
-public class CamelNotationHelper {
+public class CamelNotationHelper
+{
 
-	public CamelNotationHelper() {
+	public CamelNotationHelper()
+	{
 	}
 
 	/**

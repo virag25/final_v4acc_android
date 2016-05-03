@@ -201,7 +201,8 @@ public class CommonUtils {
 	 * @param pixel
 	 * @return dip
 	 */
-	public int getDipFromPixel(int pixel) {
+	public int getDipFromPixel(int pixel)
+	{
 		if (m_density <= 0) {
 			return pixel;
 		}

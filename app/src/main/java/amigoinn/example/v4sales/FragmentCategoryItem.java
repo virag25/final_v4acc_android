@@ -22,6 +22,7 @@ import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.v4sales.R;
 import com.github.mikephil.charting.charts.BarChart;
@@ -48,6 +49,11 @@ import java.util.Arrays;
 import java.util.List;
 
 import amigoinn.adapters.Custom_Home_tasks;
+import amigoinn.db_model.ClassCombInfo;
+import amigoinn.db_model.GenLookInfo;
+import amigoinn.db_model.ModelDelegates;
+import amigoinn.modallist.Combo12;
+import amigoinn.modallist.GenLookup;
 import amigoinn.models.MyPojotaskList;
 import amigoinn.models.OverallPercentage;
 import amigoinn.servicehelper.ApiHandler;
@@ -68,6 +74,8 @@ public class FragmentCategoryItem extends Fragment
     int count=0;
     CategoryGridAdpter adpter;
     TextView tv_pricesort,tv_filter;
+    ArrayList<GenLookInfo> gen_lookup =new ArrayList<>();
+    ArrayList<ClassCombInfo> class12combolist =new ArrayList<>();
     ArrayList<BarEntry> entries = new ArrayList<>();
     BarDataSet dataset;
     List<OverallPercentage> posts;
@@ -156,6 +164,70 @@ public class FragmentCategoryItem extends Fragment
 
 
         return view;
+    }
+
+    public void loadGENLOOKUPS()
+    {
+     //   showProgress();
+        GenLookup.Instance().DoProductCall(new ModelDelegates.ModelDelegate<GenLookInfo>() {
+            @Override
+            public void ModelLoaded(ArrayList<GenLookInfo> list)
+            {
+       //         hideProgress();
+//                Collections.sort(list, new Comparator<GenLookInfo>() {
+//                    @Override
+//                    public int compare(GenLookInfo s1, GenLookInfo s2) {
+//                        return s1.category.compareToIgnoreCase(s2.category);
+//                    }
+//                });
+//                Collections.sort(list, String.CASE_INSENSITIVE_ORDER);
+                gen_lookup = list;
+                loadClass12Combo();
+                //setbaseadapter();
+//                DatabaseHandler1 handler1=new DatabaseHandler1(v.getContext());
+//                ArrayList<String> categories=handler1.getCategoris();
+//                ArrayList<String> itemgroup=handler1.getItemgroup();
+            }
+
+            @Override
+            public void ModelLoadFailedWithError(String error)
+            {
+                //hideProgress();
+                Toast.makeText(getActivity(), error, Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    public void loadClass12Combo()
+    {
+        //   showProgress();
+        Combo12.Instance().DoProductCall(new ModelDelegates.ModelDelegate<ClassCombInfo>()
+        {
+            @Override
+            public void ModelLoaded(ArrayList<ClassCombInfo> list)
+            {
+                //         hideProgress();
+//                Collections.sort(list, new Comparator<GenLookInfo>() {
+//                    @Override
+//                    public int compare(GenLookInfo s1, GenLookInfo s2) {
+//                        return s1.category.compareToIgnoreCase(s2.category);
+//                    }
+//                });
+//                Collections.sort(list, String.CASE_INSENSITIVE_ORDER);
+                class12combolist = list;
+                //setbaseadapter();
+//                DatabaseHandler1 handler1=new DatabaseHandler1(v.getContext());
+//                ArrayList<String> categories=handler1.getCategoris();
+//                ArrayList<String> itemgroup=handler1.getItemgroup();
+            }
+
+            @Override
+            public void ModelLoadFailedWithError(String error)
+            {
+                //hideProgress();
+                Toast.makeText(getActivity(), error, Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     private void createListview1()
@@ -282,7 +354,7 @@ public class FragmentCategoryItem extends Fragment
                 Utils.dismissDialog();
                 names.clear();
                 tasksList.clear();
-
+                loadGENLOOKUPS();
                 try
                 {
                     for(int i=0;i<res.length;i++)

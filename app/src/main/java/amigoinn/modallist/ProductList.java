@@ -25,7 +25,8 @@ public class ProductList implements ServiceHelper.ServiceHelperDelegate
 {
 
 
-    protected ProductList() {
+    protected ProductList()
+    {
     }
 
     private static volatile ProductList _instance = null;

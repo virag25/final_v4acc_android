@@ -229,7 +229,6 @@
 
             >
 
-            99.1 67.7*8 .5mm
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
@@ -405,7 +404,7 @@
 
             >
 
-            99.1 67.7*8 .5mm
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="35dp"

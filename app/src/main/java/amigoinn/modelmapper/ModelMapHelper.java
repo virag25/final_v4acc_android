@@ -23,9 +23,11 @@ public class ModelMapHelper<T extends ActiveRecordBase> {
 		List<Field> fields = getColumnFields();
 
 		T entity = getInstance();
-		for (Field field : fields) {
+		for (Field field : fields)
+		{
 			ModelMapper mapper = field.getAnnotation(ModelMapper.class);
-			if (mapper != null) {
+			if (mapper != null)
+			{
 				field.setAccessible(true);
 				String key = mapper.JsonKey();
 				boolean isArray = mapper.IsArray();
