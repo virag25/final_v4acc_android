@@ -18,7 +18,8 @@ public class LoginInfo {
 
     private static volatile LoginInfo _instance = null;
 
-    public static LoginInfo Instance() {
+    public static LoginInfo Instance()
+    {
         if (_instance == null) {
             synchronized (LoginInfo.class) {
                 _instance = new LoginInfo();
@@ -31,9 +32,11 @@ public class LoginInfo {
     public String password = "";
     ModelDelegates.LoginDelegate m_delegate = null;
 
-    public void doLogin(final ModelDelegates.LoginDelegate delegate) {
+    public void doLogin(final ModelDelegates.LoginDelegate delegate)
+    {
         m_delegate = delegate;
-        if (NetworkConnectivity.isConnected()) {
+        if (NetworkConnectivity.isConnected())
+        {
             ServiceHelper helper = new ServiceHelper(ServiceHelper.LOGIN,
                     ServiceHelper.RequestMethod.POST);
             helper.addParam("username", this.email);
@@ -47,9 +50,11 @@ public class LoginInfo {
                                 && res.RawResponse.length() > 0) {
                             try {
 
-                                if (res.RawResponse != null) {
+                                if (res.RawResponse != null)
+                                {
                                     JSONObject jobjj = new JSONObject(res.RawResponse);
-                                    if (jobjj != null) {
+                                    if (jobjj != null)
+                                    {
                                         JSONArray jobj = jobjj.optJSONArray("data");
                                         JSONObject job = jobj.optJSONObject(0);
                                         ModelMapHelper<UserInfo> mapper = new ModelMapHelper<UserInfo>();

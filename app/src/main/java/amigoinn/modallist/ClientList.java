@@ -11,7 +11,6 @@ import amigoinn.common.NetworkConnectivity;
 import amigoinn.db_model.ClientInfo;
 import amigoinn.db_model.ModelDelegates;
 import amigoinn.db_model.RouteInfo;
-import amigoinn.db_model.UserInfo;
 import amigoinn.example.v4sales.AccountApplication;
 import amigoinn.modelmapper.ModelMapHelper;
 import amigoinn.servicehelper.ServiceHelper;
@@ -70,7 +69,8 @@ public class ClientList implements ServiceHelper.ServiceHelperDelegate
     }
 
     public void loadFromDB() {
-        try {
+        try
+        {
             List<ClientInfo> list = AccountApplication.Connection().findAll(
                     ClientInfo.class);
             if (list != null) {

@@ -12,7 +12,8 @@ import amigoinn.modelmapper.ModelMapper;
 /**
  * Created by Virag kuvadia on 24-04-2016.
  */
-public class ClientInfo extends ActiveRecordBase {
+public class ClientInfo extends ActiveRecordBase
+{
     @ModelMapper(JsonKey = "Code")
     public String client_code = "";
 
@@ -40,13 +41,20 @@ public class ClientInfo extends ActiveRecordBase {
     //
     @ModelMapper(JsonKey = "Email")
     public String client_email = "";
-    @ModelMapper(JsonKey = "MobilePhone")
-    public String mobile_number = "";
+    @ModelMapper(JsonKey = "Zone")
+    public String Zone = "";
     @ModelMapper(JsonKey = "Contact")
     public String client_contact = "";
 
+    @ModelMapper(JsonKey = "City")
+    public String City = "";//66
 
-    public static ArrayList<ClientInfo> getAllClint() {
+    @ModelMapper(JsonKey = "MobilePhone")
+    public String mobile_number = "";
+
+
+    public static ArrayList<ClientInfo> getAllClint()
+    {
         ArrayList<ClientInfo> m_list = new ArrayList<ClientInfo>();
         try {
             List<ClientInfo> lst = AccountApplication.Connection().findAll(
@@ -61,7 +69,8 @@ public class ClientInfo extends ActiveRecordBase {
     }
 
 
-    public static ClientInfo getClintInfoById(int Code) {
+    public static ClientInfo getClintInfoById(int Code)
+    {
         try {
             List<ClientInfo> lst = AccountApplication.Connection().find(
                     ClientInfo.class,

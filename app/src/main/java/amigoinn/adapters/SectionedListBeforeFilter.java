@@ -49,7 +49,8 @@ import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
  *
  * @author Cyril Mottier
  */
-public class SectionedListBeforeFilter extends Fragment {
+public class SectionedListBeforeFilter extends Fragment
+{
 
     //    private AudioFilesAdapter mAdapter;
     private NotifyingAsyncQueryHandler mQueryHandler;
@@ -64,7 +65,9 @@ public class SectionedListBeforeFilter extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
+    {
+
         v = inflater.inflate(R.layout.searchlistlayoutbefore, container, false);
 
         stickyList = (StickyListHeadersListView) v.findViewById(R.id.list);
@@ -85,11 +88,16 @@ public class SectionedListBeforeFilter extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent in;
-                if (Config.filterfrom.equalsIgnoreCase("product")) {
+                if (Config.filterfrom.equalsIgnoreCase("product"))
+                {
                     in = new Intent(getActivity(), ProductFilter.class);
-                } else if (Config.filterfrom.equalsIgnoreCase("Mainmenu")) {
+                }
+                else if (Config.filterfrom.equalsIgnoreCase("Mainmenu"))
+                {
                     in = new Intent(getActivity(), amigoinn.example.v4sales.Filter.class);
-                } else {
+                }
+                else
+                {
                     in = new Intent(getActivity(), amigoinn.example.v4sales.Filter.class);
                 }
                 try {

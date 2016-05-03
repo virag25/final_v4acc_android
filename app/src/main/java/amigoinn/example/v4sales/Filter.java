@@ -14,12 +14,14 @@ import com.example.v4sales.R;
 
 import amigoinn.adapters.SectionedListActivityForFilters;
 import amigoinn.walkietalkie.Constants;
+import amigoinn.walkietalkie.DatabaseHandler1;
 
 public class Filter extends Activity {
 
     ListView listData,listStates,listCity;
     TextView txtZone,txtState,txtCity,txtApply;
     String isvalue;
+    DatabaseHandler1 handler1;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -27,6 +29,7 @@ public class Filter extends Activity {
         try
         {
             setContentView(R.layout.activity_filter);
+            handler1=new DatabaseHandler1(this);
             txtZone=(TextView)findViewById(R.id.txtZone);
             txtState=(TextView)findViewById(R.id.txtState);
             txtCity=(TextView)findViewById(R.id.txtCity);
@@ -36,16 +39,19 @@ public class Filter extends Activity {
             txtApply=(TextView)findViewById(R.id.txtfiltertitle);
 
             Constants.Zonelist.clear();
-            Constants.addzones();
+            Constants.Zonelist=handler1.getClienZone();
+//            Constants.addzones();
             Constants.CityList.clear();
-            Constants.addCity();
+            Constants.CityList=handler1.getClienCity();
+//            Constants.addCity();
             Constants.Statelist.clear();
-            Constants.addStates();
-            ArrayAdapter<String> adapterZone=new ArrayAdapter<String>(Filter.this,R.layout.sammplelistitem,R.id.tv,Constants.Zonelist.subList(0,5));
+            Constants.Statelist=handler1.getClienState();
+//            Constants.addStates();
+            ArrayAdapter<String> adapterZone=new ArrayAdapter<String>(Filter.this,R.layout.sammplelistitem,R.id.tv,Constants.Zonelist);
                     listData.setAdapter(adapterZone);
-            ArrayAdapter<String> adapterState=new ArrayAdapter<String>(Filter.this,R.layout.sammplelistitem,R.id.tv,Constants.Statelist.subList(0,5));
+            ArrayAdapter<String> adapterState=new ArrayAdapter<String>(Filter.this,R.layout.sammplelistitem,R.id.tv,Constants.Statelist);
             listStates.setAdapter(adapterState);
-            ArrayAdapter<String> adapterCity=new ArrayAdapter<String>(Filter.this,R.layout.sammplelistitem,R.id.tv,Constants.CityList.subList(0,5));
+            ArrayAdapter<String> adapterCity=new ArrayAdapter<String>(Filter.this,R.layout.sammplelistitem,R.id.tv,Constants.CityList);
             listCity.setAdapter(adapterCity);
 
 

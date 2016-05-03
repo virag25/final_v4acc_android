@@ -30,10 +30,12 @@ import amigoinn.activerecordbase.ActiveRecordException;
 import amigoinn.activerecordbase.Database;
 import amigoinn.adapters.NotifyingAsyncQueryHandler;
 import amigoinn.adapters.SectionedListActivityForFilters;
+import amigoinn.db_model.GenLookInfo;
 import amigoinn.db_model.ProductInfo;
 import amigoinn.db_model.ModelDelegates;
 import amigoinn.db_model.ProductInfo;
 import amigoinn.modallist.ClientList;
+import amigoinn.modallist.GenLookup;
 import amigoinn.modallist.ProductList;
 import amigoinn.walkietalkie.DatabaseHandler1;
 import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
@@ -57,7 +59,7 @@ public class ProductListSectionedActivity extends BaseFragment
     public static SectionedListActivityForFilters listActivity;
     View v;
     ArrayList<ProductInfo> clint_info;
-
+    ArrayList<GenLookInfo> gen_lookup =new ArrayList<>();
 
     @Nullable
     @Override
@@ -78,11 +80,15 @@ public class ProductListSectionedActivity extends BaseFragment
         inputSearch = (EditText) v.findViewById(R.id.inputSearch);
 
         TextView txtDone = (TextView) v.findViewById(R.id.txtDone);
-        txtFilter.setOnClickListener(new View.OnClickListener() {
+        txtFilter.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 Intent in;
-                if (Config.filterfrom.equalsIgnoreCase("product")) {
+                Config.filterfrom="product";
+                if (Config.filterfrom.equalsIgnoreCase("product"))
+                {
                     in = new Intent(getActivity(), ProductFilter.class);
                 } else if (Config.filterfrom.equalsIgnoreCase("Mainmenu")) {
                     in = new Intent(getActivity(), Filter.class);
@@ -154,7 +160,7 @@ public class ProductListSectionedActivity extends BaseFragment
                 Collections.sort(list, new Comparator<ProductInfo>() {
                     @Override
                     public int compare(ProductInfo s1, ProductInfo s2) {
-                        return s1.category.compareToIgnoreCase(s2.category);
+                        return s1.product.compareToIgnoreCase(s2.product);
                     }
                 });
 //                Collections.sort(list, String.CASE_INSENSITIVE_ORDER);
@@ -162,7 +168,39 @@ public class ProductListSectionedActivity extends BaseFragment
                 setbaseadapter();
                 DatabaseHandler1 handler1=new DatabaseHandler1(v.getContext());
                 ArrayList<String> categories=handler1.getCategoris();
-                ArrayList<String> itemgroup=handler1.getItemgroup();
+//                ArrayList<String> itemgroup=handler1.getItemgroup();
+                loadGENLOOKUPS();
+            }
+
+            @Override
+            public void ModelLoadFailedWithError(String error)
+            {
+                hideProgress();
+                Toast.makeText(getActivity(), error, Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    public void loadGENLOOKUPS()
+    {
+        showProgress();
+        GenLookup.Instance().DoProductCall(new ModelDelegates.ModelDelegate<GenLookInfo>() {
+            @Override
+            public void ModelLoaded(ArrayList<GenLookInfo> list)
+            {
+                hideProgress();
+//                Collections.sort(list, new Comparator<GenLookInfo>() {
+//                    @Override
+//                    public int compare(GenLookInfo s1, GenLookInfo s2) {
+//                        return s1.category.compareToIgnoreCase(s2.category);
+//                    }
+//                });
+//                Collections.sort(list, String.CASE_INSENSITIVE_ORDER);
+                gen_lookup = list;
+                //setbaseadapter();
+//                DatabaseHandler1 handler1=new DatabaseHandler1(v.getContext());
+//                ArrayList<String> categories=handler1.getCategoris();
+//                ArrayList<String> itemgroup=handler1.getItemgroup();
             }
 
             @Override
@@ -283,7 +321,7 @@ public class ProductListSectionedActivity extends BaseFragment
                 holder = (ViewHolder) convertView.getTag();
             }
 
-            holder.text.setText(filteredData.get(position).category);
+            holder.text.setText(filteredData.get(position).product);
             final int pos = position;
             final ViewHolder holder1 = holder;
             holder.text.setOnClickListener(new View.OnClickListener() {
@@ -314,7 +352,7 @@ public class ProductListSectionedActivity extends BaseFragment
                 holder = (HeaderViewHolder) convertView.getTag();
             }
             //set header text as first char in name
-            String headerText = "" + filteredData.get(position).category.subSequence(0, 1).charAt(0);
+            String headerText = "" + filteredData.get(position).product.subSequence(0, 1).charAt(0);
             holder.text.setText(headerText);
             return convertView;
         }
@@ -322,7 +360,7 @@ public class ProductListSectionedActivity extends BaseFragment
         @Override
         public long getHeaderId(int position) {
             //return the first character of the country as ID because this is what headers are based upon
-            return filteredData.get(position).category.subSequence(0, 1).charAt(0);
+            return filteredData.get(position).product.subSequence(0, 1).charAt(0);
         }
 
         @Override
@@ -347,7 +385,7 @@ public class ProductListSectionedActivity extends BaseFragment
 
                 for (int i = 0; i < count; i++) {
                     filterableString = list.get(i);
-                    if (filterableString.category.toLowerCase().contains(filterString)) {
+                    if (filterableString.product.toLowerCase().contains(filterString)) {
                         nlist.add(filterableString);
                     }
                 }

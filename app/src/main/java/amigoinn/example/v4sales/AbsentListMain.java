@@ -29,9 +29,8 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AbsentListMain extends Activity {
-
-
+public class AbsentListMain extends Activity
+{
 	public Context context;
 	RobotoTextView tvDisplayDate;
 	ListView lvGood, lvBad;

@@ -76,9 +76,11 @@ public class LoginActivity extends BaseActivity  {
     SharedPreferences preferences;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
-        try {
+        try
+        {
             setContentView(R.layout.activity_login_page_light);
             loginText = (FloatLabeledEditText) findViewById(R.id.user);
             passText = (FloatLabeledEditText) findViewById(R.id.Password);
@@ -89,39 +91,45 @@ public class LoginActivity extends BaseActivity  {
             btnLogin.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String login_text = loginText.getText().toString();
-                    String password = passText.getText().toString();
-                    boolean flag = true;
-                    String msg = "";
+                    try {
+                        String login_text = loginText.getText().toString();
+                        String password = passText.getText().toString();
+                        boolean flag = true;
+                        String msg = "";
 
-                    if (login_text != null && login_text.length() == 0) {
-                        flag = false;
-                        msg = "Pleasae add your username";
-                    } else if (password != null && password.length() == 0) {
-                        flag = false;
-                        msg = "Please add your password";
-                    }
+                        if (login_text != null && login_text.length() == 0)
+                        {
+                            flag = false;
+                            msg = "Pleasae add your username";
+                        } else if (password != null && password.length() == 0) {
+                            flag = false;
+                            msg = "Please add your password";
+                        }
 
-                    if (flag) {
-                        showProgress();
-                        LoginInfo.Instance().email = login_text;
-                        LoginInfo.Instance().password = password;
-                        LoginInfo.Instance().doLogin(new ModelDelegates.LoginDelegate() {
-                            @Override
-                            public void LoginDidSuccess() {
-                                hideProgress();
-                                Intent in = new Intent(LoginActivity.this, LeftMenusActivity.class);
-                                startActivity(in);
-                            }
+                        if (flag) {
+                            showProgress();
+                            LoginInfo.Instance().email = login_text;
+                            LoginInfo.Instance().password = password;
+                            LoginInfo.Instance().doLogin(new ModelDelegates.LoginDelegate()
+                            {
+                                @Override
+                                public void LoginDidSuccess() {
+                                    hideProgress();
+                                    Intent in = new Intent(LoginActivity.this, LeftMenusActivity.class);
+                                    startActivity(in);
+                                }
 
-                            @Override
-                            public void LoginFailedWithError(String error) {
-                                hideProgress();
-                                Toast.makeText(getApplicationContext(), error, Toast.LENGTH_LONG).show();
-                            }
-                        });
-                    } else {
-                        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
+                                @Override
+                                public void LoginFailedWithError(String error) {
+                                    hideProgress();
+                                    Toast.makeText(getApplicationContext(), error, Toast.LENGTH_LONG).show();
+                                }
+                            });
+                        } else {
+                            Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
+                        }
+                    } catch (Exception ex) {
+                        Log.e("error", ex.toString());
                     }
                 }
             });
@@ -150,7 +158,8 @@ public class LoginActivity extends BaseActivity  {
 //		     intMyIp0 = intMyIp2mod%0x100;
 //		     myipfinal=intMyIp0+"."+intMyIp1+"."+intMyIp2+"."+intMyIp3;
             //passText = (EditText) findViewById(R.id.user);
-            if(UserInfo.getUser()!=null){
+            if(UserInfo.getUser()!=null)
+            {
                 Intent in = new Intent(LoginActivity.this, LeftMenusActivity.class);
                 startActivity(in);
                 finish();

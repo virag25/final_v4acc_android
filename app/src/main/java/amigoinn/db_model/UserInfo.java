@@ -29,21 +29,27 @@ public class UserInfo extends ActiveRecordBase {
     public String activation_flag = "";
 
 
-    public static UserInfo getUser() {
-        try {
-            List<UserInfo> lst = AccountApplication.Connection().findAll(
-                    UserInfo.class);
-            if (lst != null && lst.size() > 0) {
+    public static UserInfo getUser()
+    {
+        try
+        {
+            List<UserInfo> lst = AccountApplication.Connection().findAll(UserInfo.class);
+            if (lst != null && lst.size() > 0)
+            {
                 return lst.get(0);
             }
-        } catch (ActiveRecordException e) {
+        }
+        catch (ActiveRecordException e)
+        {
             e.printStackTrace();
         }
         return null;
     }
 
-    public static void DeleteUser() {
-        try {
+    public static void DeleteUser()
+    {
+        try
+        {
             AccountApplication.Connection().delete(UserInfo.class);
         } catch (ActiveRecordException e) {
             e.printStackTrace();

@@ -24,14 +24,18 @@ import android.widget.TextView;
 
 import amigoinn.adapters.Custom_Home_Orders;
 
+
 import com.example.v4sales.R;
 import com.fourmob.datetimepicker.date.DatePickerDialog;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 
+import amigoinn.adapters.SectionedActivityForOrderFilter;
+import amigoinn.adapters.SectionedListActivityForFilters;
 import amigoinn.adapters.SectionedListBeforeFilter;
 import amigoinn.models.OverallPercentage;
 import amigoinn.walkietalkie.Constants;
+import amigoinn.walkietalkie.DatabaseHandler1;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -51,6 +55,7 @@ public class FragmentCategoryItemRank extends Fragment implements DatePickerDial
     String monthName;
     int totalsum;
     Context context;
+    DatabaseHandler1 handler1;
     ArrayList<BarEntry> entries = new ArrayList<>();
     int selectedPosition=0;
     BarDataSet dataset;
@@ -76,8 +81,9 @@ public class FragmentCategoryItemRank extends Fragment implements DatePickerDial
         //	Calendar cal=Calendar.getInstance();
             imgSearch=(ImageView)view.findViewById(R.id.imgBrowse);
         imgFilter=(ImageView)view.findViewById(R.id.imgBrowse1);
-        imgFilter=(ImageView)view.findViewById(R.id.imgBrowse1);
-        imgFilter=(ImageView)view.findViewById(R.id.imgBrowse1);
+        handler1=new DatabaseHandler1(context);
+//        imgFilter=(ImageView)view.findViewById(R.id.imgBrowse1);
+//        imgFilter=(ImageView)view.findViewById(R.id.imgBrowse1);
         SimpleDateFormat month_date = new SimpleDateFormat("yyyy-MM-dd");
         //spinnerSubject=(MaterialSpinner)rootView.findViewById(R.id.spinnerMonth);
         //tvHomework=(TextView)rootView.findViewById(R.id.textTitle);
@@ -175,19 +181,33 @@ public class FragmentCategoryItemRank extends Fragment implements DatePickerDial
             @Override
             public void onClick(View v)
             {
-                Intent in = new Intent(context, SectionedListBeforeFilter.class);
-                Constants.countries=Constants.PartyList;
-                Config.filterfrom="party";
-                context.startActivity(in);
+                try
+                {
+                    Intent in = new Intent(context, SectionedActivityForOrderFilter.class);
+                    Constants.countries = handler1.getClienNames();
+                    Config.filterfrom = "party";
+                    startActivity(in);
+                }
+                catch (Exception ex)
+                {
+                    Log.e("Error",ex.toString());
+                }
             }
         });
         imgFilter.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent in = new Intent(context, SectionedListBeforeFilter.class);
-                Constants.countries=Constants.Productlist;
+            public void onClick(View v)
+            {
+           try
+           {
+                Intent in = new Intent(context, SectionedActivityForOrderFilter.class);
+                Constants.countries=handler1.getProduct();
                 Config.filterfrom="product";
-                context.startActivity(in);
+                startActivity(in);
+            }catch (Exception ex)
+            {
+                Log.e("Error",ex.toString());
+            }
             }
         });
         txtSubmit.setOnClickListener(new View.OnClickListener()
@@ -216,7 +236,7 @@ public class FragmentCategoryItemRank extends Fragment implements DatePickerDial
                 Product.add(edtProduct1.getText().toString());
                 totalsum=Integer.parseInt(edtQuantity.getText().toString())*40;
                 txtTotal.setText("Total "+totalsum+1000);
-                Price.add(""+(Integer.parseInt(edtQuantity.getText().toString())*40));
+                Price.add("" + (Integer.parseInt(edtQuantity.getText().toString()) * 40));
                 extras.add(edtQuantity.getText().toString());
                 names.add(edtCode.getText().toString());
                 ordersadapter.notifyDataSetChanged();
@@ -240,6 +260,9 @@ public class FragmentCategoryItemRank extends Fragment implements DatePickerDial
 
             }
         });
+        DatabaseHandler1 handler=new DatabaseHandler1(context);
+        ArrayList<String> mastergrouplist=handler.getMastergroup();
+        ArrayList<String> reportinggrouplist=handler.getReportingGroupcode();
         return view;
     }
 

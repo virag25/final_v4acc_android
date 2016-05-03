@@ -52,11 +52,13 @@ public class DatabaseBuilder {
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	public String[] getTables() {
+	public String[] getTables()
+	{
 		String[] ret = new String[classes.size()];
 		Class[] arr = new Class[classes.size()];
 		arr = classes.values().toArray(arr);
-		for (int i = 0; i < arr.length; i++) {
+		for (int i = 0; i < arr.length; i++)
+		{
 			Class c = arr[i];
 			ret[i] = CamelNotationHelper.toSQLName(c.getSimpleName());
 		}

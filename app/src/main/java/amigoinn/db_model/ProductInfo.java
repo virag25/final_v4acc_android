@@ -14,23 +14,30 @@ import amigoinn.modelmapper.ModelMapper;
  */
 public class ProductInfo extends ActiveRecordBase {
 
-
+    //VRootID,VRootname
 
     @ModelMapper(JsonKey = "StockNo")
     public String StockNo = "";
 
-    @ModelMapper(JsonKey = "category")
-    public String category = "";
-
     @ModelMapper(JsonKey = "itemgroup")
     public String itemgroup = "";
-    @ModelMapper(JsonKey = "product_name")
-    public String product_name = "";
-    @ModelMapper(JsonKey = "model")
-    public String product_model = "";
 
-    @ModelMapper(JsonKey = "size")
-    public String product_size = "";
+    @ModelMapper(JsonKey = "ItemDesc")
+    public String ItemDesc = "";
+
+    @ModelMapper(JsonKey = "brand")
+    public String brand = "";
+
+    @ModelMapper(JsonKey = "product")
+    public String product = "";
+
+    @ModelMapper(JsonKey = "model")
+    public String model = "";
+    @ModelMapper(JsonKey = "packingsize")
+    public String packingsize = "";
+
+    @ModelMapper(JsonKey = "SizeCd")
+    public String SizeCd = "";
     //
     @ModelMapper(JsonKey = "LeastSalableQty")
     public String LeastSalableQty = "";

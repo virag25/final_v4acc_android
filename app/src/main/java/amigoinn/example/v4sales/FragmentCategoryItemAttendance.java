@@ -10,10 +10,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.v4sales.R;
 
 import amigoinn.adapters.Custom_Route_Home;
+import amigoinn.db_model.GenLookInfo;
+import amigoinn.db_model.ModelDelegates;
+import amigoinn.db_model.RouteInfo;
+import amigoinn.modallist.GenLookup;
+import amigoinn.modallist.RouteList;
 
 import java.util.ArrayList;
 
@@ -26,6 +32,7 @@ public class FragmentCategoryItemAttendance extends Fragment {
     Context context;
     ArrayList<String> labels = new ArrayList<String>();
     public static String[] leftline = {"", "",""};
+    ArrayList<RouteInfo> routeinfo =new ArrayList<>();
     public static String[] rightline = {"","",""};
     public static String[] leftbox = {"Places", "Places","Places"};
     public static String[] rightbox = {"55","78","13"};
@@ -56,16 +63,48 @@ public class FragmentCategoryItemAttendance extends Fragment {
                 }
             }
         });
-        ArrayList<String> routes=new ArrayList<>();
-        for (int j=1;j<=10;j++)
-        {
-            routes.add("Route "+j);
-        }
-        lvroute.setAdapter(new Custom_Route_Home(view.getContext(),routes));
+        loadGENLOOKUPS();
+//        ArrayList<String> routes=new ArrayList<>();
+//        for (int j=1;j<=10;j++)
+//        {
+//            routes.add("Route "+j);
+//        }
+//        lvroute.setAdapter(new Custom_Route_Home(view.getContext(),routes));
 
         return view;
     }
+    public void loadGENLOOKUPS()
+    {
+        //   showProgress();
+        RouteList.Instance().DoClintOrder(new ModelDelegates.ModelDelegate<RouteInfo>()
+        {
+            @Override
+            public void ModelLoaded(ArrayList<RouteInfo> list) {
+                //         hideProgress();
+//                Collections.sort(list, new Comparator<GenLookInfo>() {
+//                    @Override
+//                    public int compare(GenLookInfo s1, GenLookInfo s2) {
+//                        return s1.category.compareToIgnoreCase(s2.category);
+//                    }
+//                });
+//                Collections.sort(list, String.CASE_INSENSITIVE_ORDER);
+                routeinfo = list;
+     //           loadClass12Combo();
+                //setbaseadapter();
+//                DatabaseHandler1 handler1=new DatabaseHandler1(v.getContext());
+//                ArrayList<String> categories=handler1.getCategoris();
+//                ArrayList<String> itemgroup=handler1.getItemgroup();
+                lvroute.setAdapter(new Custom_Route_Home(view.getContext(),routeinfo));
+            }
 
+            @Override
+            public void ModelLoadFailedWithError(String error)
+            {
+                //hideProgress();
+                Toast.makeText(getActivity(), error, Toast.LENGTH_LONG).show();
+            }
+        });
+    }
 
 
 }
