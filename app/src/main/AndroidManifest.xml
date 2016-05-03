@@ -43,7 +43,6 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <uses-feature
@@ -94,9 +93,7 @@
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
             </intent-filter>
         </service>
-
-        <service android:name="amigoinn.example.v4sales.LocationService" >
-        </service>
+        <service android:name="amigoinn.example.v4sales.LocationService"></service>
 
         <receiver
             android:name="com.google.android.gms.gcm.GcmReceiver"
@@ -158,15 +155,18 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-        <activity android:name="amigoinn.example.v4sales.AndroidDatabaseManager"
-            android:theme="@style/Theme.AppCompat.Light"/>
+
+        <activity
+            android:name="amigoinn.example.v4sales.AndroidDatabaseManager"
+            android:theme="@style/Theme.AppCompat.Light" />
         <activity android:name="amigoinn.example.v4sales.ClientsTabFragment" />
         <activity android:name="amigoinn.example.v4sales.ClientContactFragment" />
         <activity android:name="amigoinn.example.v4sales.ClientAnalyticsFragment" />
         <activity android:name="amigoinn.example.v4sales.ClientLedgersFragment" />
         <activity android:name="amigoinn.example.v4sales.ClientsOutStandingsFragment" />
         <activity android:name="amigoinn.example.v4sales.DashboardFragment" />
-        <activity android:name="amigoinn.example.v4sales.NewOrderTabActiviy"></activity>
+        <activity android:name="amigoinn.example.v4sales.NewOrderTabActiviy" />
+        <activity android:name="amigoinn.example.v4sales.dummy.AddProductsActivity"></activity>
     </application>
 
 </manifest>
