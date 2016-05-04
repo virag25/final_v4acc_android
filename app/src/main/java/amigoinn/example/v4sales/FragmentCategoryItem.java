@@ -127,25 +127,26 @@ public class FragmentCategoryItem extends Fragment
         listTasks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-           //     QuestionDialog("1");
-                Intent ina=new Intent(context,AndroidDatabaseManager.class);
-                startActivity(ina);
+                QuestionDialog("1");
+//                Intent ina=new Intent(context,AndroidDatabaseManager.class);
+//                startActivity(ina);
             }
         });
 
         listPending.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                QuestionDialog("1");
-                Intent ina=new Intent(context,AndroidDatabaseManager.class);
-                startActivity(ina);
+                QuestionDialog("1");
+//                Intent ina=new Intent(context,AndroidDatabaseManager.class);
+//                startActivity(ina);
             }
         });
         try
         {
             //createListview1();
             callAPI("1");
-        }catch (Exception ex)
+        }
+        catch (Exception ex)
         {
 
         }
@@ -275,9 +276,9 @@ public class FragmentCategoryItem extends Fragment
                         touchListener.undoPendingDismiss();
                     } else
                     {
-                        Intent ina=new Intent(context,AndroidDatabaseManager.class);
-                        startActivity(ina);
-//                        QuestionDialog(names.get(position));
+//                        Intent ina=new Intent(context,AndroidDatabaseManager.class);
+//                        startActivity(ina);
+                        QuestionDialog(names.get(position));
                         // Toast.makeText(ListViewActivity.this, "Position " + position, LENGTH_SHORT).show();
                     }
                 }

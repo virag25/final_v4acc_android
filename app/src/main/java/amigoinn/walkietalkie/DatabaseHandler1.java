@@ -12,6 +12,7 @@ import android.util.Log;
 import java.util.ArrayList;
 
 import amigoinn.activerecordbase.Database;
+import amigoinn.models.TaskDetails;
 
 public class DatabaseHandler1 extends SQLiteOpenHelper
 {
@@ -25,13 +26,15 @@ public class DatabaseHandler1 extends SQLiteOpenHelper
 
     private static final String DATABASE_v4_NAME = "vact.db";
     // Contacts table name
-    private static final String TABLE_MESSAGE = "tblMessages";
+    private static final String TABLE_MESSAGE = "tblTaskStatus";
    // private static final String TABLE_USERS = "tblUSERS";
     // Contacts Table Columns names
     private static final String KEY_ID = "id";
     private static final String KEY_DATE = "date";
-    private static final String KEY_MESAGE = "message";
-    private static final String KEY_MONTH = "month";
+    private static final String KEY_Status = "status";
+    private static final String KEY_UPloadedstatus = "uploaded";
+    private static final String KEY_AsigneeId = "AsigneeId";
+    private static final String KEY_AsigneerId = "AsigneerId";
     //private static final String KEY_IP = "ipadddress";
 
     public DatabaseHandler1(Context context)
@@ -43,12 +46,15 @@ public class DatabaseHandler1 extends SQLiteOpenHelper
     @Override
     public void onCreate(SQLiteDatabase db)
     {
-//        String CREATE_MESSAGE_TABLE = "CREATE TABLE " + TABLE_MESSAGE + "("
-//                + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + KEY_MESAGE + " TEXT,"
-//                + KEY_DATE + " TEXT," + KEY_MONTH + " TEXT" + ")";
-//
-//
-//        db.execSQL(CREATE_MESSAGE_TABLE);
+        String CREATE_MESSAGE_TABLE = "CREATE TABLE " + TABLE_MESSAGE + "("
+                + KEY_ID + " INTEGER PRIMARY,"
+                + KEY_Status + " TEXT,"
+                + KEY_UPloadedstatus + " TEXT,"
+                + KEY_AsigneeId + " TEXT," + ")"
+                + KEY_AsigneerId + " TEXT" + ")";;
+
+
+        db.execSQL(CREATE_MESSAGE_TABLE);
     }
  
     // Upgrading database
@@ -429,15 +435,17 @@ public class DatabaseHandler1 extends SQLiteOpenHelper
         return category;
     }
 
-    public void addMessage(String date,String message,String Month)
+    public void addTaskStatus(TaskDetails tasks)
     {
         SQLiteDatabase db = this.getWritableDatabase();
  
         ContentValues values = new ContentValues();
-        values.put(KEY_MESAGE, message);
-        values.put(KEY_DATE, date); // Contact Name
+        values.put(KEY_ID, tasks.getTask_Id());
+        values.put(KEY_Status, tasks.getTask_Status()); // Contact Name
          // Contact Phone
-        values.put(KEY_MONTH, Month); // Contact Phone
+        values.put(KEY_UPloadedstatus, tasks.getTask_Status()); // Contact Phone
+        values.put(KEY_AsigneeId, tasks.getTask_AsigneeId()); // Contact Phone
+        values.put(KEY_AsigneerId, tasks.getTask_AsigneerId()); // Contact Phone
         // Inserting Row
         int id= (int) db.insert(TABLE_MESSAGE, null, values);
         db.close(); // Closing database connection
@@ -477,26 +485,66 @@ public class DatabaseHandler1 extends SQLiteOpenHelper
      */
     // Getting All Contacts
 
-    public ArrayList<Contact> getAllMessages(String MonthName)
-    {
+//    public ArrayList<Contact> getAllMessages(String MonthName)
+//    {
+//    	try{
+//    	ArrayList<Contact> contactList = new ArrayList<Contact>();
+//        // Select All Query
+//        String selectQuery = "SELECT  * FROM "+TABLE_MESSAGE+" where "+KEY_MONTH+" = "+"'"+MonthName+"'"+" ORDER BY "+KEY_ID +" desc" ;
+//
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        Cursor cursor = db.rawQuery(selectQuery, null);
+//
+//        // looping through all rows and adding to list
+//        if (cursor.moveToFirst()) {
+//            do {
+//            	Contact contact = new Contact();
+//                contact.setID(Integer.parseInt(cursor.getString(0)));
+//                contact.setMessage(cursor.getString(1));
+//                contact.set_date(cursor.getString(2));
+//
+//                // Adding contact to list
+//                contactList.add(contact);
+//            } while (cursor.moveToNext());
+//        }
+//
+//        // return contact list
+//        return contactList;
+//    	}
+//    	catch(Exception ex)
+//    	{
+//    		Log.e("Error", ex.toString());
+//    		return null;
+//    	}
+//    	}
+ 
+    public ArrayList getUnUploadedTaskStatu(String ipAddress) {
     	try{
-    	ArrayList<Contact> contactList = new ArrayList<Contact>();
+    	ArrayList<TaskDetails> contactList = new ArrayList<TaskDetails>();
         // Select All Query
-        String selectQuery = "SELECT  * FROM "+TABLE_MESSAGE+" where "+KEY_MONTH+" = "+"'"+MonthName+"'"+" ORDER BY "+KEY_ID +" desc" ;
+    	String name = null;
+        String selectQuery = "SELECT  * FROM " + TABLE_MESSAGE +" where "+ KEY_UPloadedstatus+"="+"'N'";
  
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
  
         // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
-            do {
-            	Contact contact = new Contact();
-                contact.setID(Integer.parseInt(cursor.getString(0)));
-                contact.setMessage(cursor.getString(1));
-                contact.set_date(cursor.getString(2));
-
+            do
+            {
+                TaskDetails taskdetails =new TaskDetails();
+                taskdetails.setTask_Id(cursor.getString(0));
+                taskdetails.setTask_Status(cursor.getString(1));
+                taskdetails.setTask_UploadStatus(cursor.getString(2));
+                taskdetails.setTask_AsigneeId(cursor.getString(3));
+                taskdetails.setTask_AsigneerId(cursor.getString(4));
+            	//Contact contact = new Contact();
+                //contact.setID(Integer.parseInt(cursor.getString(0)));
+//                name=cursor.getString(1);// contact.setName(cursor.getString(1));
+                //contact.setIp(cursor.getString(2));
+                contactList.add(taskdetails);
                 // Adding contact to list
-                contactList.add(contact);
+               // contactList.add(contact);
             } while (cursor.moveToNext());
         }
  
@@ -510,50 +558,23 @@ public class DatabaseHandler1 extends SQLiteOpenHelper
     	}
     	}
  
-    public String getContactsName(String ipAddress) {
-    	try{
-    	ArrayList<Contact> contactList = new ArrayList<Contact>();
-        // Select All Query
-    	String name = null;
-        String selectQuery = "SELECT  * FROM " + TABLE_MESSAGE +" where "+ KEY_MESAGE+"="+"'"+ipAddress+"'";
- 
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery, null);
- 
-        // looping through all rows and adding to list
-        if (cursor.moveToFirst()) {
-            do {
-            	//Contact contact = new Contact();
-                //contact.setID(Integer.parseInt(cursor.getString(0)));
-                name=cursor.getString(1);// contact.setName(cursor.getString(1));
-                //contact.setIp(cursor.getString(2));
-                // Adding contact to list
-               // contactList.add(contact);
-            } while (cursor.moveToNext());
-        }
- 
-        // return contact list
-        return name;
-    	}
-    	catch(Exception ex)
-    	{
-    		Log.e("Error", ex.toString());
-    		return null;
-    	}
-    	}
- 
 //    // Updating single contact
-//    public int updateContact(Contact contact) {
-//        SQLiteDatabase db = this.getWritableDatabase();
-//
-//        ContentValues values = new ContentValues();
-//        values.put(KEY_NAME, contact.getName());
-//        values.put(KEY_MESAGE, contact.getIp());
-//
-//        // updating row
-//        return db.update(TABLE_MESSAGE, values, KEY_ID + " = ?",
-//                new String[] { String.valueOf(contact.getID()) });
-//    }
+    public int updateContact(TaskDetails tasks)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_ID, tasks.getTask_Id());
+        values.put(KEY_Status, tasks.getTask_Status()); // Contact Name
+        // Contact Phone
+        values.put(KEY_UPloadedstatus, tasks.getTask_Status()); // Contact Phone
+        values.put(KEY_AsigneeId, tasks.getTask_AsigneeId()); // Contact Phone
+        values.put(KEY_AsigneerId, tasks.getTask_AsigneerId()); // Contact Phone
+
+        // updating row
+        return db.update(TABLE_MESSAGE, values, KEY_ID + " = ?",
+                new String[] { String.valueOf(tasks.getTask_Id()) });
+    }
  
     // Deleting single contact
 

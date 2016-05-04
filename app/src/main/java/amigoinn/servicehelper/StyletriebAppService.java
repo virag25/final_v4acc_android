@@ -59,6 +59,9 @@ public interface StyletriebAppService
     @GET("/tasks.php")
     public void getTasksList(@Query("assigneeid") String assigneeid, Callback<MyPojotaskList[]> callback);
 
+    @GET("/task.php")
+    public void getTasksDetails(@Query("assigneeid") String assigneeid, Callback<MyPojotaskList[]> callback);
+
 //
 //    @GET("/p3.2.2.php")
 //    public void Documents(@Query("student_id") String parent_id, Callback<MyPojoDocuments> callback);

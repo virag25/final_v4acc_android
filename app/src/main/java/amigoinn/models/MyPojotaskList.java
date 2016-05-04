@@ -7,7 +7,8 @@ import com.google.gson.annotations.SerializedName;
 
 
 
-public class MyPojotaskList {
+public class MyPojotaskList
+{
 
     @SerializedName("vtasksid")
     @Expose
