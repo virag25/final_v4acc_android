@@ -3,7 +3,6 @@ package amigoinn.example.v4sales;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,7 +25,8 @@ import java.util.ArrayList;
 /**
  * Created by Manthan on 28/09/2015.
  */
-public class FragmentCategoryItemAttendance extends Fragment {
+public class FragmentCategoryItemAttendance extends BaseFragment
+{
     View view;
     ListView lvroute;
     Context context;
@@ -101,7 +101,7 @@ public class FragmentCategoryItemAttendance extends Fragment {
             public void ModelLoadFailedWithError(String error)
             {
                 //hideProgress();
-                Toast.makeText(getActivity(), error, Toast.LENGTH_LONG).show();
+                Toast.makeText(context, error, Toast.LENGTH_LONG).show();
             }
         });
     }

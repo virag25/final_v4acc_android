@@ -56,4 +56,7 @@ dependencies
             compile 'com.github.ganfra:material-spinner:1.1.0'
             compile 'se.emilsjolander:stickylistheaders:2.6.0'
             compile 'com.squareup.picasso:picasso:2.3.2'
+            compile 'com.squareup.okhttp:okhttp-urlconnection:2.0.0'
+            compile 'com.squareup.okhttp:okhttp:2.0.0'
+
         }
