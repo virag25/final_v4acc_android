@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="73753982da6bde518f3a4c6b372749981d14d1a0">
+        <dex dex="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\pre-dexed\debug\classes-075dc63267fe217d4785013e828882a8293f4951.jar" />
+    </item>
+    <item
+        jar="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\exploded-aar\se.emilsjolander\stickylistheaders\2.6.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="dd93a96342fce030e55cafc5917d768da0135164">
+        <dex dex="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\pre-dexed\debug\classes-f20dca2b20305e1e2450244785eeabf25556e340.jar" />
+    </item>
+    <item
+        jar="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appinvite\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="b92002cb2f0e11a226ac5bac6dff1dc2a9d0b774">
+        <dex dex="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\pre-dexed\debug\classes-b7c149786585dc5cb9fd3741cd4d47c395b95306.jar" />
+    </item>
+    <item
+        jar="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\libs\listviewanimations_lib-core-slh_3.1.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a4fe703aabd23e8c287c90396514418119109dd1">
+        <dex dex="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\pre-dexed\debug\listviewanimations_lib-core-slh_3.1.0-15f2d6feb122e34ea7336092119c5302efed41f3.jar" />
+    </item>
+    <item
+        jar="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\jars\libs\internal_impl-22.2.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
+        <dex dex="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\pre-dexed\debug\internal_impl-22.2.0-bb5fa0ef94125758673cf2939832d864ddf76e25.jar" />
+    </item>
+    <item
+        jar="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-drive\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="3c729e6d76a36c5dc27e6a4c4009296f49eaa88a">
+        <dex dex="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\pre-dexed\debug\classes-0db9275a60c9bfe87d8e12700d761419c4b826e6.jar" />
+    </item>
+    <item
+        jar="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-safetynet\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="3b05c18f60969ecc2ba49c0409c4b96be2d9cb0c">
+        <dex dex="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\pre-dexed\debug\classes-a329a1439e2c787933d1266f84d3d14d6ac304bd.jar" />
+    </item>
+    <item
+        jar="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-panorama\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="d93480da1d303122ee67dc3bc23e6297bdef9951">
+        <dex dex="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\pre-dexed\debug\classes-cd7995a657c9b0cdd1affa09b5e15074fa97df87.jar" />
+    </item>
+    <item
+        jar="C:\Users\maulik1293\.gradle\caches\modules-2\files-2.1\com.github.PhilJay\MPAndroidChart\v2.1.4\58ce41ef04e5b0821b9c3eb2387df515f10702d7\MPAndroidChart-v2.1.4.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="58ce41ef04e5b0821b9c3eb2387df515f10702d7">
+        <dex dex="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\pre-dexed\debug\MPAndroidChart-v2.1.4-977e987a3302c4342d45b97a1a6004cc7a19ca46.jar" />
+    </item>
+    <item
+        jar="C:\Users\maulik1293\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp\okhttp-urlconnection\2.0.0\afe8399d352713b66e597e9670c741d1e60ae923\okhttp-urlconnection-2.0.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="afe8399d352713b66e597e9670c741d1e60ae923">
+        <dex dex="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\pre-dexed\debug\okhttp-urlconnection-2.0.0-a0fd493aeb36ee000d5788cceb97bf734fc20896.jar" />
+    </item>
+    <item
+        jar="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="97f3b099801a9ad9d70e835b9125273e986eb68d">
+        <dex dex="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\pre-dexed\debug\classes-cd657331d1e76ae1c5d88a1436207b0c3cb6637a.jar" />
+    </item>
+    <item
+        jar="C:\Users\maulik1293\.gradle\caches\modules-2\files-2.1\com.nineoldandroids\library\2.4.0\e9b63380f3a242dbdbf103a2355ad7e43bad17cb\library-2.4.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\pre-dexed\debug\library-2.4.0-0f9ff9665f2495c5c5e738e0acd24d51f20c9eb8.jar" />
+    </item>
+    <item
+        jar="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-location\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="3aed37c38c56679602255dd72ef356da5d327cda">
+        <dex dex="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\pre-dexed\debug\classes-cea512dc0c5629c4aca8a3a5e55539ab0a91bd25.jar" />
+    </item>
+    <item
+        jar="C:\Users\maulik1293\.gradle\caches\modules-2\files-2.1\com.squareup.retrofit\retrofit\1.9.0\a681c044244d9fc375198588297a39ba78028423\retrofit-1.9.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a681c044244d9fc375198588297a39ba78028423">
+        <dex dex="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\pre-dexed\debug\retrofit-1.9.0-f01fcf87276355684ff6d82c845e627eb472d509.jar" />
+    </item>
+    <item
+        jar="C:\Users\maulik1293\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.0.0\2534c458682c73f5b9871131ab3098d3f987ca3\okio-1.0.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="02534c458682c73f5b9871131ab3098d3f987ca3">
+        <dex dex="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\pre-dexed\debug\okio-1.0.0-df05191137464c56c16114270ba98429a6f3687e.jar" />
+    </item>
+    <item
+        jar="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="997773777cf3904c11d6764fe3b7668538220e49">
+        <dex dex="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\pre-dexed\debug\classes-02f2f3bc73805e2df0859843809d6bb885ec3553.jar" />
+    </item>
+    <item
+        jar="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="2a7e47da654546f9457deb6132364f1bf33a1857">
+        <dex dex="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\pre-dexed\debug\classes-ca196c5f2fbe5f440fbf3ec6636f2bb26dea0dd6.jar" />
+    </item>
+    <item
+        jar="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-games\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="993834cb17d07d51b92db89d2c330243592ebf77">
+        <dex dex="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\pre-dexed\debug\classes-95086797e6011b44cf57bda24568a7203d2da49d.jar" />
+    </item>
+    <item
+        jar="C:\Users\maulik1293\.gradle\caches\modules-2\files-2.1\com.squareup.picasso\picasso\2.3.2\d6b7f0093cec6c9faf65dbfd6a6a345d0ed25e27\picasso-2.3.2.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="d6b7f0093cec6c9faf65dbfd6a6a345d0ed25e27">
+        <dex dex="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\pre-dexed\debug\picasso-2.3.2-46bb583729ac96f8d6a5fc9e8c414e3b4fcaa84e.jar" />
+    </item>
+    <item
+        jar="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="4477ea44f5ec5ad064022a22691732d7638ff197">
+        <dex dex="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\pre-dexed\debug\classes-65aa97d48ec840c1550930061a54a1d0e6302593.jar" />
+    </item>
+    <item
+        jar="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="d0dda274b703dd9c5bb056867649d22b4171ae7d">
+        <dex dex="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\pre-dexed\debug\classes-375961e8e36161efb6eb3d2af003efcebc3b4044.jar" />
+    </item>
+    <item
+        jar="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\libs\apache-mime4j-0.6.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="945007627e8d12275d755081a9e609c018e1210d">
+        <dex dex="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\pre-dexed\debug\apache-mime4j-0.6-5ba47f21cb80782baa62e9a2b678bb3a383abf4f.jar" />
+    </item>
+    <item
+        jar="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
+        <dex dex="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\pre-dexed\debug\classes-6e4f4dbcb00904c36d425badc929ee8a46305154.jar" />
+    </item>
+    <item
+        jar="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\libs\listviewanimations_lib-manipulation_3.1.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="63737e512fcd9e0ebe9bcd0bb375c2dded74116f">
+        <dex dex="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\pre-dexed\debug\listviewanimations_lib-manipulation_3.1.0-2cf53c901292b920b33642d99ecdf683fdc43758.jar" />
+    </item>
+    <item
+        jar="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-identity\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="d294caf562c4c678b2ef351662a0ca6f1a4d06c0">
+        <dex dex="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\pre-dexed\debug\classes-21016ccb3481a35eef0f281d3ad6d2d546ecc84a.jar" />
+    </item>
+    <item
+        jar="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-cast\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="3178362320bcf51228835b60ff978efadfd1f783">
+        <dex dex="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\pre-dexed\debug\classes-7f36697bc8b79df2cb596d811ea1d7d21ffdc3c0.jar" />
+    </item>
+    <item
+        jar="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\libs\universal-image-loader-1.9.3.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a85588bec3e2c4584d593d3f15df1677321bca72">
+        <dex dex="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\pre-dexed\debug\universal-image-loader-1.9.3-ce9f746f8b2f76cc6e23e04c6f505e3aa0ea87f0.jar" />
+    </item>
+    <item
+        jar="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\22.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="dcf8c83c3dead00a6c4fe313e95f7aaca20dc641">
+        <dex dex="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\pre-dexed\debug\classes-536ed3021b9c5937ace218ab906bc0ccac380340.jar" />
+    </item>
+    <item
+        jar="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-fitness\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="9cf8c0ef60847621c7ad00b4f78dbfc9daba4af2">
+        <dex dex="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\pre-dexed\debug\classes-9beab04bb444d6199b1647028486bac89f854789.jar" />
+    </item>
+    <item
+        jar="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\libs\httpmime-4.0.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="326bf4147f100e8a4fdd7f1867a87e969fb10812">
+        <dex dex="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\pre-dexed\debug\httpmime-4.0.1-39c37c8e93ba5157d3ff5cebfa1141b915dc293b.jar" />
+    </item>
+    <item
+        jar="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\libs\listviewanimations_lib-core_3.1.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="f3f9629b068554d8513a2aaf34418171bf430851">
+        <dex dex="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\pre-dexed\debug\listviewanimations_lib-core_3.1.0-0c58b6949cabcfd6f00ad77d6b64eba30ed2baca.jar" />
+    </item>
+    <item
+        jar="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\exploded-aar\com.github.flavienlaurent.datetimepicker\library\0.0.2\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="2fc859b7abb78d29169f6a582b45cbe1f3f1a4cc">
+        <dex dex="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\pre-dexed\debug\classes-7b5ec7bc00d72fc067a3b61ddaf8e1b988c2802f.jar" />
+    </item>
+    <item
+        jar="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\22.2.0\jars\libs\internal_impl-22.2.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="0632f06970823b7e3436f649bfa65b47035c91d0">
+        <dex dex="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\pre-dexed\debug\internal_impl-22.2.0-1ef44cfd239e9f7c471373f8b2ab95996fc1737b.jar" />
+    </item>
+    <item
+        jar="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-plus\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="d61920aba361832a9545a43fa8c9453eb02f18f7">
+        <dex dex="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\pre-dexed\debug\classes-8ff554da4768908032b642b943f785ae023756f6.jar" />
+    </item>
+    <item
+        jar="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\exploded-aar\com.hudomju\swipe-to-dismiss-undo\1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="c934830482473cb298c02f9eb55da67548b9db40">
+        <dex dex="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\pre-dexed\debug\classes-ed71e4ba3ada519166d65522a97ee401ee6deef3.jar" />
+    </item>
+    <item
+        jar="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-nearby\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="041d93cf0533591c29d1d7263b2fa114dbfb20bd">
+        <dex dex="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\pre-dexed\debug\classes-a7085846fc2e22043bf8605220d526e58414f1ae.jar" />
+    </item>
+    <item
+        jar="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-measurement\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="482de223655d06253cc6a4955d653f8994169500">
+        <dex dex="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\pre-dexed\debug\classes-ca4f59582ba55f26e7e2ea811bf3b0b4a4b7ba7f.jar" />
+    </item>
+    <item
+        jar="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appstate\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="82054090e487d78e163a988557db62d809fa9b95">
+        <dex dex="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\pre-dexed\debug\classes-236cebfce849a4bb017c1e20b4df7bd73aa756f1.jar" />
+    </item>
+    <item
+        jar="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wallet\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="325788a04b436a0bccbc5b4c54cf0f12ebdcbd2d">
+        <dex dex="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\pre-dexed\debug\classes-bd44d51e3d9f395fdfc22dfbf41332c98fad16c0.jar" />
+    </item>
+    <item
+        jar="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="dcb5b75baf05d92e61d5706737200ee55949f97b">
+        <dex dex="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\pre-dexed\debug\classes-7185f51302f0603a3946ca6733452fddd27613ff.jar" />
+    </item>
+    <item
+        jar="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="82825756edeeb3b56b15e73b2edd56e93da5a444">
+        <dex dex="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\pre-dexed\debug\classes-ca78c8be7eff1151103fb0dd8fd08a93697923e0.jar" />
+    </item>
+    <item
+        jar="C:\Users\maulik1293\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.3.1\ecb6e1f8e4b0e84c4b886c2f14a1500caf309757\gson-2.3.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="ecb6e1f8e4b0e84c4b886c2f14a1500caf309757">
+        <dex dex="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\pre-dexed\debug\gson-2.3.1-b066a033b45fbf9b84eda489302c09f35bdd0d9f.jar" />
+    </item>
+    <item
+        jar="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\exploded-aar\com.astuetz\pagerslidingtabstrip\1.0.1\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="7912610ed96381c25c36d986eba422731b9641b6">
+        <dex dex="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\pre-dexed\debug\classes-4a209ee7084d355c15423fbac3ba64f73e65b723.jar" />
+    </item>
+    <item
+        jar="C:\Users\maulik1293\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp\okhttp\2.0.0\4c8d1536dba3812cc1592090dc20c47a4ed3c35e\okhttp-2.0.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="4c8d1536dba3812cc1592090dc20c47a4ed3c35e">
+        <dex dex="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\pre-dexed\debug\okhttp-2.0.0-ea250cdbdd1b9dfa021f2fe266ed09a64a1f2661.jar" />
+    </item>
+    <item
+        jar="C:\Users\maulik1293\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.2.0\support-annotations-22.2.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
+        <dex dex="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\pre-dexed\debug\support-annotations-22.2.0-457ce1c2dd069de042f737809e7dffa957cc99ce.jar" />
+    </item>
+    <item
+        jar="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-vision\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="17449c47df35c754b257532052f1270c444f7993">
+        <dex dex="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\pre-dexed\debug\classes-8ab448783ed1a569ccf61a6f758c65c8ab641572.jar" />
+    </item>
+    <item
+        jar="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\exploded-aar\com.github.ganfra\material-spinner\1.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a973f67796996adb991bd6e63a11b2b88a571219">
+        <dex dex="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\pre-dexed\debug\classes-d326a3d7d97ec70b29b7ee83a09aaaa9c6a5e1c1.jar" />
+    </item>
+    <item
+        jar="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="95758a2905669affbffc5ddd262921d375674fad">
+        <dex dex="D:\amigo innovations\gitproject\v4accounts new\final_v4acc_android\app\build\intermediates\pre-dexed\debug\classes-5667e7bf700c67e20b715f29973b9679717fafcd.jar" />
+    </item>
+
+</items>
