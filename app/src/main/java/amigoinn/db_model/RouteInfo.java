@@ -49,15 +49,20 @@ public class RouteInfo extends ActiveRecordBase
 //    @ModelMapper(JsonKey = "ImagePresent")
 //    public String ImagePresent = "";
 
-    public static ArrayList<RouteInfo> getAllProduct() {
+    public static ArrayList<RouteInfo> getAllProduct()
+    {
         ArrayList<RouteInfo> m_list = new ArrayList<RouteInfo>();
-        try {
+        try
+        {
             List<RouteInfo> lst = AccountApplication.Connection().findAll(
                     RouteInfo.class);
-            if (lst != null && lst.size() > 0) {
+            if (lst != null && lst.size() > 0)
+            {
                 m_list = new ArrayList<RouteInfo>(lst);
             }
-        } catch (ActiveRecordException e) {
+        }
+        catch (ActiveRecordException e)
+        {
             e.printStackTrace();
         }
         return m_list;

@@ -47,7 +47,7 @@ public class DatabaseHandler1 extends SQLiteOpenHelper
     public void onCreate(SQLiteDatabase db)
     {
         String CREATE_MESSAGE_TABLE = "CREATE TABLE " + TABLE_MESSAGE + "("
-                + KEY_ID + " INTEGER PRIMARY,"
+                + KEY_ID + " INTEGER PRIMARY KEY,"
                 + KEY_Status + " TEXT,"
                 + KEY_UPloadedstatus + " TEXT,"
                 + KEY_AsigneeId + " TEXT," + ")"
@@ -429,7 +429,9 @@ public class DatabaseHandler1 extends SQLiteOpenHelper
                 while (cursor.moveToNext());
             }
             return category;
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             Log.e("Error",e.toString());
         }
         return category;
@@ -443,7 +445,7 @@ public class DatabaseHandler1 extends SQLiteOpenHelper
         values.put(KEY_ID, tasks.getTask_Id());
         values.put(KEY_Status, tasks.getTask_Status()); // Contact Name
          // Contact Phone
-        values.put(KEY_UPloadedstatus, tasks.getTask_Status()); // Contact Phone
+        values.put(KEY_UPloadedstatus, tasks.getTask_UploadStatus()); // Contact Phone
         values.put(KEY_AsigneeId, tasks.getTask_AsigneeId()); // Contact Phone
         values.put(KEY_AsigneerId, tasks.getTask_AsigneerId()); // Contact Phone
         // Inserting Row

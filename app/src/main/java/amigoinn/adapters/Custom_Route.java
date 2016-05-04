@@ -13,9 +13,11 @@ import android.widget.TextView;
 import com.example.v4sales.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import amigoinn.example.v4sales.ClientActivity;
 import amigoinn.example.v4sales.GoogleMapActivity;
+import amigoinn.models.Datum1;
 import amigoinn.walkietalkie.Constants;
 
 public class Custom_Route extends BaseAdapter
@@ -23,6 +25,7 @@ public class Custom_Route extends BaseAdapter
     Context context;
     ArrayList<String> name,extra;
     String[] txthpright;
+    List<Datum1> routedetails;
 //    String[] txtsectional;
 //    String[] imgsectional;
 
@@ -37,11 +40,12 @@ public class Custom_Route extends BaseAdapter
         inflater = ( LayoutInflater )context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
-    public Custom_Route(Context context)
+    public Custom_Route(Context context,List<Datum1> routedetails)
     {
         this.context=context;
-        Constants.PartyList.clear();
-        Constants.addParty();
+        this.routedetails=routedetails;
+//        Constants.PartyList.clear();
+//        Constants.addParty();
         inflater = ( LayoutInflater )context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -49,7 +53,7 @@ public class Custom_Route extends BaseAdapter
     public int getCount()
     {
         // TODO Auto-generated method stub
-        return 5;
+        return routedetails.size();
     }
 
     @Override
@@ -89,7 +93,7 @@ public class Custom_Route extends BaseAdapter
 //            holder.edtDate.setText(extra.get(position));
 //            holder.edtDate.setText(extra.get(position));
 //            holder.edtDate.setText(extra.get(position));
-            holder.txtName.setText(Constants.PartyList.get(position));
+            holder.txtName.setText(routedetails.get(position).getClientname());
             holder.txtAddress.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v)

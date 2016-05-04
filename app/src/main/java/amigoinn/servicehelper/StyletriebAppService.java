@@ -2,6 +2,9 @@ package amigoinn.servicehelper;
 
 
 
+import amigoinn.models.MyPojoRoute;
+import amigoinn.models.MyPojoRouteDetails;
+import amigoinn.models.MyPojotaskDetails;
 import amigoinn.models.MyPojotaskList;
 import retrofit.Callback;
 import retrofit.http.GET;
@@ -57,10 +60,22 @@ public interface StyletriebAppService
 //
 
     @GET("/tasks.php")
-    public void getTasksList(@Query("assigneeid") String assigneeid, Callback<MyPojotaskList[]> callback);
+    public void getTasksList(@Query("assigneeid") String assigneeid, Callback<MyPojotaskList> callback);
 
-    @GET("/task.php")
-    public void getTasksDetails(@Query("assigneeid") String assigneeid, Callback<MyPojotaskList[]> callback);
+    @GET("/subtasks.php")
+    public void getTasksDetails(@Query("taskid") String assigneeid, Callback<MyPojotaskDetails[]> callback);
+
+    @GET("/root.php")
+    public void getRootInfo(@Query("userid") String userid, Callback<MyPojoRoute> callback);
+
+    @GET("/rootdetails.php")
+    public void getRootDetails(@Query("rootid") String rootid, Callback<MyPojoRouteDetails> callback);
+
+//    @GET("/updatetask.php")
+//    public void updateTasks(@Query("status") String status,@Query("taskid") String taskid, Callback<MyPojotaskDetails[]> callback);
+//
+//    @GET("/subtasks.php")
+//    public void getTasksDetails(@Query("taskid") String assigneeid, Callback<MyPojotaskDetails[]> callback);
 
 //
 //    @GET("/p3.2.2.php")
