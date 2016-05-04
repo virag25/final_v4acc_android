@@ -156,8 +156,8 @@ public class FragmentCategoryItemRank extends Fragment implements DatePickerDial
         });
 
         DatabaseHandler1 handler = new DatabaseHandler1(context);
-        ArrayList<String> mastergrouplist = handler.getMastergroup();
-        ArrayList<String> reportinggrouplist = handler.getReportingGroupcode();
+//        ArrayList<String> mastergrouplist = handler.getMastergroup();
+//        ArrayList<String> reportinggrouplist = handler.getReportingGroupcode();
         return view;
     }
 
@@ -207,7 +207,8 @@ public class FragmentCategoryItemRank extends Fragment implements DatePickerDial
 
     //////////////////////
 
-    public class Custom_Home_Orders extends BaseAdapter {
+    public class Custom_Home_Orders extends BaseAdapter
+    {
         public Activity context;
         LayoutInflater inflater;
 

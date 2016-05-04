@@ -23,24 +23,36 @@ import android.view.View.OnClickListener;
 import com.example.v4sales.R;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import amigoinn.db_model.RouteInfo;
 import amigoinn.example.v4sales.GoogleMapActivity;
+import amigoinn.example.v4sales.Utils;
+import amigoinn.models.Datum;
+import amigoinn.models.Datum1;
+import amigoinn.models.MyPojoRoute;
+import amigoinn.models.MyPojoRouteDetails;
+import amigoinn.servicehelper.ApiHandler;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 public class Custom_Route_Home extends BaseAdapter{
     ArrayList<Integer> lista;
     Random r;
     Context context;
-    ArrayList<RouteInfo> routes;
+    List<Datum> routes;
+    List<Datum1> routesdetails;
     private static LayoutInflater inflater=null;
 
 
-    public Custom_Route_Home(Context mainActivity,ArrayList<RouteInfo> routelist)
+    public Custom_Route_Home(Context mainActivity,List<Datum> routelist)
     {
         // TODO Auto-generated constructor stub
         context = mainActivity;
         routes=routelist;
+
         inflater = ( LayoutInflater )context.
                 getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -98,7 +110,9 @@ public class Custom_Route_Home extends BaseAdapter{
                 public void onClick(View v) {
                     try
                     {
-                        createdialog(position);
+                        callRouteInfo(String.valueOf(routes.get(position).getVRootID()), String.valueOf(position));
+//                        createdialog(position);
+
 //                        Intent in = new Intent(context, GoogleMapActivity.class);
 //                        context.startActivity(in);
                     }catch (Exception ex)
@@ -113,7 +127,8 @@ public class Custom_Route_Home extends BaseAdapter{
             {
                 @Override
                 public void onClick(View v) {
-                    createdialog(position);
+//                    createdialog(position);
+                    callRouteInfo(String.valueOf(routes.get(position).getVRootID()),String.valueOf(position));
                 }
             });
 
@@ -126,7 +141,7 @@ public class Custom_Route_Home extends BaseAdapter{
                 holder.txtroutelineright.setVisibility(View.VISIBLE);
                 holder.txtrouteshaperight.setVisibility(View.VISIBLE);
                 holder.imgrouterightdot.setVisibility(View.VISIBLE);
-                holder.txtrouteshaperight.setText(routes.get(position).VRootname);
+                holder.txtrouteshaperight.setText(routes.get(position).getVRootname());
         //        holder.txttl1right.setWidth(widthline);
 //                RelativeLayout.LayoutParams layout_description = new RelativeLayout.LayoutParams(widthline,
 //                        3);
@@ -143,7 +158,7 @@ public class Custom_Route_Home extends BaseAdapter{
                 holder.txtroutelineright.setVisibility(View.GONE);
                 holder.txtrouteshaperight.setVisibility(View.GONE);
                 holder.imgrouterightdot.setVisibility(View.GONE);
-                holder.txtrouteshapeleft.setText(routes.get(position).VRootname);
+                holder.txtrouteshapeleft.setText(routes.get(position).getVRootname());
          //       holder.txttl1left.setWidth(widthline);
 //                RelativeLayout.LayoutParams layout_description = new RelativeLayout.LayoutParams(widthline,
 //                        3);
@@ -179,14 +194,58 @@ public class Custom_Route_Home extends BaseAdapter{
 
 
     }
+    private void callRouteInfo(String rootid, final String position)
+    {
+//
+//        if (!Utils.checkNetwork(getApplicationContext()))
+//        {
+//            //  Utils.toast(context,"No Internet Connection Available!");
+//            Utils.showCustomDialog("Warning!", "No Internet Connection Available!",this);
+//            return;
+//        }
+//    tasksList.clear();
+//    subtasks.clear();
+        Utils.ShowCustomProgress(context);
+        routesdetails=new ArrayList<Datum1>();
+        ApiHandler.getApiService().getRootDetails(rootid, new Callback<MyPojoRouteDetails>() {
+            @Override
+            public void success(MyPojoRouteDetails res, Response response) {
 
+                Utils.dismissDialog();
+
+//                loadGENLOOKUPS();
+
+                try
+                {
+                    routesdetails=res.getData();
+                    createdialog(Integer.parseInt(position));
+
+                }
+                catch (Exception ex)
+                {
+                    Log.e("Error",ex.toString());
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error)
+            {
+                //Utils.dismissDialog();
+                Utils.dismissDialog();
+                error.printStackTrace();
+                //error.getMessage();
+                //Utils.toast(ActivityIndividualItem.this, "Something Went Wrong");
+            }
+        });
+
+    }
     public void createdialog(int position)
     {
         final Dialog dialog = new Dialog(context);
         dialog.setContentView(R.layout.customdialog);
-        dialog.setTitle(routes.get(position).VRootname);
+        dialog.setTitle(routes.get(position).getVRootname());
         ListView listparties=(ListView)dialog.findViewById(R.id.listParties);
-        Custom_Route route=new Custom_Route(context);
+        Custom_Route route=new Custom_Route(context,routesdetails);
         listparties.setAdapter(route);
 
       // set the custom dialog components - text, image and button

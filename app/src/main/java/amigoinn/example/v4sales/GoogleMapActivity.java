@@ -42,7 +42,8 @@ import java.util.HashMap;
 import java.util.List;
 
 
-public class GoogleMapActivity extends Activity {
+public class GoogleMapActivity extends Activity
+{
 
     GoogleMap mMap;
     private static final LatLng LOWER_MANHATTAN = new LatLng(40.722543,

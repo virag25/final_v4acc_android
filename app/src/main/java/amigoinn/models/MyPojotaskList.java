@@ -1,119 +1,58 @@
 package amigoinn.models;
 
+import java.util.ArrayList;
+import java.util.List;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 
-
-
 public class MyPojotaskList
 {
 
-    @SerializedName("vtasksid")
+    @SerializedName("today")
     @Expose
-    private Integer vtasksid;
-    @SerializedName("vtaskname")
+    private List<Today> today = new ArrayList<Today>();
+    @SerializedName("pending")
     @Expose
-    private String vtaskname;
-    @SerializedName("vtaskdetail")
-    @Expose
-    private String vtaskdetail;
-    @SerializedName("datetime")
-    @Expose
-    private Datetime datetime;
-    @SerializedName("vtaskstatus")
-    @Expose
-    private String vtaskstatus;
+    private List<Pending> pending = new ArrayList<Pending>();
 
     /**
      *
      * @return
-     * The vtasksid
+     * The today
      */
-    public Integer getVtasksid() {
-        return vtasksid;
+    public List<Today> getToday() {
+        return today;
     }
 
     /**
      *
-     * @param vtasksid
-     * The vtasksid
+     * @param today
+     * The today
      */
-    public void setVtasksid(Integer vtasksid) {
-        this.vtasksid = vtasksid;
+    public void setToday(List<Today> today) {
+        this.today = today;
     }
 
     /**
      *
      * @return
-     * The vtaskname
+     * The pending
      */
-    public String getVtaskname() {
-        return vtaskname;
+    public List<Pending> getPending() {
+        return pending;
     }
 
     /**
      *
-     * @param vtaskname
-     * The vtaskname
+     * @param pending
+     * The pending
      */
-    public void setVtaskname(String vtaskname) {
-        this.vtaskname = vtaskname;
-    }
-
-    /**
-     *
-     * @return
-     * The vtaskdetail
-     */
-    public String getVtaskdetail() {
-        return vtaskdetail;
-    }
-
-    /**
-     *
-     * @param vtaskdetail
-     * The vtaskdetail
-     */
-    public void setVtaskdetail(String vtaskdetail) {
-        this.vtaskdetail = vtaskdetail;
-    }
-
-    /**
-     *
-     * @return
-     * The datetime
-     */
-    public Datetime getDatetime() {
-        return datetime;
-    }
-
-    /**
-     *
-     * @param datetime
-     * The datetime
-     */
-    public void setDatetime(Datetime datetime) {
-        this.datetime = datetime;
-    }
-
-    /**
-     *
-     * @return
-     * The vtaskstatus
-     */
-    public String getVtaskstatus() {
-        return vtaskstatus;
-    }
-
-    /**
-     *
-     * @param vtaskstatus
-     * The vtaskstatus
-     */
-    public void setVtaskstatus(String vtaskstatus) {
-        this.vtaskstatus = vtaskstatus;
+    public void setPending(List<Pending> pending) {
+        this.pending = pending;
     }
 
 }
+
+
