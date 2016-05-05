@@ -12,8 +12,7 @@ import amigoinn.modelmapper.ModelMapper;
 /**
  * Created by Virag kuvadia on 24-04-2016.
  */
-public class ClientInfo extends ActiveRecordBase
-{
+public class ClientInfo extends ActiveRecordBase {
     @ModelMapper(JsonKey = "Code")
     public String client_code = "";
 
@@ -53,8 +52,7 @@ public class ClientInfo extends ActiveRecordBase
     public String mobile_number = "";
 
 
-    public static ArrayList<ClientInfo> getAllClint()
-    {
+    public static ArrayList<ClientInfo> getAllClint() {
         ArrayList<ClientInfo> m_list = new ArrayList<ClientInfo>();
         try {
             List<ClientInfo> lst = AccountApplication.Connection().findAll(
@@ -69,8 +67,7 @@ public class ClientInfo extends ActiveRecordBase
     }
 
 
-    public static ClientInfo getClintInfoById(int Code)
-    {
+    public static ClientInfo getClintInfoById(String Code) {
         try {
             List<ClientInfo> lst = AccountApplication.Connection().find(
                     ClientInfo.class,

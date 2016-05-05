@@ -8,6 +8,7 @@ import java.util.List;
 
 import amigoinn.common.CommonUtils;
 import amigoinn.common.NetworkConnectivity;
+import amigoinn.db_model.ClientInfo;
 import amigoinn.db_model.ClientOrderInfo;
 import amigoinn.db_model.ClientOrderInfo;
 import amigoinn.db_model.ModelDelegates;
@@ -40,11 +41,11 @@ public class ClientOrderList implements ServiceHelper.ServiceHelperDelegate {
 
     public void DoClintOrder(ModelDelegates.ModelDelegate<ClientOrderInfo> delegate) {
         m_delegate = delegate;
-        loadFromDB();
         if (m_modelList == null || m_modelList.size() == 0) {
             if (NetworkConnectivity.isConnected()) {
                 ServiceHelper helper = new ServiceHelper(ServiceHelper.CLIENT_ORDERS, ServiceHelper.RequestMethod.POST);
-                helper.addParam("PartyId", UserInfo.getUser().login_id);
+                String c_code = AccountApplication.getClient_code();
+                helper.addParam("PartyId", c_code);
                 helper.call(this);
             } else {
                 if (m_delegate != null)
@@ -105,12 +106,87 @@ public class ClientOrderList implements ServiceHelper.ServiceHelperDelegate {
     }
 
 
-    public void DoClientDispatch(ModelDelegates.ModelDelegate<ClientOrderInfo> delegate, int id) {
+    public void DoClientDispatch(ModelDelegates.ModelDelegate<ClientOrderInfo> delegate) {
         m_delegate = delegate;
+        m_modelList = new ArrayList<>();
         if (m_modelList == null || m_modelList.size() == 0) {
             if (NetworkConnectivity.isConnected()) {
                 ServiceHelper helper = new ServiceHelper(ServiceHelper.Order_DISPATCH, ServiceHelper.RequestMethod.POST);
+                String c_code = AccountApplication.getClient_code();
+                helper.addParam("PartyId", c_code);
+                helper.call(new ServiceHelper.ServiceHelperDelegate() {
+                    @Override
+                    public void CallFinish(ServiceResponse res) {
+                        if (res.RawResponse != null) {
+                            try {
+                                JSONObject jobj = new JSONObject(res.RawResponse);
+                                if (jobj != null) {
+                                    JSONArray jarr = jobj.optJSONArray("data");
+                                    if (jarr != null) {
+                                        for (int i = 0; i < jarr.length(); i++) {
+                                            JSONObject jobjj = jarr.optJSONObject(i);
+                                            if (jobj != null) {
+                                                ModelMapHelper<ClientOrderInfo> mapper = new ModelMapHelper<ClientOrderInfo>();
+                                                ClientOrderInfo info = mapper.getObject(
+                                                        ClientOrderInfo.class, jobjj);
+                                                if (info != null) {
+                                                    m_modelList.add(info);
+                                                }
+                                            }
+                                        }
+                                        m_delegate.ModelLoaded(m_modelList);
+                                    }
+                                } else {
+                                    m_delegate
+                                            .ModelLoadFailedWithError("Please try again");
+                                }
+
+                            } catch (Exception e) {
+                                m_delegate
+                                        .ModelLoadFailedWithError("Please try again");
+                                e.printStackTrace();
+                            }
+                        } else {
+                            m_delegate
+                                    .ModelLoadFailedWithError("Please try again");
+                        }
+
+                    }
+
+                    @Override
+                    public void CallFailure(String ErrorMessage) {
+                        m_delegate
+                                .ModelLoadFailedWithError("Please try again");
+                    }
+                });
+            } else {
+                if (m_delegate != null)
+                    m_delegate
+                            .ModelLoadFailedWithError("Please check Internet Connection");
+            }
+        } else {
+            if (m_modelList != null && m_modelList.size() > 0
+                    && m_delegate != null) {
+                m_delegate.ModelLoaded(m_modelList);
+            } else {
+                if (m_delegate != null)
+                    m_delegate
+                            .ModelLoadFailedWithError(ServiceHelper.COMMON_ERROR);
+            }
+        }
+    }
+
+
+    public void DoClientDispatchDetail(ModelDelegates.ModelDelegate<ClientOrderInfo> delegate, int id) {
+        m_delegate = delegate;
+        if (m_modelList == null || m_modelList.size() == 0) {
+            if (NetworkConnectivity.isConnected()) {
+                ServiceHelper helper = new ServiceHelper(ServiceHelper.Order_DISPATCH_DETAILS, ServiceHelper.RequestMethod.POST);
                 helper.addParam("PartyId", UserInfo.getUser().login_id);
+                ClientOrderInfo info = ClientOrderInfo.getClintInfoById(id);
+                helper.addParam("TrnCtrlNo", info.TrnCtrlNo);
+                helper.addParam("DocNoPrefix", info.DocNoPrefix);
+                helper.addParam("DocNo", info.DocNo);
                 helper.call(new ServiceHelper.ServiceHelperDelegate() {
                     @Override
                     public void CallFinish(ServiceResponse res) {
@@ -182,16 +258,21 @@ public class ClientOrderList implements ServiceHelper.ServiceHelperDelegate {
                             ClientOrderInfo info = mapper.getObject(
                                     ClientOrderInfo.class, data);
                             if (info != null) {
-                                info.save();
                                 m_modelList.add(info);
                             }
 
                         }
 
                     }
+                    m_delegate.ModelLoaded(m_modelList);
+                } else {
+                    m_delegate
+                            .ModelLoadFailedWithError("Please try again");
                 }
             } catch (Exception e) {
                 e.printStackTrace();
+                m_delegate
+                        .ModelLoadFailedWithError("Please try again");
             }
             if (m_delegate != null) {
                 m_delegate.ModelLoaded(m_modelList);

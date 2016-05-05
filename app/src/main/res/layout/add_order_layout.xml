@@ -206,8 +206,8 @@
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:layout_gravity="center_vertical|center_horizontal"
                     android:layout_marginRight="4dp"
                     android:gravity="center_vertical|center_horizontal"
@@ -215,8 +215,8 @@
 
                     <ImageView
                         android:id="@+id/imgClientAdd"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:scaleType="fitXY"
                         android:src="@drawable/cross" />
 
@@ -257,13 +257,13 @@
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="2px"
-                android:background="#ffffff" />
+                android:background="#000000" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_gravity="center_vertical"
-                android:background="@color/main_color_500"
+                android:background="@color/white"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:weightSum="1">
@@ -275,14 +275,15 @@
                     android:layout_height="wrap_content"
                     android:gravity="left|top"
                     android:text="Code"
-                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
                     android:textSize="16dp" />
 
                 <View
                     android:layout_width="2px"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:background="#ffffff" />
+                    android:background="#000000" />
 
                 <TextView
                     android:id="@+id/edtdate"
@@ -292,14 +293,15 @@
                     android:layout_weight="0.2"
                     android:gravity="center|top|left"
                     android:text="Product"
-                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
                     android:textSize="16dp" />
 
                 <View
                     android:layout_width="2px"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:background="#ffffff" />
+                    android:background="#000000" />
 
                 <TextView
                     android:id="@+id/edtQty"
@@ -308,14 +310,15 @@
                     android:layout_weight="0.4"
                     android:gravity="center|top"
                     android:text="Qty."
-                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
                     android:textSize="16dp" />
 
                 <View
                     android:layout_width="2px"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:background="#ffffff" />
+                    android:background="#000000" />
 
 
                 <TextView
@@ -325,7 +328,8 @@
                     android:layout_weight="0.4"
                     android:gravity="center|top"
                     android:text="Price"
-                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
                     android:textSize="16dp" />
 
             </LinearLayout>

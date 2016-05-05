@@ -93,7 +93,7 @@
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
             </intent-filter>
         </service>
-        <service android:name="amigoinn.example.v4sales.LocationService"></service>
+        <service android:name="amigoinn.example.v4sales.LocationService" />
 
         <receiver
             android:name="com.google.android.gms.gcm.GcmReceiver"
@@ -135,6 +135,15 @@
             android:name="amigoinn.adapters.SectionedListActivityForFilters"
             android:label="Search" />
         <activity
+            android:name="amigoinn.example.v4sales.AddProductItemActivity"
+            android:label="Search" />
+        <activity
+            android:name="amigoinn.example.v4sales.AddClientActivity"
+            android:label="Search" />
+        <activity
+            android:name="amigoinn.example.v4sales.AddProductActivity"
+            android:label="Search" />
+        <activity
             android:name="amigoinn.example.v4sales.AbsentListMain"
             android:label="Absents"
             android:theme="@android:style/Theme.Holo.Light.Dialog.NoActionBar" />
@@ -169,7 +178,9 @@
         <activity android:name="amigoinn.example.v4sales.ClientsOutStandingsFragment" />
         <activity android:name="amigoinn.example.v4sales.DashboardFragment" />
         <activity android:name="amigoinn.example.v4sales.NewOrderTabActiviy" />
-        <activity android:name="amigoinn.example.v4sales.dummy.AddProductsActivity"></activity>
+        <activity android:name="amigoinn.example.v4sales.dummy.AddProductsActivity" />
+        <activity android:name="amigoinn.example.v4sales.OrderDetailActivity" />
+        <activity android:name="amigoinn.example.v4sales.OrderDispatchDetail"></activity>
     </application>
 
 </manifest>

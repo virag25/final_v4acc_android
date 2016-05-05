@@ -40,13 +40,12 @@ import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
  */
 
 
-public class ClientListSectionedActivity extends BaseFragment
-{
+public class ClientListSectionedActivity extends BaseFragment {
 
     //    private AudioFilesAdapter mAdapter;
     private NotifyingAsyncQueryHandler mQueryHandler;
     EditText inputSearch;
-//    List<String> countries;
+    //    List<String> countries;
     StickyListHeadersListView stickyList;
     TextView txtFilter;
     private Handler mHandler;
@@ -78,7 +77,7 @@ public class ClientListSectionedActivity extends BaseFragment
             @Override
             public void onClick(View v) {
                 Intent in;
-                Config.filterfrom="party";
+                Config.filterfrom = "party";
                 if (Config.filterfrom.equalsIgnoreCase("product")) {
                     in = new Intent(getActivity(), ProductFilter.class);
                 } else if (Config.filterfrom.equalsIgnoreCase("Mainmenu")) {
@@ -86,8 +85,7 @@ public class ClientListSectionedActivity extends BaseFragment
                 } else {
                     in = new Intent(getActivity(), amigoinn.example.v4sales.Filter.class);
                 }
-                try
-                {
+                try {
                     startActivity(in);
                 } catch (Exception ex) {
 
@@ -119,20 +117,15 @@ public class ClientListSectionedActivity extends BaseFragment
     }
 
 
-    public void loadClients()
-    {
+    public void loadClients() {
         showProgress();
-        ClientList.Instance().DoClint(new ModelDelegates.ModelDelegate<ClientInfo>()
-        {
+        ClientList.Instance().DoClint(new ModelDelegates.ModelDelegate<ClientInfo>() {
             @Override
-            public void ModelLoaded(ArrayList<ClientInfo> list)
-            {
+            public void ModelLoaded(ArrayList<ClientInfo> list) {
                 hideProgress();
-                Collections.sort(list, new Comparator<ClientInfo>()
-                {
+                Collections.sort(list, new Comparator<ClientInfo>() {
                     @Override
-                    public int compare(ClientInfo s1, ClientInfo s2)
-                    {
+                    public int compare(ClientInfo s1, ClientInfo s2) {
                         return s1.name.compareToIgnoreCase(s2.name);
                     }
                 });
@@ -142,10 +135,9 @@ public class ClientListSectionedActivity extends BaseFragment
             }
 
             @Override
-            public void ModelLoadFailedWithError(String error)
-            {
+            public void ModelLoadFailedWithError(String error) {
                 hideProgress();
-                Toast.makeText(getActivity(),error,Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), error, Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -267,7 +259,8 @@ public class ClientListSectionedActivity extends BaseFragment
                 public void onClick(View v) {
                     ClientInfo c_info = filteredData.get(position);
                     Intent in = new Intent(getActivity(), amigoinn.example.v4sales.ClientsTabFragment.class);
-                    in.putExtra("client_code",c_info.client_code);
+                    in.putExtra("client_code", c_info.client_code);
+                    AccountApplication.setClient_code(c_info.client_code);
                     startActivity(in);
                     getActivity().finish();
                 }
@@ -351,8 +344,7 @@ public class ClientListSectionedActivity extends BaseFragment
 
     }
 
-    public void setbaseadapter()
-    {
+    public void setbaseadapter() {
         final MyAdapter adapter = new MyAdapter(getActivity(), clint_info);
         stickyList.setAdapter(adapter);
         inputSearch.addTextChangedListener(new TextWatcher() {

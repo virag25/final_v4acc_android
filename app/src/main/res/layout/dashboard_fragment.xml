@@ -106,9 +106,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="New"
-                        android:textStyle="bold"
                         android:textColor="#ffffff"
-                        android:textSize="15dp" />
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -132,9 +132,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Rejectd"
-                        android:textStyle="bold"
                         android:textColor="#ffffff"
-                        android:textSize="15dp" />
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -157,9 +157,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Open"
-                        android:textStyle="bold"
                         android:textColor="#ffffff"
-                        android:textSize="15dp" />
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -182,9 +182,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Closed"
-                        android:textStyle="bold"
                         android:textColor="#ffffff"
-                        android:textSize="15dp" />
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -254,8 +254,8 @@
                             android:id="@+id/rlPendingOrder"
                             android:layout_width="match_parent"
                             android:layout_height="fill_parent"
-                            android:padding="5dp"
-                            android:layout_weight="1">
+                            android:layout_weight="1"
+                            android:padding="5dp">
 
                             <ImageView
                                 android:id="@+id/imgPanding"
@@ -291,27 +291,45 @@
                     <LinearLayout
                         android:layout_width="fill_parent"
                         android:layout_height="match_parent"
-                        android:padding="10dp"
-                        android:gravity="center_horizontal|center_vertical"
                         android:layout_gravity="center_horizontal|center_vertical"
-                        android:layout_weight="0.7">
+                        android:layout_weight="0.7"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:padding="10dp">
 
                         <RelativeLayout
                             android:id="@+id/rlAdd"
                             android:layout_width="60dp"
                             android:layout_height="60dp"
-                            android:background="@drawable/ic_launcher">
+                            android:background="@drawable/circle_img">
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
                                 android:layout_centerVertical="true"
                                 android:text="+"
                                 android:textColor="#ffffff"
-                                android:textStyle="bold"
                                 android:textSize="30dp"
-                                android:layout_centerHorizontal="true"/>
+                                android:textStyle="bold" />
 
                         </RelativeLayout>
+
+                        <!--<RelativeLayout-->
+                        <!--android:id="@+id/rlAdd"-->
+                        <!--android:layout_width="60dp"-->
+                        <!--android:layout_height="60dp"-->
+                        <!--android:background="@drawable/ic_launcher">-->
+                        <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_centerVertical="true"-->
+                        <!--android:text="+"-->
+                        <!--android:textColor="#ffffff"-->
+                        <!--android:textStyle="bold"-->
+                        <!--android:textSize="30dp"-->
+                        <!--android:layout_centerHorizontal="true"/>-->
+
+                        <!--</RelativeLayout>-->
 
                     </LinearLayout>
 
@@ -327,7 +345,7 @@
             android:layout_height="2px"
             android:background="#000000" />
 
-    <!--</LinearLayout>-->
+        <!--</LinearLayout>-->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -348,10 +366,10 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:gravity="center_vertical"
-                    android:textStyle="bold"
                     android:text="Outstanding Amount"
                     android:textColor="#ffffff"
-                    android:textSize="20dp" />
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -497,9 +515,9 @@
                     android:layout_marginRight="5dp"
                     android:gravity="center_vertical"
                     android:text="Active Masters"
-                    android:textStyle="bold"
                     android:textColor="#ffffff"
-                    android:textSize="20dp" />
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 

@@ -20,14 +20,22 @@ import amigoinn.modallist.Combo12;
 /**
  * Created by Virag kuvadia on 24-04-2016.
  */
-public class AccountApplication extends Application
-{
+public class AccountApplication extends Application {
     private static AccountApplication _intance = null;
     private static ActiveRecordBase mDatabase;
 
+    public static String getClient_code() {
+        return client_code;
+    }
+
+    public static void setClient_code(String client_code) {
+        AccountApplication.client_code = client_code;
+    }
+
+    private static String client_code;
+
     @Override
-    public void onCreate()
-    {
+    public void onCreate() {
         super.onCreate();
         DatabaseBuilder builder = new DatabaseBuilder(Const.DATABASE_NAME);
         builder.addClass(UserInfo.class);
@@ -35,25 +43,21 @@ public class AccountApplication extends Application
         builder.addClass(ProductInfo.class);
 
         builder.addClass(GenLookInfo.class);
-        try
-        {
+        try {
             builder.addClass(ClassCombInfo.class);
-        }catch (Exception ex)
-        {
-            Log.e("log_tag",ex.toString());
+        } catch (Exception ex) {
+            Log.e("log_tag", ex.toString());
         }
         Database.setBuilder(builder);
-        try
-        {
+        try {
             mDatabase = ActiveRecordBase.open(this, Const.DATABASE_NAME,
                     Const.DATABASE_VERSION);
 
 
         } catch (ActiveRecordException e) {
             e.printStackTrace();
-        } catch (Exception e)
-        {
-            Log.e("Error",e.toString());
+        } catch (Exception e) {
+            Log.e("Error", e.toString());
         }
     }
 

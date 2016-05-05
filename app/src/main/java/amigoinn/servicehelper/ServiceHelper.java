@@ -54,7 +54,7 @@ public class ServiceHelper {
     public static final String CLIENT_ORDERS_Details = "orderdetails.php";
     public static final String Order_DISPATCH = "clientdispatch.php";
 
-
+    public static final String Order_DISPATCH_DETAILS = "dispatchdetails.php";
 
     public static final String Product_list = "productlist.php";
     public static final String route_list = "productlist.php";

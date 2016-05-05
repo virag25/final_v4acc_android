@@ -21,10 +21,12 @@ import android.widget.TextView;
 import com.astuetz.PagerSlidingTabStrip;
 import com.example.v4sales.R;
 
+import amigoinn.db_model.ClientInfo;
+
 public class ClientsTabFragment extends FragmentActivity {
 
     private String Titles[];
-    private int Numboftabs=5;
+    private int Numboftabs = 5;
     //List<Sections> list;
     private TextView top_title;
     View view;
@@ -38,12 +40,18 @@ public class ClientsTabFragment extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clients_tab_fragment);
         Titles = new String[5];
-        Titles[0] = "Business";
+        Titles[0] = "Orders";
         Titles[1] = "Contacts";
         Titles[2] = "Analytics";
-        Titles[3] = "Ledgers";
-        Titles[4] = "Outstanding";
+        Titles[3] = "Dispatch";//ladgers
+        Titles[4] = "Sale";//outstandings
         viewPager = (ViewPager) findViewById(R.id.tabanim_viewpager);
+        top_title = (TextView) findViewById(R.id.txtCompany);
+        String code = AccountApplication.getClient_code();
+        ClientInfo code_info = ClientInfo.getClintInfoById(code);
+        if (code != null) {
+            top_title.setText(code_info.name);
+        }
         viewPager.setAdapter(new ClientsPagerAdapter(
                 getApplicationContext(), getSupportFragmentManager(), Titles, Numboftabs));
         int px = (int) (TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, ClientsTabFragment.this.getResources().getDisplayMetrics()));
@@ -79,10 +87,9 @@ public class ClientsTabFragment extends FragmentActivity {
         });
 
 
-
     }
 
- //   @Nullable
+    //   @Nullable
 //    @Override
 //    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 //        View v = inflater.inflate(R.layout.activity_clients_tab_fragment, container, false);
@@ -174,7 +181,7 @@ public class ClientsTabFragment extends FragmentActivity {
 
                 case 0:
                     try {
-                        ClientActivity business_fragments = new ClientActivity();
+                        ClientBussinessFragments business_fragments = new ClientBussinessFragments();
                         return business_fragments;
                     } catch (Exception ex) {
                         Log.e("Error", ex.toString());
@@ -201,20 +208,20 @@ public class ClientsTabFragment extends FragmentActivity {
                         e.printStackTrace();
                     }
                     break;
-                case  3:
+                case 3:
                     try {
                         ClientLedgersFragment ladgers = new ClientLedgersFragment();
                         return ladgers;
-                    }catch (Exception e){
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                     break;
 
-                case  4:
+                case 4:
                     try {
                         ClientsOutStandingsFragment outstandings = new ClientsOutStandingsFragment();
                         return outstandings;
-                    }catch (Exception e){
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                     break;

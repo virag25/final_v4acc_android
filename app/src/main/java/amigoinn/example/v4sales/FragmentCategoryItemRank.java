@@ -30,9 +30,14 @@ import com.example.v4sales.R;
 import com.fourmob.datetimepicker.date.DatePickerDialog;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.google.android.gms.wallet.Cart;
 
 import amigoinn.adapters.SectionedListActivityForFilters;
 import amigoinn.adapters.SectionedListBeforeFilter;
+import amigoinn.db_model.CartInfo;
+import amigoinn.db_model.ClientInfo;
+import amigoinn.db_model.ProductInfo;
+import amigoinn.db_model.UserInfo;
 import amigoinn.models.OverallPercentage;
 import amigoinn.walkietalkie.Constants;
 import amigoinn.walkietalkie.DatabaseHandler1;
@@ -41,6 +46,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -67,11 +73,14 @@ public class FragmentCategoryItemRank extends Fragment implements DatePickerDial
     ArrayList<String> Price = new ArrayList<String>();
     //    AutoCompleteTextView edtCode,edtProduct;
 //    EditText edtQuantity,edtProduct1,edtPrice;
-    TextView edtOrderDate, edtOrderdueDate;
+    TextView edtOrderDate, edtOrderdueDate, edtclient;
     //        txtSubmit,txtSave,txtCancel,txtTotal;
     ImageView imgSearch;
+    TextView txtSubmit;
 
     ImageView imgClientAdd, add_product;
+    ArrayList<CartInfo> cart = new ArrayList<>();
+    String cid;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -87,29 +96,43 @@ public class FragmentCategoryItemRank extends Fragment implements DatePickerDial
         imgClientAdd = (ImageView) view.findViewById(R.id.imgClientAdd);
         add_product = (ImageView) view.findViewById(R.id.add_product);
 
+        edtclient = (EditText) view.findViewById(R.id.edtclient);
+        add_product = (ImageView) view.findViewById(R.id.add_product);
+        txtSubmit = (TextView) view.findViewById(R.id.txtSubmit);
+        txtSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                makeJson();
+            }
+        });
+
         imgClientAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment fragment = null;
-                Bundle args = new Bundle();
-                FragmentManager frgManager = getFragmentManager();
-                fragment = new ClientListSectionedActivity();
-                fragment.setArguments(args);
-                frgManager.beginTransaction()
-                        .replace(R.id.content_frame, fragment).commit();
+                Intent start = new Intent(getActivity(), AddClientActivity.class);
+                startActivityForResult(start, 112);
+//                Fragment fragment = null;
+//                Bundle args = new Bundle();
+//                FragmentManager frgManager = getFragmentManager();
+//                fragment = new ClientListSectionedActivity();
+//                fragment.setArguments(args);
+//                frgManager.beginTransaction()
+//                        .replace(R.id.content_frame, fragment).commit();
             }
         });
 
         add_product.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment fragment = null;
-                Bundle args = new Bundle();
-                FragmentManager frgManager = getFragmentManager();
-                fragment = new ProductListSectionedActivity();
-                fragment.setArguments(args);
-                frgManager.beginTransaction()
-                        .replace(R.id.content_frame, fragment).commit();
+                Intent start = new Intent(getActivity(), AddProductItemActivity.class);
+                startActivityForResult(start, 111);
+//                Fragment fragment = null;
+//                Bundle args = new Bundle();
+//                FragmentManager frgManager = getFragmentManager();
+//                fragment = new ProductListSectionedActivity();
+//                fragment.setArguments(args);
+//                frgManager.beginTransaction()
+//                        .replace(R.id.content_frame, fragment).commit();
             }
         });
 
@@ -131,8 +154,8 @@ public class FragmentCategoryItemRank extends Fragment implements DatePickerDial
         edtOrderdueDate = (TextView) view.findViewById(R.id.edtOrderdue);
         Constants.Productlist.clear();
         Constants.addProducts();
-        ordersadapter = new Custom_Home_Orders(getActivity());
-        lv1.setAdapter(ordersadapter);
+        String cid;
+
         final DatePickerDialog datePickerDialog = DatePickerDialog.newInstance(this, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH), true);
         edtOrderDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -196,35 +219,74 @@ public class FragmentCategoryItemRank extends Fragment implements DatePickerDial
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
         getActivity();
+
         if (requestCode == 6 && resultCode == Activity.RESULT_OK) {
 //            edtProduct.setText(Constants.selectedclient);
 
             //some code
+        }
+
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == 111) {
+                if (data != null) {
+                    String pid = data.getStringExtra("product_id");
+                    int qty = data.getIntExtra("qty", 0);
+                    ProductInfo pinfo = ProductInfo.getProductInfoById(pid);
+                    CartInfo cinfo = new CartInfo();
+                    if (pinfo != null) {
+                        cinfo.product = pinfo.product;
+                        cinfo.qty = qty;
+                        double price = Double.parseDouble(pinfo.Retail_Price);
+                        double total = qty * price;
+                        cinfo.total = String.valueOf(total);
+                        cinfo.StockNo = pid;
+                        cart.add(cinfo);
+
+                    }
+                    ordersadapter = new Custom_Home_Orders(getActivity(), cart);
+                    lv1.setAdapter(ordersadapter);
+
+
+                }
+
+
+            } else if (requestCode == 112) {
+                if (data != null) {
+                    cid = data.getStringExtra("client_id");
+                    ClientInfo c_info = ClientInfo.getClintInfoById(cid);
+                    if (c_info != null) {
+                        edtclient.setText(c_info.name);
+                    }
+
+                }
+            }
         }
     }
 
 
     //////////////////////
 
-    public class Custom_Home_Orders extends BaseAdapter
-    {
+    public class Custom_Home_Orders extends BaseAdapter {
         public Activity context;
         LayoutInflater inflater;
 
-        public Custom_Home_Orders(Activity context)
+        ArrayList<CartInfo> cart_list;
+
+        public Custom_Home_Orders(Activity context, ArrayList<CartInfo> list)
 
         {
             super();
             this.context = context;
+            cart_list = list;
             this.inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
-
         }
 
         @Override
         public int getCount() {
             // TODO Auto-generated method stub
-            return 25;
+            return cart_list.size();
         }
 
         @Override
@@ -241,7 +303,9 @@ public class FragmentCategoryItemRank extends Fragment implements DatePickerDial
 
         class Holder {
             TextView name;
-            TextView phone;
+            TextView txtPrice;
+            TextView edtcode, edtdate, txtQty;
+
         }
 
         @Override
@@ -253,15 +317,68 @@ public class FragmentCategoryItemRank extends Fragment implements DatePickerDial
             if (arg1 == null) {
                 hv = new Holder();
                 arg1 = inflater.inflate(R.layout.custom_order_home, null);
+                hv.edtcode = (TextView) arg1.findViewById(R.id.edtcode);
+                hv.edtdate = (TextView) arg1.findViewById(R.id.edtdate);
+                hv.txtQty = (TextView) arg1.findViewById(R.id.txtQty);
+                hv.txtPrice = (TextView) arg1.findViewById(R.id.txtprice);
                 arg1.setTag(hv);
             } else {
                 hv = (Holder) arg1.getTag();
+            }
+
+            CartInfo info = cart_list.get(arg0);
+            if (info != null) {
+                hv.edtcode.setText(info.product);
+//                hv.edtQty.setText(info.qty);
+                hv.txtPrice.setText(info.total);
+
             }
 
             return arg1;
         }
 
     }
+
+    public void makeJson() {
+        String data = "{\"userid\":\"%s\",\"client_code\":\"%s\",\"order_date\":\"%s\",\"due_date\":\"%s\",\"devicecode\":\"%s\",\"products\":\"%s\"}";
+        String strr = GetJsonForPackage();
+        data = String.format(data, UserInfo.getUser().login_id, cid, "01/05/2016", "05/05/2016", "0001", strr);
+    }
+
+    public String GetJsonForPackage() {
+        String mainjson = "[%s]";
+        String inner = "{\"product_code\":%s,\"product_qty\":%s,\"product_price\":%s}";
+        ArrayList<String> m_iners = new ArrayList<String>();
+        for (CartInfo cartPackInfo : cart) {
+            inner = String.format(inner, cartPackInfo.StockNo,
+                    String.valueOf(cartPackInfo.qty), String.valueOf(cartPackInfo.total));
+            m_iners.add(inner);
+        }
+        mainjson = String.format(mainjson, join(m_iners, ","));
+        return mainjson;
+
+    }
+
+    public String join(List<? extends CharSequence> s, String delimiter) {
+        int capacity = 0;
+        int delimLength = delimiter.length();
+        Iterator<? extends CharSequence> iter = s.iterator();
+        if (iter.hasNext()) {
+            capacity += iter.next().length() + delimLength;
+        }
+
+        StringBuilder buffer = new StringBuilder(capacity);
+        iter = s.iterator();
+        if (iter.hasNext()) {
+            buffer.append(iter.next());
+            while (iter.hasNext()) {
+                buffer.append(delimiter);
+                buffer.append(iter.next());
+            }
+        }
+        return buffer.toString();
+    }
+
 
 }
 

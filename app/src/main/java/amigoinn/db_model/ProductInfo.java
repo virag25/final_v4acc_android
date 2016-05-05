@@ -63,12 +63,12 @@ public class ProductInfo extends ActiveRecordBase {
     }
 
 
-    public static ProductInfo getProductInfoById(int Code) {
+    public static ProductInfo getProductInfoById(String StockNo) {
         try {
             List<ProductInfo> lst = AccountApplication.Connection().find(
                     ProductInfo.class,
-                    CamelNotationHelper.toSQLName("client_code") + "=?",
-                    new String[]{String.valueOf(Code)});
+                    CamelNotationHelper.toSQLName("StockNo") + "=?",
+                    new String[]{String.valueOf(StockNo)});
             if (lst != null && lst.size() > 0) {
                 return lst.get(0);
             }
