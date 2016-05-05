@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
-
-
-    <item android:drawable="@drawable/circle"/>
-
-</layer-list><!-- From: file:/D:/amigo%20innovations/gitproject/v4accounts%20new/final_v4acc_android/app/src/main/res/drawable/circle_imgbg.xml -->

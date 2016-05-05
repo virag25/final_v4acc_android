@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<shape xmlns:android="http://schemas.android.com/apk/res/android"
-       android:shape="rectangle">
-    <gradient
-            android:startColor="@color/background_gradient_start"
-            android:endColor="@color/background_gradient_end"
-            android:angle="-270" />
-</shape><!-- From: file:/D:/amigo%20innovations/gitproject/v4accounts%20new/final_v4acc_android/app/src/main/res/drawable-hdpi/default_background.xml -->
