@@ -300,7 +300,7 @@
                             android:id="@+id/rlAdd"
                             android:layout_width="60dp"
                             android:layout_height="60dp"
-                            android:background="@drawable/circle_img">
+                            android:background="@drawable/buttonshape">
 
                             <TextView
                                 android:layout_width="wrap_content"

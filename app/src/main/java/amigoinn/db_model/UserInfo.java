@@ -22,12 +22,18 @@ public class UserInfo extends ActiveRecordBase {
     @ModelMapper(JsonKey = "MailListSrlNo")
     public String MailListSrlNo = "";
 
+
     @ModelMapper(JsonKey = "LoginId")
     public String login_id = "";
 
     @ModelMapper(JsonKey = "ActiveFlag")
     public String activation_flag = "";
 
+    @ModelMapper(JsonKey = "updatestatus")
+    public String updatestatus = "";
+
+    @ModelMapper(JsonKey = "devicecode")
+    public String devicecode = "";
 
     public static UserInfo getUser()
     {

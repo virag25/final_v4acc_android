@@ -5,7 +5,7 @@ import android.content.Intent;
 
 public final class Config 
 {
-	static final String SENDER_ID = "1075540226763";
+	static final String SENDER_ID = "364805738559";
 	static final String DISPLAY_MESSAGE_ACTION = "com.example.kauveryadmin.DISPLAY_MESSAGE";
 	// File upload url (replace the ip with your server address)
     public static final String FILE_UPLOAD_URL = "http://amigoinnovations.co.in/bhargav/calllog.php";

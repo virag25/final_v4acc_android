@@ -30,6 +30,7 @@ public class LoginInfo {
 
     public String email = "";
     public String password = "";
+    public String versionname = "";
     ModelDelegates.LoginDelegate m_delegate = null;
 
     public void doLogin(final ModelDelegates.LoginDelegate delegate)
@@ -41,10 +42,13 @@ public class LoginInfo {
                     ServiceHelper.RequestMethod.POST);
             helper.addParam("username", this.email);
             helper.addParam("password", this.password);
-            helper.call(new ServiceHelper.ServiceHelperDelegate() {
+            helper.addParam("version", this.versionname);
+            helper.call(new ServiceHelper.ServiceHelperDelegate()
+            {
 
                 @Override
-                public void CallFinish(ServiceResponse res) {
+                public void CallFinish(ServiceResponse res)
+                {
                     if (res.RawResponse != null) {
                         if (res.RawResponse != null
                                 && res.RawResponse.length() > 0) {
@@ -57,11 +61,14 @@ public class LoginInfo {
                                     {
                                         JSONArray jobj = jobjj.optJSONArray("data");
                                         JSONObject job = jobj.optJSONObject(0);
+//                                        JSONObject job1 = jobj.optJSONObject(1);
                                         ModelMapHelper<UserInfo> mapper = new ModelMapHelper<UserInfo>();
                                         UserInfo.DeleteUser();
                                         UserInfo info = mapper.getObject(
                                                 UserInfo.class, job);
-                                        if (info != null) {
+                                        info.updatestatus=jobjj.getString("updateapp");
+                                        if (info != null)
+                                        {
                                             info.save();
                                         }
                                     }
@@ -72,10 +79,14 @@ public class LoginInfo {
 
                                 }
                                 m_delegate.LoginDidSuccess();
-                            } catch (JSONException e) {
+                            }
+                            catch (JSONException e)
+                            {
                                 m_delegate.LoginFailedWithError(e.toString());
                                 e.printStackTrace();
-                            } catch (ActiveRecordException e) {
+                            }
+                            catch (ActiveRecordException e)
+                            {
                                 m_delegate.LoginFailedWithError(e.toString());
                                 e.printStackTrace();
                             }

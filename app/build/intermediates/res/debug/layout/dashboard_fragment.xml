@@ -300,7 +300,7 @@
                             android:id="@+id/rlAdd"
                             android:layout_width="60dp"
                             android:layout_height="60dp"
-                            android:background="@drawable/circle_img">
+                            android:background="@drawable/buttonshape">
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -698,4 +698,4 @@
 
 
 </RelativeLayout>
-<!-- From: file:/E:/Maulik%20Nano%20Projects/Latest%20GIT%20V4/FINAL/final_v4acc_android/app/src/main/res/layout/dashboard_fragment.xml -->
+<!-- From: file:/D:/amigo%20innovations/gitproject/v4accounts%20new/final_v4acc_android/app/src/main/res/layout/dashboard_fragment.xml -->

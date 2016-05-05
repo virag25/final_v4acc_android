@@ -21,10 +21,15 @@
 
         android:title="About"/>
     <item
+        android:id="@+id/Support"
+        android:orderInCategory="100"
+
+        android:title="Support"/>
+    <item
         android:id="@+id/LogOut"
         android:orderInCategory="100"
 
         android:title="Log Out"/>
 
 </menu>
-<!-- From: file:/E:/Maulik%20Nano%20Projects/Latest%20GIT%20V4/FINAL/final_v4acc_android/app/src/main/res/menu/main.xml -->
+<!-- From: file:/D:/amigo%20innovations/gitproject/v4accounts%20new/final_v4acc_android/app/src/main/res/menu/main.xml -->

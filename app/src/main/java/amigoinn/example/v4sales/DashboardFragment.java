@@ -1,7 +1,6 @@
 package amigoinn.example.v4sales;
 
 import android.content.Intent;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
@@ -17,7 +16,8 @@ import com.example.v4sales.R;
 import amigoinn.adapters.SectionedListBeforeFilter;
 import amigoinn.walkietalkie.Constants;
 
-public class DashboardFragment extends Fragment implements View.OnClickListener {
+public class DashboardFragment extends Fragment implements View.OnClickListener
+{
     RelativeLayout rlAdd, rlRecipts, rlPendingOrder;
     LinearLayout llNew, llPriceList, llItem, llCustomer, llOverDue, llTotal, llRejected, llOpen, llClosed;
     View v;
@@ -30,7 +30,8 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
     }
 
     @Override
-    public void onStart() {
+    public void onStart()
+    {
         super.onStart();
         rlAdd = (RelativeLayout) v.findViewById(R.id.rlAdd);
 
@@ -76,7 +77,8 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 
 
     @Override
-    public void onClick(View v) {
+    public void onClick(View v)
+    {
         if (v == llCustomer) {
 
             Constants.PartyList.clear();

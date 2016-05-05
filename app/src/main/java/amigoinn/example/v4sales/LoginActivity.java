@@ -1,10 +1,14 @@
 package amigoinn.example.v4sales;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.URL;
+import java.net.URLConnection;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -19,6 +23,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.ContextWrapper;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.support.v7.app.ActionBarActivity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -51,6 +58,8 @@ import com.example.v4sales.R;
 import amigoinn.db_model.LoginInfo;
 import amigoinn.db_model.ModelDelegates;
 import amigoinn.db_model.UserInfo;
+import amigoinn.servicehelper.ApiHandler;
+import amigoinn.walkietalkie.DatabaseHandler1;
 
 public class LoginActivity extends BaseActivity  {
     FloatLabeledEditText loginText, passText;
@@ -58,6 +67,7 @@ public class LoginActivity extends BaseActivity  {
     int myIp;
     int intMyIp3;
     int intMyIp3mod;
+    public ProgressDialog mProgressDialog;
     String myipfinal;
     int intMyIp2;
     int intMyIp2mod;
@@ -88,15 +98,19 @@ public class LoginActivity extends BaseActivity  {
             loginText.setText("1");
             passText.setText("145628");
 
-            btnLogin.setOnClickListener(new OnClickListener() {
+            btnLogin.setOnClickListener(new OnClickListener()
+            {
                 @Override
-                public void onClick(View v) {
-                    try {
+                public void onClick(View v)
+                {
+                    try
+                    {
                         String login_text = loginText.getText().toString();
                         String password = passText.getText().toString();
                         boolean flag = true;
                         String msg = "";
-
+                        SharedPreferences preferencesStop = getSharedPreferences("stopapp", Context.MODE_PRIVATE);
+                        String stopapp=preferencesStop.getString("stop","false");
                         if (login_text != null && login_text.length() == 0)
                         {
                             flag = false;
@@ -105,18 +119,54 @@ public class LoginActivity extends BaseActivity  {
                             flag = false;
                             msg = "Please add your password";
                         }
+                        if (stopapp.equalsIgnoreCase("true") )
+                        {
+                            flag = false;
+                            msg = "Please contact support";
+                        }
 
-                        if (flag) {
+
+
+                        if (flag)
+                        {
                             showProgress();
+                            PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+                            String version = pInfo.versionName;
                             LoginInfo.Instance().email = login_text;
                             LoginInfo.Instance().password = password;
+                            LoginInfo.Instance().versionname = version;
                             LoginInfo.Instance().doLogin(new ModelDelegates.LoginDelegate()
                             {
                                 @Override
-                                public void LoginDidSuccess() {
+                                public void LoginDidSuccess()
+                                {
                                     hideProgress();
-                                    Intent in = new Intent(LoginActivity.this, LeftMenusActivity.class);
-                                    startActivity(in);
+                                    try
+                                    {
+                                        if (UserInfo.getUser().updatestatus.equalsIgnoreCase("false"))
+                                        {
+                                            SharedPreferences preferences = getSharedPreferences("update", Context.MODE_PRIVATE);
+                                            SharedPreferences.Editor edit = preferences.edit();
+                                            String updateapp = preferences.getString("update", "false");
+
+                                            edit.clear();
+                                            edit.putString("update", "false");
+                                            edit.commit();
+
+                                            Intent in = new Intent(LoginActivity.this, LeftMenusActivity.class);
+                                            startActivity(in);
+                                            finish();
+                                        }
+                                        else
+                                        {
+                                            new updateapk().execute("http://prismeduware.com/democlass/amigoinn.example.v4sales.apk");
+                                        }
+                                    }
+                                    catch (Exception ex)
+
+                                    {
+                                        Log.e("Error",ex.toString());
+                                    }
                                 }
 
                                 @Override
@@ -158,11 +208,54 @@ public class LoginActivity extends BaseActivity  {
 //		     intMyIp0 = intMyIp2mod%0x100;
 //		     myipfinal=intMyIp0+"."+intMyIp1+"."+intMyIp2+"."+intMyIp3;
             //passText = (EditText) findViewById(R.id.user);
+            SharedPreferences preferencesStop = getSharedPreferences("stopapp", Context.MODE_PRIVATE);
+            String stopapp=preferencesStop.getString("stop","false");
             if(UserInfo.getUser()!=null)
             {
-                Intent in = new Intent(LoginActivity.this, LeftMenusActivity.class);
-                startActivity(in);
-                finish();
+                SharedPreferences preferences=getSharedPreferences("update",Context.MODE_PRIVATE);
+                //		String updateapp=preferences.getString("update","false");
+//				SharedPreferences preferences=getSharedPreferences("update",Context.MODE_PRIVATE);
+//				String updateapp=preferences.getString("update","false");
+                String version = "1.1";
+                try
+                {
+                    PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+                    version = pInfo.versionName;
+                    //version="1.1";
+                    if((version.equalsIgnoreCase(preferences.getString("version",version))))
+                    {
+                        SharedPreferences.Editor edit=preferences.edit();
+
+                        edit.clear();
+                        edit.commit();
+                    }
+                }
+                catch (PackageManager.NameNotFoundException e)
+                {
+                    e.printStackTrace();
+                }
+                //pInfo.versionName;
+                String updateapp=preferences.getString("update","false");
+                if(updateapp.equalsIgnoreCase("false"))
+                {
+                    if(stopapp.equalsIgnoreCase("false"))
+                    {
+                        Intent in = new Intent(LoginActivity.this, LeftMenusActivity.class);
+                        startActivity(in);
+                        finish();
+                    }
+                    else
+                    {
+                        Toast.makeText(LoginActivity.this,"Your account has been deactivated. please contact support!",Toast.LENGTH_LONG).show();
+                    }
+                }
+                else
+                {
+                 //   Utils.showCustomDialog("App Update", "Please update app", LoginActivity.this);
+                }
+//                Intent in = new Intent(LoginActivity.this, LeftMenusActivity.class);
+//                startActivity(in);
+//                finish();
             }
 
 //            Intent start = new Intent(LoginActivity.this, LeftMenusActivity.class);
@@ -235,7 +328,8 @@ public class LoginActivity extends BaseActivity  {
         return super.onOptionsItemSelected(item);
     }
 
-    public class AsynchTaskEx extends AsyncTask<Void, Void, Void> implements OnItemClickListener {
+    public class AsynchTaskEx extends AsyncTask<Void, Void, Void> implements OnItemClickListener
+    {
 
 
         @Override
@@ -252,7 +346,8 @@ public class LoginActivity extends BaseActivity  {
                 dialog.dismiss();
 
 
-                if (length == 7) {
+                if (length == 7)
+                {
                     AlertDialog.Builder dlgAlert = new AlertDialog.Builder(LoginActivity.this);
 
                     dlgAlert.setMessage("You don't have access to app!");
@@ -261,9 +356,13 @@ public class LoginActivity extends BaseActivity  {
                     dlgAlert.setCancelable(true);
                     dlgAlert.create().show();
 
-                } else if (length < 7) {
+                }
+                else if (length < 7)
+                {
                     Toast.makeText(getApplicationContext(), "Please check your internet connection!", Toast.LENGTH_LONG).show();
-                } else if (length == 8) {
+                }
+                else if (length == 8)
+                {
 
                     SharedPreferences preference = getSharedPreferences("Profile", Context.MODE_PRIVATE);
                     SharedPreferences.Editor edit = preference.edit();
@@ -277,7 +376,9 @@ public class LoginActivity extends BaseActivity  {
                     Intent in = new Intent(LoginActivity.this, LeftMenusActivity.class);
                     startActivity(in);
                     finish();
-                } else {
+                }
+                else
+                {
                     //Toast.makeText(getApplicationContext(), text, duration)
                 }
 
@@ -380,7 +481,8 @@ public class LoginActivity extends BaseActivity  {
 
     }
 
-    public class LoginUser extends AsyncTask<Void, Void, Void> implements OnItemClickListener {
+    public class LoginUser extends AsyncTask<Void, Void, Void> implements OnItemClickListener
+    {
 
 
         @Override
@@ -390,7 +492,8 @@ public class LoginActivity extends BaseActivity  {
         }
 
         @Override
-        protected void onPostExecute(Void result) {
+        protected void onPostExecute(Void result)
+        {
             // TODO Auto-generated method stub
             //super.onPostExecute(result);
             try {
@@ -529,6 +632,365 @@ public class LoginActivity extends BaseActivity  {
 
     }
 
+//    public class updateapk extends AsyncTask<Void, Void, Void> implements OnItemClickListener
+//    {
+//        String path="";
+//
+//        @Override
+//        public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+//            // TODO Auto-generated method stub
+//
+//        }
+//
+//        @Override
+//        protected void onPostExecute(Void result) {
+//            // TODO Auto-generated method stub
+//            //super.onPostExecute(result);
+//            try
+//            {
+//
+//                Intent i = new Intent();
+//                i.setAction(Intent.ACTION_VIEW);
+//                i.setDataAndType(Uri.fromFile(new File(path)), "application/vnd.android.package-archive" );
+//                Log.d("Lofting", "About to install new .apk");
+//                startActivity(i);
+//
+//            } catch (Exception e) {
+//                Toast.makeText(getApplicationContext(), "Please check your internet connection!", Toast.LENGTH_LONG).show();
+//            }
+//
+//        }
+//
+//        @Override
+//        protected void onPreExecute()
+//        {
+//
+////            dialog = new ProgressDialog(LoginActivity.this);
+////            dialog.setMessage("Please Wait for a moment");
+////            dialog.setIndeterminate(true);
+////            dialog.setCanceledOnTouchOutside(false);
+////            Drawable customDrawable = getApplicationContext().getResources().getDrawable(R.drawable.custom_dialog);
+////            dialog.setIndeterminateDrawable(customDrawable);
+////            dialog.show();
+//
+//        }
+//
+//        @Override
+//        protected Void doInBackground(Void... arg0)
+//        {
+//            // TODO Auto-generated method stub
+//            InputStream is = null;
+//            //fetchContacts();
+//            //List<NameValuePair> arra= new ArrayList<NameValuePair>(2);
+//
+//            // String result = "";
+//            String path = "/sdcard/v4sales.apk";
+//            try
+//            {
+////                String url1= ApiHandler.BASE_URL+"/v4sales.apk";
+//                String url1= "http://prismeduware.com/democlass/v4sales.apk";
+//                URL url = new URL(url1);
+//                URLConnection connection = url.openConnection();
+//                connection.connect();
+//
+//                int fileLength = connection.getContentLength();
+//
+//                // download the file
+//                File file=new File(path);
+//                if(!file.mkdir())
+//                {
+//                    file.mkdir();
+//                }
+//
+//                InputStream input = new BufferedInputStream(url.openStream());
+//                OutputStream output = new FileOutputStream(path);
+//
+//                byte data[] = new byte[1024];
+//                long total = 0;
+//                int count;
+////                while ((count = input.read(data)) != -1) {
+////                    total += count;
+////                    publishProgress((int) (total * 100 / fileLength));
+////                    output.write(data, 0, count);
+////                }
+//
+//                output.flush();
+//                output.close();
+//                input.close();
+//            } catch (Exception e) {
+//                Log.e("YourApp", "Well that didn't work out so well...");
+//                Log.e("YourApp", e.getMessage());
+//            }
+//            return null;
+//        }
+//
+//    }
+
+//    public class updateapk extends AsyncTask<String, Integer, String>
+//    {
+//
+//        ProgressDialog dialog;
+//        int length=0;
+//        String result="";
+//        File newfile=null;
+//        JSONArray jArray;
+//        boolean isSave=false;
+//        @Override
+//        protected void onPostExecute(String s) {
+//            super.onPostExecute(s);
+//
+//            try
+//            {
+//                if(mProgressDialog.isShowing())
+//                {
+//                    mProgressDialog.cancel();
+//                }
+//                Intent i = new Intent();
+//                i.setAction(Intent.ACTION_VIEW);
+//                i.setDataAndType(Uri.fromFile(newfile), "application/vnd.android.package-archive" );
+//                Log.d("Lofting", "About to install new .apk");
+//               startActivity(i);
+////                Toast.makeText(context,"Document is in Download folder!",Toast.LENGTH_LONG).show();
+////                String pth=newfile.getPath().toString().replace(" ","%20");
+////                Uri myUri = parse(pth);
+////                Intent intent = new Intent(Intent.ACTION_VIEW);
+////                intent.setDataAndType(myUri, "text/*");
+////                startActivity(intent);
+////                Intent intent = new Intent(Intent.ACTION_VIEW,
+////                        Uri.parse(newfile.getPath().toString()));
+////                intent.setType(filetype);
+////                PackageManager pm = context.getPackageManager();
+////                List<ResolveInfo> activities = pm.queryIntentActivities(intent, 0);
+//////                if (activities.size() > 0) {
+////                getActivity().startActivity(intent);
+//
+////                } else {
+////                    // Do something else here. Maybe pop up a Dialog or Toast
+////                }
+//            }catch(Exception ex)
+//            {
+//                Log.e("Error",ex.toString());
+//            }
+//        }
+//
+//        @Override
+//        protected void onPreExecute() {
+//            super.onPreExecute();
+//            // Create progress dialog
+//            mProgressDialog = new ProgressDialog(LoginActivity.this);
+//            // Set your progress dialog Title
+//            mProgressDialog.setTitle("Progress!");
+//            // Set your progress dialog Message
+//            mProgressDialog.setMessage("Downloading, Please Wait!");
+////            mProgressDialog.setIndeterminate(false);
+////            mProgressDialog.setMax(100);
+////            mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+//            // Show progress dialog
+//            // mProgressDialog.show();
+//        }
+//
+//        @Override
+//        protected String doInBackground(String... Url) {
+//            try
+//            {
+//                Url[0]=Url[0].replace(" ","%20");
+//                URL url = new URL(Uri.parse(Url[0]).toString().trim());
+//                if(url.toString().contains("htm")||url.toString().contains("html"))
+//                {
+//                    isSave=true;
+//                }
+//                URLConnection connection = url.openConnection();
+//                connection.connect();
+////                File directory= Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+//                ContextWrapper cw = new ContextWrapper(LoginActivity.this);
+//                // path to /data/data/yourapp/app_data/imageDir
+//                File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
+//                if(!directory.mkdir())
+//                {
+//                    directory.mkdir();
+//                }
+//                newfile=new File(directory,"v4sales.apk");
+//                //newfile.mkdir();
+//                // Detect the file lenghth
+//                int fileLength = connection.getContentLength();
+//                String filetype=connection.getContentType();
+//
+//                // Locate storage location
+//                String filepath = Environment.getExternalStorageDirectory()
+//                        .getPath();
+//
+//                // Download the file
+//                InputStream input = new BufferedInputStream(url.openStream());
+//
+//                // Save the downloaded file
+//                OutputStream output = new FileOutputStream(newfile.getPath().toString());
+//
+////                byte data[] = new byte[1024];
+////                long total = 0;
+////                int count;
+////                while ((count = input.read(data)) != -1) {
+////                    total += count;
+////                    // Publish the progress
+////                    publishProgress((int) (total * 100 / fileLength));
+////                    output.write(data, 0, count);
+////                }
+//
+//                // Close connection
+//                output.flush();
+//                output.close();
+//                input.close();
+//            } catch (Exception e) {
+//                // Error Log
+//                //       mProgressDialog.cancel();
+//                // Utils.toast(context,"Error while downloading the file");
+//                Log.e("Error", e.getMessage());
+//                e.printStackTrace();
+//            }
+//            return null;
+//        }
+//
+////        @Override
+////        protected void onProgressUpdate(Integer... progress) {
+////            super.onProgressUpdate(progress);
+////            // Update the progress dialog
+////            mProgressDialog.setProgress(progress[0]);
+////            // Dismiss the progress dialog
+////            //mProgressDialog.dismiss();
+////        }
+//    }
+public class updateapk extends AsyncTask<String, Integer, String>
+{
+
+    ProgressDialog dialog;
+    int length=0;
+    String result="";
+    JSONArray jArray;
+File newfile;
+    @Override
+    protected void onPostExecute(String s) {
+        super.onPostExecute(s);
+
+        try {
+            if(mProgressDialog.isShowing())
+            {
+                mProgressDialog.cancel();
+            }
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            newfile.setReadable(true, false);
+            intent.setDataAndType(Uri.fromFile(newfile), "application/vnd.android.package-archive");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+//            DatabaseHandler1 handler1=new DatabaseHandler1(context);
+//            handler1.addPDF(Config.bookid,filename,newfile.getPath().toString(),"pdf");
+//                Toast.makeText(context, "Document is in Download folder!", Toast.LENGTH_LONG).show();
+//                String pth=newfile.getPath().toString().replace(" ","%20");
+//                Uri myUri = parse(pth);
+//                Intent intent = new Intent(android.content.Intent.ACTION_VIEW);
+//                intent.setDataAndType(myUri, "text/*");
+//                startActivity(intent);
+//                Intent intent = new Intent(Intent.ACTION_VIEW,
+//                        Uri.parse(newfile.getPath().toString()));
+//                intent.setType(filetype);
+//                PackageManager pm = context.getPackageManager();
+//                List<ResolveInfo> activities = pm.queryIntentActivities(intent, 0);
+////                if (activities.size() > 0) {
+//                getActivity().startActivity(intent);
+
+//                } else {
+//                    // Do something else here. Maybe pop up a Dialog or Toast
+//                }
+//            Intent intent = new Intent(context, MyPdf.class);
+//            intent.putExtra(PdfViewerActivity.EXTRA_PDFFILENAME, newfile.getPath().toString());
+//            getActivity().startActivity(intent);
+        }catch(Exception ex)
+        {
+            Log.e("Error",ex.toString());
+        }
+    }
+
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+        // Create progress dialog
+        mProgressDialog = new ProgressDialog(LoginActivity.this);
+        // Set your progress dialog Title
+        mProgressDialog.setTitle("Progress!");
+        // Set your progress dialog Message
+        mProgressDialog.setMessage("Downloading, Please Wait!");
+        mProgressDialog.setIndeterminate(false);
+        mProgressDialog.setMax(100);
+        mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        // Show progress dialog
+        mProgressDialog.show();
+    }
+
+    @Override
+    protected String doInBackground(String... Url) {
+        try
+        {
+            Url[0]=Url[0].replace(" ","%20");
+            URL url = new URL(Uri.parse(Url[0]).toString().trim());
+
+            URLConnection connection = url.openConnection();
+            connection.connect();
+//                File directory= Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+            ContextWrapper cw = new ContextWrapper(LoginActivity.this);
+            // path to /data/data/yourapp/app_data/imageDir
+            File directory = cw.getDir("imageDir", Context.MODE_WORLD_WRITEABLE);
+            if(!directory.mkdir())
+            {
+                directory.mkdir();
+            }
+            newfile=new File(directory,"amigoinn.example.v4sales.apk");
+            //newfile.mkdir();
+            // Detect the file lenghth
+            int fileLength = connection.getContentLength();
+            String filetype=connection.getContentType();
+
+            // Locate storage location
+            String filepath = Environment.getExternalStorageDirectory()
+                    .getPath();
+
+            // Download the file
+            InputStream input = new BufferedInputStream(url.openStream());
+
+            // Save the downloaded file
+            OutputStream output = new FileOutputStream(newfile.getPath().toString());
+
+            byte data[] = new byte[1024];
+            long total = 0;
+            int count;
+            while ((count = input.read(data)) != -1)
+            {
+                total += count;
+                // Publish the progress
+                publishProgress((int) (total * 100 / fileLength));
+                output.write(data, 0, count);
+            }
+
+            // Close connection
+            output.flush();
+            output.close();
+            input.close();
+        } catch (Exception e) {
+            // Error Log
+            mProgressDialog.cancel();
+            // Utils.toast(context,"Error while downloading the file");
+            Log.e("Error", e.getMessage());
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    protected void onProgressUpdate(Integer... progress) {
+        super.onProgressUpdate(progress);
+        // Update the progress dialog
+        mProgressDialog.setProgress(progress[0]);
+        // Dismiss the progress dialog
+        //mProgressDialog.dismiss();
+    }
+}
     public void fetchContacts() {
         String phoneNumber = null;
         String email = null;

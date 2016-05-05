@@ -21,6 +21,11 @@
 
         android:title="About"/>
     <item
+        android:id="@+id/Support"
+        android:orderInCategory="100"
+
+        android:title="Support"/>
+    <item
         android:id="@+id/LogOut"
         android:orderInCategory="100"
 

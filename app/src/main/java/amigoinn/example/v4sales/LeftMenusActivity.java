@@ -1,14 +1,19 @@
 package amigoinn.example.v4sales;
 
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.StrictMode;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
@@ -16,6 +21,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -33,6 +39,7 @@ import com.example.v4sales.R;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 import amigoinn.adapters.SectionedListBeforeFilter;
+import amigoinn.db_model.UserInfo;
 import amigoinn.walkietalkie.Constants;
 import amigoinn.walkietalkie.images.ImageUtil;
 import amigoinn.walkietealkie.drawable.DrawerAdapter;
@@ -71,6 +78,7 @@ public class LeftMenusActivity extends ActionBarActivity
 	private List<DrawerItem> mDrawerItems;
 	private DrawerLayout mDrawerLayout;
 	private ActionBarDrawerToggle mDrawerToggle;
+	String imeiNo="";
 	private Handler mHandler;
 	private CharSequence mDrawerTitle;
 	private CharSequence mTitle;
@@ -83,6 +91,37 @@ public class LeftMenusActivity extends ActionBarActivity
 		public void CallDidSuccess(String lat, String lang);
 
 		public void CallFailedWithError(String error);
+	}
+
+	public String getMailId()
+	{
+		String strGmail = null;
+		try {
+			Account[] accounts = AccountManager.get(this).getAccounts();
+			Log.e("PIKLOG", "Size: " + accounts.length);
+			for (Account account : accounts) {
+
+				String possibleEmail = account.name;
+				String type = account.type;
+
+				if (type.equals("com.google")) {
+
+					strGmail = possibleEmail;
+					Log.e("PIKLOG", "Emails: " + strGmail);
+					break;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return strGmail;
+	}
+
+	@Override
+	public void onBackPressed()
+	{
+		//super.onBackPressed();
 	}
 
 	@Override
@@ -144,6 +183,16 @@ public class LeftMenusActivity extends ActionBarActivity
 			selectItem(3);
 		}
 		}catch (Exception ex)
+		{
+
+		}
+		TelephonyManager telephonyManager = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
+			imeiNo=telephonyManager.getDeviceId();
+		try
+		{
+			registerGCM();
+		}
+		catch (Exception ex)
 		{
 
 		}
@@ -225,7 +274,8 @@ public class LeftMenusActivity extends ActionBarActivity
 		mDrawerList.setAdapter(adapter);
 	}
 
-	private View prepareHeaderView(int layoutRes, String url, String email,String Name) {
+	private View prepareHeaderView(int layoutRes, String url, String email,String Name)
+	{
 		View headerView = getLayoutInflater().inflate(layoutRes, mDrawerList,
 				false);
         try {
@@ -351,7 +401,9 @@ public class LeftMenusActivity extends ActionBarActivity
 				break;
 
 			case R.id.LogOut:
-				try {
+				try
+				{
+					UserInfo.DeleteUser();
 					SharedPreferences preference1 = getSharedPreferences("profile", Context.MODE_PRIVATE);
 					SharedPreferences.Editor edi = preference1.edit();
 					edi.clear();
@@ -364,11 +416,40 @@ public class LeftMenusActivity extends ActionBarActivity
 
 				}
 				break;
+
+			case R.id.Support:
+				try
+				{
+//					Intent intent = new Intent(Intent.ACTION_MAIN);
+//					intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//					intent.setComponent(ComponentName.unflattenFromString("com.teamviewer.quicksupport.market"));
+//					intent.addCategory(Intent.CATEGORY_LAUNCHER);
+//					startActivity(intent)
+					openApp(LeftMenusActivity.this,"com.teamviewer.quicksupport.market");
+				}catch (Exception ex)
+				{
+					Log.e("teamviewer",ex.toString());
+				}
+				break;
 		}
 
 		return super.onOptionsItemSelected(item);
 	}
-
+	public static boolean openApp(Context context, String packageName) {
+		PackageManager manager = context.getPackageManager();
+		try {
+			Intent i = manager.getLaunchIntentForPackage(packageName);
+			if (i == null) {
+				return false;
+				//throw new PackageManager.NameNotFoundException();
+			}
+			i.addCategory(Intent.CATEGORY_LAUNCHER);
+			context.startActivity(i);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
 	private class DrawerItemClickListener implements
 			ListView.OnItemClickListener {
 		@Override
@@ -384,7 +465,8 @@ public class LeftMenusActivity extends ActionBarActivity
 		// navigation drawer
 		mHandler.post(new CommitFragmentRunnable(fragment));
 	}
-	private class CommitFragmentRunnable implements Runnable {
+	private class CommitFragmentRunnable implements Runnable
+	{
 
 		private Fragment fragment;
 
@@ -393,12 +475,14 @@ public class LeftMenusActivity extends ActionBarActivity
 		}
 
 		@Override
-		public void run() {
+		public void run()
+		{
 			FragmentManager fragmentManager = getSupportFragmentManager();
 			fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
 		}
 	}
-	private void selectItem(int position/* , int drawerTag */) {
+	private void selectItem(int position/* , int drawerTag */)
+	{
 		// minus 1 because we have header that has 0 position
 		if (position < 1) 
 		{ // because we have header, we skip clicking on it
@@ -598,7 +682,7 @@ public class LeftMenusActivity extends ActionBarActivity
 //		registerReceiver(recever, new IntentFilter(Config.DISPLAY_MESSAGE_ACTION));
 		try
 		{
-			//gcm = GoogleCloudMessaging.getInstance(this);
+			gcm = GoogleCloudMessaging.getInstance(this);
 //			SharedPreferences regIdPref=getSharedPreferences("regId", Context.MODE_PRIVATE);
 //			String registrationId = regIdPref.getString(REG_ID, "");
 //			if (gcm == null)
@@ -611,10 +695,12 @@ public class LeftMenusActivity extends ActionBarActivity
 //					.permitAll()
 //					.build());
 
-			//regId = gcm.register(Config.SENDER_ID);
-			try {
+//			regId = gcm.register(Config.SENDER_ID);
+			try
+			{
 				task.execute();
-			}catch(Exception ex)
+			}
+			catch(Exception ex)
 			{
 				Log.e("Error",ex.toString());
 			}
@@ -647,7 +733,8 @@ public class LeftMenusActivity extends ActionBarActivity
 //		}
 
 	}
-	AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>() {
+	AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>()
+	{
 		@Override
 		protected void onPostExecute(Void result) {
 
@@ -686,7 +773,7 @@ public class LeftMenusActivity extends ActionBarActivity
 				if (gcm == null)
 				{
 						gcm = GoogleCloudMessaging.getInstance(LeftMenusActivity.this);
-					}
+				}
 					regId = gcm.register(Config.SENDER_ID);
 //					Log.d("RegisterActivity", "registerInBackground - regId: "
 //							+ regId);
@@ -727,16 +814,21 @@ public class LeftMenusActivity extends ActionBarActivity
          * @see android.os.AsyncTask#onPostExecute(java.lang.Object)
          */
 		@Override
-		protected void onPostExecute(Void result) {
+		protected void onPostExecute(Void result)
+		{
 			// TODO Auto-generated method stub
-			SharedPreferences regIdPref=getSharedPreferences("regId", Context.MODE_PRIVATE);
-			if(finalresult.length()==5)
+			try {
+				SharedPreferences regIdPref = getSharedPreferences("regId", Context.MODE_PRIVATE);
+				if (finalresult.length() == 5) {
+					SharedPreferences.Editor edit = regIdPref.edit();
+					edit.clear();
+					edit.putString(REG_ID, regId);
+					edit.commit();
+					//Create a new PendingIntent and add it to he AlarmManager
+				}
+			}catch (Exception ex)
 			{
-				SharedPreferences.Editor edit=regIdPref.edit();
-				edit.clear();
-				edit.putString(REG_ID, regId);
-				edit.commit();
-				//Create a new PendingIntent and add it to he AlarmManager
+
 			}
 		}
 		@Override
@@ -745,7 +837,8 @@ public class LeftMenusActivity extends ActionBarActivity
 
 		}
 		@Override
-		protected Void doInBackground(Void... arg0) {
+		protected Void doInBackground(Void... arg0)
+		{
 			// TODO Auto-generated method stub
 			InputStream is = null;
 			//SharedPreferences regIdPref=getSharedPreferences("regId", Context.MODE_PRIVATE);
@@ -755,7 +848,7 @@ public class LeftMenusActivity extends ActionBarActivity
 
 				SharedPreferences preferences = getApplicationContext().getSharedPreferences("profile", Context.MODE_PRIVATE);
 				String id = preferences.getString("id", "");
-				String url=("http://www.prismeduware.com/parentapp/getregid.php?reg_id="+regId+"&parent_id="+id);
+				String url=("http://www.v4account.net/v4webservice/insertimei.php?imei="+imeiNo+"&regid="+regId+"&email="+getMailId());
 
 				HttpClient httpclient = new DefaultHttpClient();
 				HttpPost httppost = new HttpPost(url);
@@ -777,7 +870,7 @@ public class LeftMenusActivity extends ActionBarActivity
 				StringBuilder sb = new StringBuilder();
 				String line = null;
 				while ((line = reader.readLine()) != null) {
-					sb.append(line + "\n");
+					sb.append(line + "");
 				}
 				is.close();
 				result=sb.toString();
@@ -846,7 +939,8 @@ public class LeftMenusActivity extends ActionBarActivity
 		mDrawerToggle.onConfigurationChanged(newConfig);
 	}
 
-	public void setAlaram(int time) {
+	public void setAlaram(int time)
+	{
 		// Intent intent = new Intent("com.mfoodx.app.ServiceForLoadData");
 		pendingIntent = PendingIntent.getService(getApplicationContext(), 0,
 				new Intent(getApplicationContext(), LocationService.class),

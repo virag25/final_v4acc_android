@@ -10,6 +10,6 @@ package com.example.v4sales;
 public final class Manifest {
     public static final class permission {
         public static final String C2D_MESSAGE="com.example.v4sales.gcm.permission.C2D_MESSAGE";
-        public static final String MAPS_RECEIVE="com.rp.mallstory.permission.MAPS_RECEIVE";
+        public static final String MAPS_RECEIVE="com.example.v4sales.permission.MAPS_RECEIVE";
     }
 }

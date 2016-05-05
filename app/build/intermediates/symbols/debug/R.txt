@@ -1127,11 +1127,12 @@ int id Announcements 0x7f0c01aa
 int id Description 0x7f0c0169
 int id FloatLabeledEditTextEditText 0x7f0c01a7
 int id FloatLabeledEditTextHint 0x7f0c01a6
-int id LogOut 0x7f0c01ae
+int id LogOut 0x7f0c01af
 int id Messages 0x7f0c01ab
 int id Password 0x7f0c00da
 int id Profile 0x7f0c01ac
 int id RelativeLayout1 0x7f0c0190
+int id Support 0x7f0c01ae
 int id Two 0x7f0c0112
 int id action0 0x7f0c017b
 int id actionDone 0x7f0c0052

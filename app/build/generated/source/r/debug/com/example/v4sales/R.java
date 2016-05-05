@@ -3374,11 +3374,12 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int Description=0x7f0c0169;
         public static final int FloatLabeledEditTextEditText=0x7f0c01a7;
         public static final int FloatLabeledEditTextHint=0x7f0c01a6;
-        public static final int LogOut=0x7f0c01ae;
+        public static final int LogOut=0x7f0c01af;
         public static final int Messages=0x7f0c01ab;
         public static final int Password=0x7f0c00da;
         public static final int Profile=0x7f0c01ac;
         public static final int RelativeLayout1=0x7f0c0190;
+        public static final int Support=0x7f0c01ae;
         public static final int Two=0x7f0c0112;
         public static final int action0=0x7f0c017b;
         public static final int actionDone=0x7f0c0052;
