@@ -54,6 +54,8 @@ public class ServiceHelper {
     public static final String CLIENT_ORDERS_Details = "orderdetails.php";
     public static final String Order_DISPATCH = "clientdispatch.php";
 
+    public static final String ADD_ORDER = "insertorder.php";
+
     public static final String Order_DISPATCH_DETAILS = "dispatchdetails.php";
 
     public static final String Product_list = "productlist.php";
@@ -62,6 +64,9 @@ public class ServiceHelper {
     public static final String class12combo_list = "class12combo.php";
     public static final String UPDATE_PASSWORD = "updatepassword.php";
     public static final String INSERT_LOCATIONS = "insertlocation.php";
+    public static final String CLIENT_SALE = "clientsales.php";
+
+    String my_quesryString;
 
     private static boolean IS_DEBUG = true;
 
@@ -133,6 +138,12 @@ public class ServiceHelper {
         RequestMethodType = requestMethod;
     }
 
+    public ServiceHelper(String method, RequestMethod requestMethod, String data) {
+        m_methodName = method;
+        RequestMethodType = requestMethod;
+        my_quesryString = data;
+    }
+
     public void setTAG(String tag) {
         TAG = tag;
     }
@@ -175,8 +186,7 @@ public class ServiceHelper {
 
     // private ServiceHelperDelegate m_delegate = null;
 
-    public void call(ServiceHelperDelegate delegate)
-    {
+    public void call(ServiceHelperDelegate delegate) {
         m_delegate = delegate;
         // if (NetworkConnectivity.isConnected()) {
         CallServiceAsync calling = new CallServiceAsync(true);
@@ -184,8 +194,7 @@ public class ServiceHelper {
 
     }
 
-    private String call()
-    {
+    private String call() {
         StringBuilder builder = new StringBuilder();
         HttpClient client = getNewHttpClient();
         HttpRequestBase request = null;
@@ -193,26 +202,42 @@ public class ServiceHelper {
             request = new HttpGet(getFinalUrl());
             request.setHeader("Accept", "*/*");
             request.setHeader("Content-Type", "text/plain; charset=utf-8");
-        }
-        else
-        {
+        } else {
             request = new HttpPost(getFinalUrl());
+            StringEntity se;
             // request.setHeader("Accept", "application/json");
-            request.setHeader("Content-Type",
-                    "application/x-www-form-urlencoded");
+            if (m_methodName.equalsIgnoreCase(ADD_ORDER)) {
+                request.setHeader("Content-Type",
+                        "application/json");
+                if (my_quesryString != null) {
+                    CommonUtils.LogInfo("REGISTER---->>" + my_quesryString);
+                    try {
+                        se = new StringEntity(my_quesryString);
+                        ((HttpPost) request).setEntity(se);
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
 
-            if (m_params.size() > 0) {
-                // JSONObject json = JsonCreator.getJsonObject(m_params);
-                String queryString = CommonUtils.Instance().join(m_params, "&");
-                CommonUtils.LogInfo("REGISTER---->>" + queryString);
-                StringEntity se;
-                try {
-                    se = new StringEntity(queryString);
-                    ((HttpPost) request).setEntity(se);
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
+                }
+
+            } else {
+                request.setHeader("Content-Type",
+                        "application/x-www-form-urlencoded");
+                if (m_params.size() > 0) {
+                    // JSONObject json = JsonCreator.getJsonObject(m_params);
+                    String queryString = CommonUtils.Instance().join(m_params, "&");
+                    CommonUtils.LogInfo("REGISTER---->>" + queryString);
+
+                    try {
+                        se = new StringEntity(queryString);
+                        ((HttpPost) request).setEntity(se);
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
+
+
         }
         try {
             request.getParams().setParameter("http.socket.timeout",
@@ -374,16 +399,16 @@ public class ServiceHelper {
             try {
 //                data = new JSONObject(strResponse);
 //                if (data != null) {
-                    if (m_methodName.equalsIgnoreCase(ServiceHelper.LOGIN)) {
+                if (m_methodName.equalsIgnoreCase(ServiceHelper.LOGIN)) {
 //                        response.isSuccess = data.getBoolean("success");
 //                        response.Message = data.getString("message");
 //                        response.RawResponse = strResponse;
-                        response.RawResponse = strResponse;
-                    } else {
-                        //response.isSuccess = data.getBoolean("success");
-                        //response.Message = data.getString("message");
-                        response.RawResponse = strResponse;
-                    }
+                    response.RawResponse = strResponse;
+                } else {
+                    //response.isSuccess = data.getBoolean("success");
+                    //response.Message = data.getString("message");
+                    response.RawResponse = strResponse;
+                }
 
 //                }
             } catch (Exception e) {
@@ -395,10 +420,8 @@ public class ServiceHelper {
 
         @Override
         protected void onPostExecute(ServiceResponse result) {
-            if (result != null)
-            {
-                if (m_delegate != null)
-                {
+            if (result != null) {
+                if (m_delegate != null) {
                     m_delegate.CallFinish(result);
                 }
             } else {

@@ -9,19 +9,25 @@
         android:id="@+id/rltvOrder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:background="@color/main_color_500">
+        android:background="@color/main_color_500"
+        android:padding="5dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:background="@color/main_color_500"
-            android:text="Ledgers Details"
+            android:text="Sale Details"
             android:textColor="@color/white"
             android:textSize="18dp"
             android:textStyle="bold" />
 
     </RelativeLayout>
+
+    <ListView
+        android:id="@+id/listView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rltvOrder" />
 
 </RelativeLayout>

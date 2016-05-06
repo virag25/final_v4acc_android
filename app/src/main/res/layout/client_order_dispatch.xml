@@ -18,158 +18,19 @@
             android:orientation="vertical"
             tools:context=".Order_HomePage">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:orientation="horizontal">
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="33">
-
-                    <TextView
-                        android:id="@+id/txtordno"
-                        android:layout_width="130dp"
-
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:paddingLeft="5dp"
-                        android:paddingRight="5dp"
-                        android:text="Order No."
-                        android:textColor="@color/material_grey_700"
-                        android:textSize="14dp" />
-
-                    <EditText
-
-                        android:id="@+id/edtorderno"
-                        android:layout_width="130dp"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/txtordno"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="0dp"
-                        android:background="@drawable/buttonshapeempty"
-                        android:editable="false"
-                        android:padding="4dp"
-                        android:text="1022"
-                        android:textAlignment="center"
-                        android:textColor="@color/material_grey_700"
-                        android:textSize="14dp" />
-
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="33">
-
-                    <TextView
-                        android:id="@+id/txtOrderDate"
-                        android:layout_width="130dp"
-
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:paddingLeft="5dp"
-                        android:paddingRight="5dp"
-                        android:text="Order Date."
-                        android:textAlignment="center"
-
-                        android:textColor="@color/material_grey_700"
-                        android:textSize="14dp" />
-
-                    <TextView
-
-                        android:id="@+id/edtorderdate"
-                        android:layout_width="130dp"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/txtOrderDate"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="0dp"
-                        android:background="@drawable/buttonshapeempty"
-                        android:gravity="center"
-                        android:hint=""
-                        android:padding="4dp"
-                        android:text="date" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="33">
-
-                    <TextView
-                        android:id="@+id/txtOrderdue"
-                        android:layout_width="130dp"
-
-                        android:layout_height="wrap_content"
-
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:paddingLeft="5dp"
-                        android:paddingRight="5dp"
-                        android:text="Due Date"
-                        android:textColor="@color/material_grey_700"
-                        android:textSize="14dp" />
-
-                    <TextView
-
-                        android:id="@+id/edtOrderdue"
-                        android:layout_width="130dp"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/txtOrderdue"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="0dp"
-
-                        android:background="@drawable/buttonshapeempty"
-                        android:gravity="center"
-                        android:padding="4dp"
-                        android:text="due date" />
-                </RelativeLayout>
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2px"
-                android:layout_marginTop="5dp"
-                android:background="#000000"></View>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="5dp">
 
-                <TextView
-                    android:id="@+id/txtclient"
-                    android:layout_width="wrap_content"
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    android:gravity="center"
-                    android:paddingLeft="5dp"
-                    android:paddingRight="5dp"
-                    android:text="Client"
-                    android:textColor="@color/material_grey_700"
-                    android:textSize="16dp" />
-
-                <RelativeLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="50dp"
                     android:layout_marginBottom="10dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_weight="0.3">
+                    android:layout_marginTop="5dp">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -177,31 +38,16 @@
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true">
 
-
-                        <AutoCompleteTextView
-
-                            android:id="@+id/edtclient"
-                            android:layout_width="match_parent"
+                        <TextView
+                            android:id="@+id/txtClient"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginTop="0dp"
-                            android:background="@drawable/buttonshapeempty"
-                            android:paddingBottom="4dp"
-                            android:paddingLeft="30dp"
-                            android:paddingTop="4dp"
-                            android:textColor="@color/material_grey_700"
-                            android:textSize="14dp" />
+                            android:gravity="center_horizontal"
+                            android:text="TextView"
+                            android:textSize="20dp" />
 
-                        <ImageView
-                            android:id="@+id/imgBrowse"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_marginLeft="13dp"
-                            android:layout_marginTop="3dp"
-                            android:background="@color/main_color_500"
-                            android:src="@drawable/abc_ic_search_api_mtrl_alpha"
-                            android:visibility="gone" />
+
                     </RelativeLayout>
 
                 </RelativeLayout>
@@ -216,9 +62,11 @@
 
                     <ImageView
                         android:id="@+id/imgClientAdd"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:src="@drawable/cross" />
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/cross"
+                        android:visibility="gone" />
 
                 </RelativeLayout>
 
@@ -250,7 +98,8 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="5dp"
                     android:padding="5dp"
-                    android:src="@drawable/cross_white" />
+                    android:src="@drawable/cross_white"
+                    android:visibility="gone" />
 
             </RelativeLayout>
 
@@ -388,7 +237,8 @@
                     android:text="Submit"
                     android:textColor="@color/white"
                     android:textSize="20dp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:visibility="gone" />
             </RelativeLayout>
         </LinearLayout>
     </LinearLayout>

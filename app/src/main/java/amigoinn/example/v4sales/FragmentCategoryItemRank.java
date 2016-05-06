@@ -21,6 +21,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import amigoinn.adapters.Custom_Home_Orders;
@@ -39,6 +40,8 @@ import amigoinn.db_model.ClientInfo;
 import amigoinn.db_model.ProductInfo;
 import amigoinn.db_model.UserInfo;
 import amigoinn.models.OverallPercentage;
+import amigoinn.servicehelper.ServiceHelper;
+import amigoinn.servicehelper.ServiceResponse;
 import amigoinn.walkietalkie.Constants;
 import amigoinn.walkietalkie.DatabaseHandler1;
 
@@ -52,7 +55,7 @@ import java.util.List;
 /**
  * Created by Manthan on 28/09/2015.
  */
-public class FragmentCategoryItemRank extends Fragment implements DatePickerDialog.OnDateSetListener {
+public class FragmentCategoryItemRank extends BaseFragment implements DatePickerDialog.OnDateSetListener {
     View view;
     public List<String> list = new ArrayList<String>();
     ListView lv1;
@@ -71,7 +74,7 @@ public class FragmentCategoryItemRank extends Fragment implements DatePickerDial
     ArrayList<String> extras = new ArrayList<String>();
     ArrayList<String> Product = new ArrayList<String>();
     ArrayList<String> Price = new ArrayList<String>();
-    //    AutoCompleteTextView edtCode,edtProduct;
+//        AutoCompleteTextView edtCode,edtProduct;
 //    EditText edtQuantity,edtProduct1,edtPrice;
     TextView edtOrderDate, edtOrderdueDate, edtclient;
     //        txtSubmit,txtSave,txtCancel,txtTotal;
@@ -102,7 +105,8 @@ public class FragmentCategoryItemRank extends Fragment implements DatePickerDial
         txtSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                makeJson();
+//                makeJson();
+                sendData();
             }
         });
 
@@ -151,6 +155,11 @@ public class FragmentCategoryItemRank extends Fragment implements DatePickerDial
         Constants.addParty();
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, R.layout.sammplelistitemabsent, R.id.tv, Constants.PartyList);
         edtOrderDate = (TextView) view.findViewById(R.id.edtorderdate);
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+        String formattedDate = df.format(c.getTime());
+        edtOrderDate.setText(formattedDate);
+        edtOrderDate.setEnabled(false);
         edtOrderdueDate = (TextView) view.findViewById(R.id.edtOrderdue);
         Constants.Productlist.clear();
         Constants.addProducts();
@@ -242,6 +251,7 @@ public class FragmentCategoryItemRank extends Fragment implements DatePickerDial
                         double total = qty * price;
                         cinfo.total = String.valueOf(total);
                         cinfo.StockNo = pid;
+                        cinfo.rete = pinfo.Retail_Price;
                         cart.add(cinfo);
 
                     }
@@ -304,7 +314,7 @@ public class FragmentCategoryItemRank extends Fragment implements DatePickerDial
         class Holder {
             TextView name;
             TextView txtPrice;
-            TextView edtcode, edtdate, txtQty;
+            TextView edtcode, edtdate, txtQty, txtRate;
 
         }
 
@@ -321,6 +331,7 @@ public class FragmentCategoryItemRank extends Fragment implements DatePickerDial
                 hv.edtdate = (TextView) arg1.findViewById(R.id.edtdate);
                 hv.txtQty = (TextView) arg1.findViewById(R.id.txtQty);
                 hv.txtPrice = (TextView) arg1.findViewById(R.id.txtprice);
+                hv.txtRate = (TextView) arg1.findViewById(R.id.txtRate);
                 arg1.setTag(hv);
             } else {
                 hv = (Holder) arg1.getTag();
@@ -328,10 +339,11 @@ public class FragmentCategoryItemRank extends Fragment implements DatePickerDial
 
             CartInfo info = cart_list.get(arg0);
             if (info != null) {
-                hv.edtcode.setText(info.product);
-//                hv.edtQty.setText(info.qty);
+                hv.edtcode.setText(info.StockNo);
+                hv.edtdate.setText(info.product);
+                hv.txtRate.setText(info.rete);
+                hv.txtQty.setText(String.valueOf(info.qty));
                 hv.txtPrice.setText(info.total);
-
             }
 
             return arg1;
@@ -339,10 +351,13 @@ public class FragmentCategoryItemRank extends Fragment implements DatePickerDial
 
     }
 
-    public void makeJson() {
+    public String makeJson() {
+        String str1 = edtOrderDate.getText().toString();
+        String str2 = edtOrderdueDate.getText().toString();
         String data = "{\"userid\":\"%s\",\"client_code\":\"%s\",\"order_date\":\"%s\",\"due_date\":\"%s\",\"devicecode\":\"%s\",\"products\":\"%s\"}";
         String strr = GetJsonForPackage();
-        data = String.format(data, UserInfo.getUser().login_id, cid, "01/05/2016", "05/05/2016", "0001", strr);
+        data = String.format(data, UserInfo.getUser().login_id, cid, str1, str2, "0001", strr);
+        return data;
     }
 
     public String GetJsonForPackage() {
@@ -377,6 +392,41 @@ public class FragmentCategoryItemRank extends Fragment implements DatePickerDial
             }
         }
         return buffer.toString();
+    }
+
+    public void sendData() {
+        showProgress();
+        String data = makeJson();
+        if (data != null && data.length() > 0) {
+            ServiceHelper helper = new ServiceHelper(ServiceHelper.ADD_ORDER, ServiceHelper.RequestMethod.POST, data);
+            helper.call(new ServiceHelper.ServiceHelperDelegate() {
+                @Override
+                public void CallFinish(ServiceResponse res) {
+                    hideProgress();
+                    if (res.RawResponse != null) {
+                        Intent start = new Intent(getActivity(), LeftMenusActivity.class);
+                        startActivity(start);
+                        getActivity().finish();
+                    } else {
+
+                    }
+
+                }
+
+                @Override
+                public void CallFailure(String ErrorMessage) {
+                    hideProgress();
+                    if (ErrorMessage != null) {
+                        Toast.makeText(getActivity(), "Please try again", Toast.LENGTH_LONG).show();
+                    }
+
+                }
+            });
+        } else {
+            Toast.makeText(getActivity(), "Please try again", Toast.LENGTH_LONG).show();
+        }
+
+
     }
 
 

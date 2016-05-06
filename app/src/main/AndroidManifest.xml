@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.v4sales"
     android:versionCode="1"
-    android:versionName="1.0.1">
+    android:versionName="1.0.0">
 
     <uses-sdk
         android:minSdkVersion="15"
@@ -14,6 +14,7 @@
     <permission
         android:name="com.example.v4sales.permission.MAPS_RECEIVE"
         android:protectionLevel="signature" />
+
     <uses-permission android:name="android.permission.INSTALL_PACKAGES" />
     <uses-permission android:name="com.example.v4sales.permission.MAPS_RECEIVE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -41,7 +42,6 @@
     <android:uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <uses-feature
@@ -179,7 +179,9 @@
         <activity android:name="amigoinn.example.v4sales.NewOrderTabActiviy" />
         <activity android:name="amigoinn.example.v4sales.dummy.AddProductsActivity" />
         <activity android:name="amigoinn.example.v4sales.OrderDetailActivity" />
-        <activity android:name="amigoinn.example.v4sales.OrderDispatchDetail"></activity>
+        <activity android:name="amigoinn.example.v4sales.OrderDispatchDetail" />
+        <activity android:name="amigoinn.example.v4sales.ClientOrderDetalisActivity" />
+        <activity android:name="amigoinn.example.v4sales.ClientOrderDispatchActiviy"></activity>
     </application>
 
 </manifest>

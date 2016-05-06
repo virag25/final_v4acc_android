@@ -1,6 +1,7 @@
 package amigoinn.example.v4sales;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -100,7 +101,7 @@ public class ClientLedgersFragment extends BaseFragment {
         }
 
         @Override
-        public View getView(int arg0, View arg1, ViewGroup arg2) {
+        public View getView(final int arg0, View arg1, ViewGroup arg2) {
             // TODO Auto-generated method stub
 
             Holder hv;
@@ -130,7 +131,12 @@ public class ClientLedgersFragment extends BaseFragment {
             hv.rlMain.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    Intent start = new Intent(getActivity(), ClientOrderDispatchActiviy.class);
+                    ClientOrderInfo c_info = m_list.get(arg0);
+                    start.putExtra("TrnCtrlNo", c_info.TrnCtrlNo);
+                    start.putExtra("DocNoPrefix", c_info.DocNoPrefix);
+                    start.putExtra("DocNo", c_info.DocNo);
+                    startActivity(start);
                 }
             });
 

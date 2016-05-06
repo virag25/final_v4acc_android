@@ -11,6 +11,10 @@ public class CartInfo {
 
     @ModelMapper(JsonKey = "product")
     public String product = "";
+
+    @ModelMapper(JsonKey = "rete")
+    public String rete = "";
+
     @ModelMapper(JsonKey = "qty")
     public int qty = 0;
 

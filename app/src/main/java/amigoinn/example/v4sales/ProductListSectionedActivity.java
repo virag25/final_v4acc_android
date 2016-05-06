@@ -46,20 +46,19 @@ import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
  */
 
 
-public class ProductListSectionedActivity extends BaseFragment
-{
+public class ProductListSectionedActivity extends BaseFragment {
 
     //    private AudioFilesAdapter mAdapter;
     private NotifyingAsyncQueryHandler mQueryHandler;
     EditText inputSearch;
-//    List<String> countries;
+    //    List<String> countries;
     StickyListHeadersListView stickyList;
     TextView txtFilter;
     private Handler mHandler;
     public static SectionedListActivityForFilters listActivity;
     View v;
     ArrayList<ProductInfo> clint_info;
-    ArrayList<GenLookInfo> gen_lookup =new ArrayList<>();
+    ArrayList<GenLookInfo> gen_lookup = new ArrayList<>();
 
     @Nullable
     @Override
@@ -80,15 +79,12 @@ public class ProductListSectionedActivity extends BaseFragment
         inputSearch = (EditText) v.findViewById(R.id.inputSearch);
 
         TextView txtDone = (TextView) v.findViewById(R.id.txtDone);
-        txtFilter.setOnClickListener(new View.OnClickListener()
-        {
+        txtFilter.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 Intent in;
-                Config.filterfrom="product";
-                if (Config.filterfrom.equalsIgnoreCase("product"))
-                {
+                Config.filterfrom = "product";
+                if (Config.filterfrom.equalsIgnoreCase("product")) {
                     in = new Intent(getActivity(), ProductFilter.class);
                 } else if (Config.filterfrom.equalsIgnoreCase("Mainmenu")) {
                     in = new Intent(getActivity(), Filter.class);
@@ -149,45 +145,40 @@ public class ProductListSectionedActivity extends BaseFragment
 //        }
 //    }
 
-    public void loadClients()
-    {
+    public void loadClients() {
         showProgress();
         ProductList.Instance().DoProductCall(new ModelDelegates.ModelDelegate<ProductInfo>() {
             @Override
-            public void ModelLoaded(ArrayList<ProductInfo> list)
-            {
+            public void ModelLoaded(ArrayList<ProductInfo> list) {
                 hideProgress();
                 Collections.sort(list, new Comparator<ProductInfo>() {
                     @Override
                     public int compare(ProductInfo s1, ProductInfo s2) {
-                        return s1.product.compareToIgnoreCase(s2.product);
+                        return s1.model.compareToIgnoreCase(s2.model);
                     }
                 });
 //                Collections.sort(list, String.CASE_INSENSITIVE_ORDER);
                 clint_info = list;
                 setbaseadapter();
-                DatabaseHandler1 handler1=new DatabaseHandler1(v.getContext());
-                ArrayList<String> categories=handler1.getCategoris();
+                DatabaseHandler1 handler1 = new DatabaseHandler1(v.getContext());
+                ArrayList<String> categories = handler1.getCategoris();
 //                ArrayList<String> itemgroup=handler1.getItemgroup();
                 loadGENLOOKUPS();
             }
 
             @Override
-            public void ModelLoadFailedWithError(String error)
-            {
+            public void ModelLoadFailedWithError(String error) {
                 hideProgress();
                 Toast.makeText(getActivity(), error, Toast.LENGTH_LONG).show();
             }
         });
     }
 
-    public void loadGENLOOKUPS()
-    {
+    public void loadGENLOOKUPS() {
         showProgress();
         GenLookup.Instance().DoProductCall(new ModelDelegates.ModelDelegate<GenLookInfo>() {
             @Override
-            public void ModelLoaded(ArrayList<GenLookInfo> list)
-            {
+            public void ModelLoaded(ArrayList<GenLookInfo> list) {
                 hideProgress();
 //                Collections.sort(list, new Comparator<GenLookInfo>() {
 //                    @Override
@@ -204,8 +195,7 @@ public class ProductListSectionedActivity extends BaseFragment
             }
 
             @Override
-            public void ModelLoadFailedWithError(String error)
-            {
+            public void ModelLoadFailedWithError(String error) {
                 hideProgress();
                 Toast.makeText(getActivity(), error, Toast.LENGTH_LONG).show();
             }
@@ -321,7 +311,7 @@ public class ProductListSectionedActivity extends BaseFragment
                 holder = (ViewHolder) convertView.getTag();
             }
 
-            holder.text.setText(filteredData.get(position).product);
+            holder.text.setText(filteredData.get(position).model);
             final int pos = position;
             final ViewHolder holder1 = holder;
             holder.text.setOnClickListener(new View.OnClickListener() {
@@ -352,7 +342,7 @@ public class ProductListSectionedActivity extends BaseFragment
                 holder = (HeaderViewHolder) convertView.getTag();
             }
             //set header text as first char in name
-            String headerText = "" + filteredData.get(position).product.subSequence(0, 1).charAt(0);
+            String headerText = "" + filteredData.get(position).model.subSequence(0, 1).charAt(0);
             holder.text.setText(headerText);
             return convertView;
         }
@@ -360,7 +350,7 @@ public class ProductListSectionedActivity extends BaseFragment
         @Override
         public long getHeaderId(int position) {
             //return the first character of the country as ID because this is what headers are based upon
-            return filteredData.get(position).product.subSequence(0, 1).charAt(0);
+            return filteredData.get(position).model.subSequence(0, 1).charAt(0);
         }
 
         @Override

@@ -1,6 +1,7 @@
 package amigoinn.example.v4sales;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -42,11 +43,12 @@ public class ClientBussinessFragments extends BaseFragment {
             @Override
             public void ModelLoaded(ArrayList<ClientOrderInfo> list) {
                 hideProgress();
-                if(list!=null && list.size()>0){
-                    adateer = new ListViewCustomAdapter(getActivity(),list);
+                if (list != null && list.size() > 0) {
+                    adateer = new ListViewCustomAdapter(getActivity(), list);
                     listView2.setAdapter(adateer);
-                }else{
-                    Toast.makeText(getActivity(),"There are no any data found",Toast.LENGTH_LONG).show();;
+                } else {
+                    Toast.makeText(getActivity(), "There are no any data found", Toast.LENGTH_LONG).show();
+                    ;
                 }
 
             }
@@ -54,7 +56,8 @@ public class ClientBussinessFragments extends BaseFragment {
             @Override
             public void ModelLoadFailedWithError(String error) {
                 hideProgress();
-                Toast.makeText(getActivity(),"There are no any data found",Toast.LENGTH_LONG).show();;
+                Toast.makeText(getActivity(), "There are no any data found", Toast.LENGTH_LONG).show();
+                ;
             }
         });
     }
@@ -100,7 +103,7 @@ public class ClientBussinessFragments extends BaseFragment {
         }
 
         @Override
-        public View getView(int arg0, View arg1, ViewGroup arg2) {
+        public View getView(final int arg0, View arg1, ViewGroup arg2) {
             // TODO Auto-generated method stub
 
             Holder hv;
@@ -130,7 +133,12 @@ public class ClientBussinessFragments extends BaseFragment {
             hv.rlMain.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    Intent start = new Intent(getActivity(), ClientOrderDetalisActivity.class);
+                    ClientOrderInfo c_info = m_list.get(arg0);
+                    start.putExtra("TrnCtrlNo", c_info.TrnCtrlNo);
+                    start.putExtra("DocNoPrefix", c_info.DocNoPrefix);
+                    start.putExtra("DocNo", c_info.DocNo);
+                    startActivity(start);
                 }
             });
 
