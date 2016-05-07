@@ -56,6 +56,7 @@ import amigoinn.adapters.Custom_Home_tasks;
 import amigoinn.db_model.ClassCombInfo;
 import amigoinn.db_model.GenLookInfo;
 import amigoinn.db_model.ModelDelegates;
+import amigoinn.db_model.ProductInfo;
 import amigoinn.db_model.UserInfo;
 import amigoinn.modallist.Combo12;
 import amigoinn.modallist.GenLookup;
@@ -180,7 +181,7 @@ public class FragmentCategoryItem extends Fragment
 
 
 
-
+        ArrayList<ProductInfo> categories=handler1.getproductforItemgroups("Home Care");
         return view;
     }
 
@@ -235,7 +236,7 @@ public class FragmentCategoryItem extends Fragment
                 class12combolist = list;
                 //setbaseadapter();
 //                DatabaseHandler1 handler1=new DatabaseHandler1(v.getContext());
-//                ArrayList<String> categories=handler1.getCategoris();
+
 //                ArrayList<String> itemgroup=handler1.getItemgroup();
             }
 

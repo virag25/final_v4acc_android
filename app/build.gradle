@@ -7,7 +7,9 @@ android {
 
     defaultConfig
             {
-            applicationId "amigoinn.example.v4sales"
+                multiDexEnabled true
+
+                applicationId "amigoinn.example.v4sales"
         minSdkVersion 15
         targetSdkVersion 22
     }
@@ -28,6 +30,7 @@ dependencies
         {
 
             compile files('libs/apache-mime4j-0.6.jar')
+            compile 'com.android.support:multidex:1.0.0'
 
             compile files('libs/httpmime-4.0.1.jar')
             compile files('libs/listviewanimations_lib-core-slh_3.1.0.jar')

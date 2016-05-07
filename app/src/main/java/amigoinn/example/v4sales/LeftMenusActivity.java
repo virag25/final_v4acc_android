@@ -125,7 +125,8 @@ public class LeftMenusActivity extends ActionBarActivity
 	}
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState)
+	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
@@ -496,7 +497,8 @@ public class LeftMenusActivity extends ActionBarActivity
 //			editor.clear();
 //			editor.putString("url", "http://www.amigoinnovations.co.in/aspiremobile/index.php?student/dashboard");//?teacher/dashboard");
 //			editor.commit();
-            try {
+            try
+			{
                 Fragment fragment = new DashboardFragment();//.newInstance();
                 commitFragment(fragment);
                 setTitle(mDrawerItems.get(position - 1).getTitle());
@@ -506,9 +508,12 @@ public class LeftMenusActivity extends ActionBarActivity
             }
 			break;
 		case 2:
-			try {
+			try
+			{
 				Fragment fragment1234f = new FragmentCategoryItem();//.newInstance();
 				commitFragment(fragment1234f);
+//				Intent ina=new Intent(this,AndroidDatabaseManager.class);
+//                        startActivity(ina);
 //				setTitle("Product Information");
 //				Fragment fragment1234f = new AbsentList();//.newInstance();
 //				commitFragment(fragment1234f);
@@ -608,9 +613,11 @@ public class LeftMenusActivity extends ActionBarActivity
 
 				try
 				{
-					Fragment fragment12345 = new FragmentReportChart();//.newInstance();
-					commitFragment(fragment12345);
-					setTitle("Report");
+					Intent ina=new Intent(this,AndroidDatabaseManager.class);
+                        startActivity(ina);
+//					Fragment fragment12345 = new FragmentReportChart();//.newInstance();
+//					commitFragment(fragment12345);
+//					setTitle("Report");
 					break;
 
 				}catch(Exception ex)
